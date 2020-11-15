@@ -85,8 +85,9 @@ public class TWDGameManager {
         }
         catch(FileNotFoundException exception) {
             System.out.println("Erro: o ficheiro nao foi encontrado.");
+            return false;
         }
-        return false;
+        return true;
     }
     //
 
