@@ -6,6 +6,7 @@ public class Humano {
     String nome;
     int x;
     int y;
+    int equipamentosApanhados;
 
     public Humano(int id, int tipo, String nome, int x, int y) {
         this.id = id;
@@ -24,7 +25,8 @@ public class Humano {
     }
     //
     public String toString() {
-        return "";
+        return this.id + " | " + this.tipo + " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
+                + this.x + ", " + this.y +")" ;
     }
 
     public int getX () {

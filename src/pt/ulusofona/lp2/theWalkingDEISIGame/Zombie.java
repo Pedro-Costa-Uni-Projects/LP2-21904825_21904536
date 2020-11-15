@@ -6,6 +6,7 @@ public class Zombie {
     String nome;
     int x;
     int y;
+    int equipamentosDestruidos;
 
     public Zombie(int id, int tipo, String nome, int x, int y) {
         this.id = id;
@@ -24,7 +25,8 @@ public class Zombie {
     }
     //
     public String toString() {
-        return "";
+        return this.id + " | " + this.tipo + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
+                + this.x + ", " + this.y +")" ;
     }
 
     public int getX () {
