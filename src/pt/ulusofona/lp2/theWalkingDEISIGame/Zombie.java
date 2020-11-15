@@ -21,7 +21,7 @@ public class Zombie {
     }
 
     public String getImagePNG() {
-        return null;
+        return "Zombie.png";
     }
 
     public String toString() {
