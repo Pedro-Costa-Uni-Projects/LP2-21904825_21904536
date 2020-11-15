@@ -137,9 +137,9 @@ public class TWDGameManager {
             }
         }
 
-        for (Humano listaHumano : listaHumanos) {
-            if (listaHumano.getX() == x && listaHumano.getY() == y) {
-                return listaHumano.getId();
+        for (Humano humano : listaHumanos) {
+            if (humano.getX() == x && humano.getY() == y) {
+                return humano.getId();
             }
         }
 
@@ -163,6 +163,6 @@ public class TWDGameManager {
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
-        return true;
+        return false;
     }
 }
