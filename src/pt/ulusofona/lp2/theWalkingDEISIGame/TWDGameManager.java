@@ -89,7 +89,6 @@ public class TWDGameManager {
         }
         return true;
     }
-    //
 
     public int[] getWorldSize() {
         return linhaColuna;
