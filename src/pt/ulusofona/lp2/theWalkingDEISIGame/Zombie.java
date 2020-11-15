@@ -25,7 +25,7 @@ public class Zombie {
     }
 
     public String toString() {
-        return this.id + " | " + this.tipo + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
+        return this.id + " | Zombie"  + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
                 + this.x + ", " + this.y +")" ;
     }
 

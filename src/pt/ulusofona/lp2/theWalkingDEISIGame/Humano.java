@@ -25,7 +25,7 @@ public class Humano {
     }
 
     public String toString() {
-        return this.id + " | " + this.tipo + " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
+        return this.id + " | Humano" +  " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
                 + this.x + ", " + this.y +")" ;
     }
 
