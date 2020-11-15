@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,8 +9,10 @@ import java.io.FileNotFoundException;
 public class TWDGameManager {
     int[] linhaColuna = new int[2];
     int idEquipaStart;
+    int idEquipaAtual;
     int criaturasJogo;
     int equipamentosJogo;
+    boolean turno; //true = diurno, false = noturno.
     ArrayList<Humano> listaHumanos = new ArrayList<>();
     ArrayList<Zombie> listaZombie = new ArrayList<>();
     ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
@@ -86,5 +89,80 @@ public class TWDGameManager {
         return false;
     }
     //
-    
+
+    public int[] getWorldSize() {
+        return linhaColuna;
+    }
+
+    public int getInitialTeam() {
+        return idEquipaStart;
+    }
+
+    public List<Humano> getHumans() {
+        return listaHumanos;
+    }
+
+    public List<Zombie> getZombies() {
+        return listaZombie;
+    }
+
+    public boolean move(int xO, int yO, int xD, int yD) {
+        return true;
+    }
+
+    public boolean gameIsOver() {
+        return false;
+    }
+
+    public List<String> getAuthors() {
+        ArrayList<String> autores = new ArrayList<>();
+        String autor1 = "Pedro Costa";
+        String autor2 = "Ângelo Bernardes";
+
+        autores.add(autor1);
+        autores.add(autor2);
+
+        return autores;
+
+    }
+
+    public int getCurrentTeamId() {
+        return idEquipaAtual;
+    }
+
+    public int getElementId(int x, int y) {
+        for (Equipamento equipamento : listaEquipamento) {
+            if (equipamento.getX() == x && equipamento.getY() == y) {
+                return equipamento.getId();
+            }
+        }
+
+        for (Humano listaHumano : listaHumanos) {
+            if (listaHumano.getX() == x && listaHumano.getY() == y) {
+                return listaHumano.getId();
+            }
+        }
+
+        for (Zombie zombie : listaZombie) {
+            if (zombie.getX() == x && zombie.getY() == y) {
+                return zombie.getId();
+            }
+        }
+
+        return 0;
+    }
+
+    public List<String> getSurvivors() {
+        ArrayList<String> sobreviventes = new ArrayList<>();
+
+        return sobreviventes;
+    }
+
+    public boolean isDay() {
+        return turno;
+    }
+
+    public boolean hasEquipment(int creatureId, int equipmentTypeId) {
+        return true;
+    }
 }
