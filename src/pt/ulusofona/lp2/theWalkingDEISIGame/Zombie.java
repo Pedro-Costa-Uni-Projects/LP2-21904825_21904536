@@ -15,15 +15,15 @@ public class Zombie {
         this.x = x;
         this.y = y;
     }
-    //
+
     public int getId(){
         return this.id;
     }
-    //
+
     public String getImagePNG() {
         return null;
     }
-    //
+
     public String toString() {
         return this.id + " | " + this.tipo + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
                 + this.x + ", " + this.y +")" ;

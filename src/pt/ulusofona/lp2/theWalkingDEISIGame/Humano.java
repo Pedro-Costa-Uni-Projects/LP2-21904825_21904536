@@ -15,15 +15,15 @@ public class Humano {
         this.x = x;
         this.y = y;
     }
-    //
+
     public int getId(){
         return this.id;
     }
-    //
+
     public String getImagePNG() {
         return null;
     }
-    //
+
     public String toString() {
         return this.id + " | " + this.tipo + " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
                 + this.x + ", " + this.y +")" ;
