@@ -35,6 +35,7 @@ public class TWDGameManager {
                     case 1:
                         linha = leitorFicheiro.nextLine();
                         idEquipaStart = Integer.parseInt(linha);
+                        idEquipaAtual = idEquipaStart;
                         count++;
                         break;
                     case 2:
@@ -107,6 +108,71 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+        int idCriatura = 0;
+        int verificaDirecao = 0;
+        int[] cordenadaSemiValidade = new int[2];
+        //verifica se é a equipa atual a jogar
+        if (idEquipaAtual == 0) {
+            for (Humano humano : listaHumanos) {
+                if (humano.getX() == xO && humano.getY() == yO) {
+                    idCriatura = humano.getId();
+                }
+            }
+        } else {
+            for (Zombie zombie : listaZombie) {
+                if (zombie.getX() == xO && zombie.getY() == yO) {
+                    idCriatura = zombie.getId();
+                }
+            }
+        }
+        if (idCriatura == 0) {
+            return false;
+        }
+        int[] norte = {xO,yO-1};
+        int[] sul = {xO,yO+1};
+        int[] este = {xO+1,yO};
+        int[] oeste = {xO-1,yO};
+        //verifica se sai fora das bordas
+        if(xD < 0 || yD<0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
+            return false;
+        }
+        //verificar se a jogada destino é uma destas
+        if (norte[0] == xD && norte[1] == yD) {
+            verificaDirecao = 1;
+        } else if (sul[0] == xD && sul[1] == yD) {
+            verificaDirecao = 2;
+        } else if (este[0] == xD && este[1] == yD) {
+            verificaDirecao = 3;
+        } else if (oeste[0] == xD && oeste[1] == yD) {
+            verificaDirecao = 4;
+        }
+        switch (verificaDirecao) {
+            case 0:
+                return false;
+            case 1:
+               cordenadaSemiValidade = norte;
+               break;
+            case 2:
+                cordenadaSemiValidade = sul;
+                break;
+            case 3:
+                cordenadaSemiValidade = este;
+                break;
+            case 4:
+                cordenadaSemiValidade = oeste;
+                break;
+        }
+        //verificar se já não existe lá um jogador
+        for (Humano humano : listaHumanos) {
+            if (humano.getX() == cordenadaSemiValidade[0] && humano.getY() == cordenadaSemiValidade[1]) {
+                return false;
+            }
+        }
+        for (Zombie zombie : listaZombie) {
+            if (zombie.getX() == cordenadaSemiValidade[0] && zombie.getY() == cordenadaSemiValidade[1]) {
+                return false;
+            }
+        }
         return true;
     }
 
