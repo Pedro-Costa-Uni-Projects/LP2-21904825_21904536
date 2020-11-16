@@ -20,6 +20,15 @@ public class Humano {
         return this.id;
     }
 
+    public void addEquipamentosApanhados(){
+        this.equipamentosApanhados++;
+    }
+
+    public void alteraCoordenada(int x,int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public String getImagePNG() {
         return null;
     }

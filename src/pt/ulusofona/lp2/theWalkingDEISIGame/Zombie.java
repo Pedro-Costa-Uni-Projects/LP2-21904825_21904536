@@ -20,6 +20,15 @@ public class Zombie {
         return this.id;
     }
 
+    public void addEquipamentosDestruidos(){
+        this.equipamentosDestruidos++;
+    }
+
+    public void alteraCoordenada(int x,int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public String getImagePNG() {
         return "Zombie.png";
     }

@@ -173,6 +173,36 @@ public class TWDGameManager {
                 return false;
             }
         }
+
+        if(idEquipaAtual == 1) {
+            for (Zombie zombie : listaZombie) {
+                if (zombie.getX() == xO && zombie.getY() == yO) {
+                    zombie.addEquipamentosDestruidos();
+                    zombie.alteraCoordenada(xD,yD);
+                    idEquipaAtual = 0;
+                }
+            }
+            for (int i = 0; i < listaEquipamento.size(); i++) {
+                if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
+                    listaEquipamento.remove(i);
+
+                }
+            }
+        } else {
+            for (Humano humano : listaHumanos) {
+                if (humano.getX() == xO && humano.getY() == yO) {
+                    humano.addEquipamentosApanhados();
+                    humano.alteraCoordenada(xD,yD);
+                    idEquipaAtual = 1;
+                }
+            }
+            for (int i = 0; i < listaEquipamento.size(); i++) {
+                if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
+                    listaEquipamento.remove(i);
+                }
+            }
+        }
+
         return true;
     }
 
