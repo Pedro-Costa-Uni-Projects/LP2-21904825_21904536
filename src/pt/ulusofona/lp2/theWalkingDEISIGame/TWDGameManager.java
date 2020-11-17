@@ -204,7 +204,7 @@ public class TWDGameManager {
                                 equipamentoRetirar = listaEquipamento.get(i);
                             } else {
                                 Equipamento equipamentoDrop = humano.getEquipamentoAtual();
-                                equipamentoDrop.alteraCoordenada(xO,yO);
+                                equipamentoDrop.alteraCoordenada(xO,yO); //alterer aqui
                                 listaEquipamento.add(equipamentoDrop);
                                 humano.addEquipamentosAtual(listaEquipamento.get(i));
                                 equipamentoRetirar = listaEquipamento.get(i);
