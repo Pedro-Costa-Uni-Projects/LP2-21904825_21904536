@@ -223,7 +223,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return false;
+        return dia == 3 && noite == 3;
     }
 
     public List<String> getAuthors() {
