@@ -117,7 +117,7 @@ public class TWDGameManager {
         Equipamento equipamentoRetirar = new Equipamento();
 
         //verifica se é a equipa atual a jogar
-       if (idEquipaAtual == 0) {
+        if (idEquipaAtual == 0) {
             for (Humano humano : listaHumanos) {
                 if (humano.getX() == xO && humano.getY() == yO) {
                     idCriatura = humano.getId();
@@ -155,8 +155,8 @@ public class TWDGameManager {
             case 0:
                 return false;
             case 1:
-               cordenadaSemiValidade = norte;
-               break;
+                cordenadaSemiValidade = norte;
+                break;
             case 2:
                 cordenadaSemiValidade = sul;
                 break;
@@ -263,7 +263,6 @@ public class TWDGameManager {
 
     public List<String> getSurvivors() {
         ArrayList<String> sobreviventes = new ArrayList<>();
-
         return sobreviventes;
     }
 
