@@ -28,6 +28,10 @@ public class Equipamento {
         return this.id;
     }
 
+    public int getTipo () {
+        return this.tipo;
+    }
+
     public void alteraCoordenada(int x,int y) {
         this.x = x;
         this.y = y;

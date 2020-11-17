@@ -290,7 +290,7 @@ public class TWDGameManager {
         for (Humano humano : listaHumanos) {
             if (humano.getId() == creatureId) {
                 if(humano.getEquipamentoAtual() != null) {
-                    if (humano.getEquipamentoAtual().getId() == equipmentTypeId) {
+                    if (humano.getEquipamentoAtual().getTipo() == equipmentTypeId) {
                         return true;
                     }
                 }
