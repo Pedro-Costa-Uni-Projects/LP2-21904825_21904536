@@ -266,13 +266,13 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        int[] diasPossiveis = {0, 1, 4, 5, 8, 9,12};
+        int[] diasPossiveis = {0, 1, 4, 5, 8, 9};
 
         if(numeroDeJogadas == 2 || numeroDeJogadas == 6 || numeroDeJogadas == 10) {
             dia++;
         }
 
-        if(numeroDeJogadas == 4 || numeroDeJogadas == 8 || numeroDeJogadas == 12) {
+        if(numeroDeJogadas == 4 || numeroDeJogadas == 8 || numeroDeJogadas == 11) {
             noite++;
         }
 
@@ -290,10 +290,11 @@ public class TWDGameManager {
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for (Humano humano : listaHumanos) {
             if (humano.getId() == creatureId) {
-                if (humano.getEquipamentoAtual().getId() == equipmentTypeId) {
-                    return true;
+                if(humano.getEquipamentoAtual() != null) {
+                    if (humano.getEquipamentoAtual().getId() == equipmentTypeId) {
+                        return true;
+                    }
                 }
-
             }
         }
         return false;
