@@ -12,7 +12,10 @@ public class TWDGameManager {
     int idEquipaAtual;
     int criaturasJogo;
     int equipamentosJogo;
-    boolean turno; //true = diurno, false = noturno.
+    int numeroDeJogadas;
+    //boolean turno; true = diurno, false = noturno.
+    int dia;
+    int noite;
     ArrayList<Humano> listaHumanos = new ArrayList<>();
     ArrayList<Zombie> listaZombie = new ArrayList<>();
     ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
@@ -185,6 +188,8 @@ public class TWDGameManager {
                     }
                     zombie.alteraCoordenada(xD,yD);
                     idEquipaAtual = 0;
+                    numeroDeJogadas++;
+
                 }
             }
         } else {
@@ -207,6 +212,7 @@ public class TWDGameManager {
                     }
                     humano.alteraCoordenada(xD,yD);
                     idEquipaAtual = 1;
+                    numeroDeJogadas++;
                 }
             }
 
@@ -215,7 +221,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return false;
+        return dia == 3 && noite == 3;
     }
 
     public List<String> getAuthors() {
@@ -260,10 +266,36 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        return turno;
+        int[] diasPossiveis = {0, 1, 4, 5, 8, 9,12};
+
+        if(numeroDeJogadas == 2 || numeroDeJogadas == 6 || numeroDeJogadas == 10) {
+            dia++;
+        }
+
+        if(numeroDeJogadas == 4 || numeroDeJogadas == 8 || numeroDeJogadas == 12) {
+            noite++;
+        }
+
+        for (int dia : diasPossiveis) {
+            if (dia == numeroDeJogadas) {
+                return true;
+            }
+        }
+
+
+        return false;
+
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
+        for (Humano humano : listaHumanos) {
+            if (humano.getId() == creatureId) {
+                if (humano.getEquipamentoAtual().getId() == equipmentTypeId) {
+                    return true;
+                }
+
+            }
+        }
         return false;
     }
 }
