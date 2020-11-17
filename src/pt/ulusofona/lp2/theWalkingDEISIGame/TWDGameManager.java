@@ -189,11 +189,11 @@ public class TWDGameManager {
                         }
                     }
                     zombie.alteraCoordenada(xD,yD);
-                    idEquipaAtual = 0;
-                    numeroDeJogadas++;
-                    listaEquipamento.remove(equipamentoRetirar);
                 }
             }
+            idEquipaAtual = 0;
+            numeroDeJogadas++;
+            listaEquipamento.remove(equipamentoRetirar);
         } else {
             for (Humano humano : listaHumanos) {
                 if (humano.getX() == xO && humano.getY() == yO) {
@@ -213,11 +213,11 @@ public class TWDGameManager {
                         }
                     }
                     humano.alteraCoordenada(xD,yD);
-                    idEquipaAtual = 1;
-                    numeroDeJogadas++;
-                    listaEquipamento.remove(equipamentoRetirar);
                 }
             }
+            idEquipaAtual = 1;
+            numeroDeJogadas++;
+            listaEquipamento.remove(equipamentoRetirar);
         }
         return true;
     }
