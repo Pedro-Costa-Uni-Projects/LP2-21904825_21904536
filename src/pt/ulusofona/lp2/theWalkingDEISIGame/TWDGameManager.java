@@ -178,7 +178,7 @@ public class TWDGameManager {
                 return false;
             }
         }
-
+        //se chegou aqui a jogada foi validada
         if(idEquipaAtual == 1) {
             for (Zombie zombie : listaZombie) {
                 if (zombie.getX() == xO && zombie.getY() == yO) {
@@ -189,11 +189,11 @@ public class TWDGameManager {
                         }
                     }
                     zombie.alteraCoordenada(xD,yD);
+                    idEquipaAtual = 0;
+                    numeroDeJogadas++;
+                    listaEquipamento.remove(equipamentoRetirar);
                 }
             }
-            idEquipaAtual = 0;
-            numeroDeJogadas++;
-            listaEquipamento.remove(equipamentoRetirar);
         } else {
             for (Humano humano : listaHumanos) {
                 if (humano.getX() == xO && humano.getY() == yO) {
@@ -204,7 +204,7 @@ public class TWDGameManager {
                                 equipamentoRetirar = listaEquipamento.get(i);
                             } else {
                                 Equipamento equipamentoDrop = humano.getEquipamentoAtual();
-                                equipamentoDrop.alteraCoordenada(xD,yD);
+                                equipamentoDrop.alteraCoordenada(xO,yO);
                                 listaEquipamento.add(equipamentoDrop);
                                 humano.addEquipamentosAtual(listaEquipamento.get(i));
                                 equipamentoRetirar = listaEquipamento.get(i);
@@ -213,17 +213,17 @@ public class TWDGameManager {
                         }
                     }
                     humano.alteraCoordenada(xD,yD);
+                    idEquipaAtual = 1;
+                    numeroDeJogadas++;
+                    listaEquipamento.remove(equipamentoRetirar);
                 }
             }
-            idEquipaAtual = 1;
-            numeroDeJogadas++;
-            listaEquipamento.remove(equipamentoRetirar);
         }
         return true;
     }
 
     public boolean gameIsOver() {
-        return dia == 3 && noite == 3;
+        return false;
     }
 
     public List<String> getAuthors() {
