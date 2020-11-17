@@ -133,7 +133,7 @@ public class TWDGameManager {
         int[] este = {xO+1,yO};
         int[] oeste = {xO-1,yO};
         //verifica se sai fora das bordas
-        if(xD < 0 || yD<0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
+        if(xD < 0 || yD < 0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
             return false;
         }
         //verificar se a jogada destino é uma destas
@@ -177,32 +177,40 @@ public class TWDGameManager {
         if(idEquipaAtual == 1) {
             for (Zombie zombie : listaZombie) {
                 if (zombie.getX() == xO && zombie.getY() == yO) {
-                    zombie.addEquipamentosDestruidos();
+                    for (int i = 0; i < listaEquipamento.size(); i++) {
+                        if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
+                            listaEquipamento.remove(i);
+                            zombie.addEquipamentosDestruidos();
+                        }
+                    }
                     zombie.alteraCoordenada(xD,yD);
                     idEquipaAtual = 0;
-                }
-            }
-            for (int i = 0; i < listaEquipamento.size(); i++) {
-                if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
-                    listaEquipamento.remove(i);
-
                 }
             }
         } else {
             for (Humano humano : listaHumanos) {
                 if (humano.getX() == xO && humano.getY() == yO) {
-                    humano.addEquipamentosApanhados();
+                    for (int i = 0; i < listaEquipamento.size(); i++) {
+                        if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
+                            if(humano.getEquipamentoAtual() == null) {
+                                humano.addEquipamentosAtual(listaEquipamento.get(i));
+                                listaEquipamento.remove(i);
+                            } else {
+                                Equipamento equipamentoDrop = humano.getEquipamentoAtual();
+                                equipamentoDrop.alteraCoordenada(xD,yD);
+                                listaEquipamento.add(equipamentoDrop);
+                                humano.addEquipamentosAtual(listaEquipamento.get(i));
+                                listaEquipamento.remove(i);
+                            }
+                            humano.addEquipamentosApanhados();
+                        }
+                    }
                     humano.alteraCoordenada(xD,yD);
                     idEquipaAtual = 1;
                 }
             }
-            for (int i = 0; i < listaEquipamento.size(); i++) {
-                if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
-                    listaEquipamento.remove(i);
-                }
-            }
-        }
 
+        }
         return true;
     }
 
@@ -227,21 +235,19 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
-        for (Equipamento equipamento : listaEquipamento) {
-            if (equipamento.getX() == x && equipamento.getY() == y) {
-                return equipamento.getId();
-            }
-        }
-
         for (Humano humano : listaHumanos) {
             if (humano.getX() == x && humano.getY() == y) {
                 return humano.getId();
             }
         }
-
         for (Zombie zombie : listaZombie) {
             if (zombie.getX() == x && zombie.getY() == y) {
                 return zombie.getId();
+            }
+        }
+        for (Equipamento equipamento : listaEquipamento) {
+            if (equipamento.getX() == x && equipamento.getY() == y) {
+                return equipamento.getId();
             }
         }
         return 0;

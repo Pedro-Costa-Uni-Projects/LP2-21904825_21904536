@@ -7,6 +7,7 @@ public class Humano {
     int x;
     int y;
     int equipamentosApanhados;
+    Equipamento equipamentoAtual;
 
     public Humano(int id, int tipo, String nome, int x, int y) {
         this.id = id;
@@ -20,8 +21,16 @@ public class Humano {
         return this.id;
     }
 
+    public Equipamento getEquipamentoAtual() {
+        return this.equipamentoAtual;
+    }
+
     public void addEquipamentosApanhados(){
         this.equipamentosApanhados++;
+    }
+
+    public void addEquipamentosAtual(Equipamento equipamento){
+        this.equipamentoAtual = equipamento;
     }
 
     public void alteraCoordenada(int x,int y) {
@@ -30,7 +39,7 @@ public class Humano {
     }
 
     public String getImagePNG() {
-        return null;
+        return "Humano.png";
     }
 
     public String toString() {

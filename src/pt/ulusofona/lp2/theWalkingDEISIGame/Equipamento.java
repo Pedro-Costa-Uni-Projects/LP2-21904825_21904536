@@ -24,4 +24,9 @@ public class Equipamento {
     public int getId () {
         return this.id;
     }
+
+    public void alteraCoordenada(int x,int y) {
+        this.x = x;
+        this.y = y;
+    }
 }
