@@ -111,13 +111,13 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        //int idCriatura = 0;
+        int idCriatura = 0;
         int verificaDirecao = 0;
         int[] cordenadaSemiValidade = new int[2];
         Equipamento equipamentoRetirar = new Equipamento();
 
         //verifica se é a equipa atual a jogar
-      /*  if (idEquipaAtual == 0) {
+       if (idEquipaAtual == 0) {
             for (Humano humano : listaHumanos) {
                 if (humano.getX() == xO && humano.getY() == yO) {
                     idCriatura = humano.getId();
@@ -132,7 +132,7 @@ public class TWDGameManager {
         }
         if (idCriatura == 0) {
             return false;
-        } */ //submissao sem este excerto
+        }
         int[] norte = {xO,yO-1};
         int[] sul = {xO,yO+1};
         int[] este = {xO+1,yO};
