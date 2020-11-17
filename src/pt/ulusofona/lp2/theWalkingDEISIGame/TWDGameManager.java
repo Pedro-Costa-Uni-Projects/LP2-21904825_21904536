@@ -192,7 +192,6 @@ public class TWDGameManager {
                     idEquipaAtual = 0;
                     numeroDeJogadas++;
                     listaEquipamento.remove(equipamentoRetirar);
-
                 }
             }
         } else {
@@ -209,7 +208,6 @@ public class TWDGameManager {
                                 listaEquipamento.add(equipamentoDrop);
                                 humano.addEquipamentosAtual(listaEquipamento.get(i));
                                 equipamentoRetirar = listaEquipamento.get(i);
-
                             }
                             humano.addEquipamentosApanhados();
                         }
@@ -220,7 +218,6 @@ public class TWDGameManager {
                     listaEquipamento.remove(equipamentoRetirar);
                 }
             }
-
         }
         return true;
     }
@@ -286,10 +283,7 @@ public class TWDGameManager {
                 return true;
             }
         }
-
-
         return false;
-
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
