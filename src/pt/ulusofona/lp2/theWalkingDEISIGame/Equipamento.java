@@ -6,6 +6,9 @@ public class Equipamento {
     int x;
     int y;
 
+    public Equipamento() {
+    }
+
     public Equipamento(int id, int tipo, int x, int y) {
         this.id = id;
         this.tipo = tipo;
