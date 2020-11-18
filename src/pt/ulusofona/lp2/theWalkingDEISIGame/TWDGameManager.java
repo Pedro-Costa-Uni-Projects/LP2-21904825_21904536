@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+//
 public class TWDGameManager {
     int[] linhaColuna = new int[2];
     int idEquipaStart;
