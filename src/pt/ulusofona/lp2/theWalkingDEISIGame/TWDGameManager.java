@@ -112,6 +112,11 @@ public class TWDGameManager {
         int[] cordenadaSemiValidade = new int[2];
         Equipamento equipamentoRetirar = new Equipamento();
 
+        //verifica se sai fora das bordas
+        if(xD < 0 || yD < 0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
+            return false;
+        }
+
         //verifica se é a equipa atual a jogar
         if (idEquipaAtual == 0) {
             for (Humano humano : listaHumanos) {
@@ -134,10 +139,7 @@ public class TWDGameManager {
         int[] este = {xO+1,yO};
         int[] oeste = {xO-1,yO};
 
-        //verifica se sai fora das bordas
-        if(xD < 0 || yD < 0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
-            return false;
-        }
+
 
         //verificar se a jogada destino é uma destas
         if (norte[0] == xD && norte[1] == yD) {
