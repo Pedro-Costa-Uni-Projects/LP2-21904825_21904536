@@ -21,6 +21,10 @@ public class Humano {
         return this.id;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public Equipamento getEquipamentoAtual() {
         return this.equipamentoAtual;
     }
@@ -42,17 +46,17 @@ public class Humano {
         return "Humano.png";
     }
 
-    public String toString() {
-        return this.id + " | Humano" +  " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
-                + this.x + ", " + this.y +")" ;
-    }
-
     public int getX () {
         return this.x;
     }
 
     public int getY () {
         return this.y;
+    }
+
+    public String toString() {
+        return this.id + " | Humano" +  " | Os Vivos | " + this.nome + " " + this.equipamentosApanhados + " @ ("
+                + this.x + ", " + this.y +")" ;
     }
 
 }

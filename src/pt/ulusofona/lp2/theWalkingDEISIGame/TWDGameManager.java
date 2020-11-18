@@ -139,8 +139,6 @@ public class TWDGameManager {
         int[] este = {xO+1,yO};
         int[] oeste = {xO-1,yO};
 
-
-
         //verificar se a jogada destino é uma destas
         if (norte[0] == xD && norte[1] == yD) {
             cordenadaSemiValidade = norte;
@@ -251,6 +249,17 @@ public class TWDGameManager {
 
     public List<String> getSurvivors() {
         ArrayList<String> sobreviventes = new ArrayList<>();
+        sobreviventes.add("Nr. de turnos terminados:");
+        sobreviventes.add(String.valueOf(numeroDeJogadas));
+        sobreviventes.add("\n");
+        sobreviventes.add("OS VIVOS");
+        for (Humano humano : listaHumanos) {
+            sobreviventes.add(humano.getId() + " " + humano.getNome());
+        }
+        sobreviventes.add("\n");
+        for (Zombie zombie : listaZombie) {
+            sobreviventes.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
+        }
         return sobreviventes;
     }
 

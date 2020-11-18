@@ -20,6 +20,10 @@ public class Zombie {
         return this.id;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public void addEquipamentosDestruidos(){
         this.equipamentosDestruidos++;
     }
@@ -33,16 +37,16 @@ public class Zombie {
         return "Zombie.png";
     }
 
-    public String toString() {
-        return this.id + " | Zombie"  + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
-                + this.x + ", " + this.y +")" ;
-    }
-
     public int getX () {
         return this.x;
     }
 
     public int getY () {
         return this.y;
+    }
+
+    public String toString() {
+        return this.id + " | Zombie"  + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
+                + this.x + ", " + this.y +")" ;
     }
 }
