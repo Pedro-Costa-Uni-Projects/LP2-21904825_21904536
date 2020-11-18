@@ -221,7 +221,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return numeroDeJogadas == 11    ;
+        return numeroDeJogadas == 12;
     }
 
     public List<String> getAuthors() {
