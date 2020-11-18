@@ -135,10 +135,12 @@ public class TWDGameManager {
         int[] sul = {xO,yO+1};
         int[] este = {xO+1,yO};
         int[] oeste = {xO-1,yO};
+
         //verifica se sai fora das bordas
         if(xD < 0 || yD < 0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
             return false;
         }
+
         //verificar se a jogada destino é uma destas
         if (norte[0] == xD && norte[1] == yD) {
             verificaDirecao = 1;
@@ -165,7 +167,8 @@ public class TWDGameManager {
                 cordenadaSemiValidade = oeste;
                 break;
         }
-        //verificar se já não existe lá um jogador
+
+        //verificar se já não existe lá um humano ou jogador
         for (Humano humano : listaHumanos) {
             if (humano.getX() == cordenadaSemiValidade[0] && humano.getY() == cordenadaSemiValidade[1]) {
                 return false;
@@ -176,6 +179,7 @@ public class TWDGameManager {
                 return false;
             }
         }
+
         //se chegou aqui a jogada foi validada
         if(idEquipaAtual == 1) {
             for (Zombie zombie : listaZombie) {
