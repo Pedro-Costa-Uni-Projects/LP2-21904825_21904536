@@ -221,7 +221,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return numeroDeJogadas == 11    ;
+        return numeroDeJogadas == 12;
     }
 
     public List<String> getAuthors() {
@@ -286,6 +286,4 @@ public class TWDGameManager {
         }
         return false;
     }
-
-    //Adicionar brunompc no github
 }
