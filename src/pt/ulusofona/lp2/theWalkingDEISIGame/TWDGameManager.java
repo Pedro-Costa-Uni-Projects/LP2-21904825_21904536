@@ -117,6 +117,11 @@ public class TWDGameManager {
             return false;
         }
 
+        //TESTE
+        if(xO < 0 || yO < 0 || xO >= linhaColuna[0] || yO >= linhaColuna[1]) {
+            return false;
+        } //TESTE
+
         //verifica se é a equipa atual a jogar
         if (idEquipaAtual == 0) {
             for (Humano humano : listaHumanos) {
