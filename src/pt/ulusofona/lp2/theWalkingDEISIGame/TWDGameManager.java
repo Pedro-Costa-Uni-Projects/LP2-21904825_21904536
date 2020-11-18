@@ -13,7 +13,6 @@ public class TWDGameManager {
     int criaturasJogo;
     int equipamentosJogo;
     int numeroDeJogadas;
-    //boolean turno; true = diurno, false = noturno.
     ArrayList<Humano> listaHumanos = new ArrayList<>();
     ArrayList<Zombie> listaZombie = new ArrayList<>();
     ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
