@@ -14,8 +14,6 @@ public class TWDGameManager {
     int equipamentosJogo;
     int numeroDeJogadas;
     //boolean turno; true = diurno, false = noturno.
-    int dia;
-    int noite;
     ArrayList<Humano> listaHumanos = new ArrayList<>();
     ArrayList<Zombie> listaZombie = new ArrayList<>();
     ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
@@ -223,7 +221,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return dia == 3 && noite == 3;
+        return numeroDeJogadas == 11    ;
     }
 
     public List<String> getAuthors() {
@@ -268,15 +266,6 @@ public class TWDGameManager {
 
     public boolean isDay() {
         int[] diasPossiveis = {0, 1, 4, 5, 8, 9};
-
-        if(numeroDeJogadas == 2 || numeroDeJogadas == 6 || numeroDeJogadas == 10) {
-            dia++;
-        }
-
-        if(numeroDeJogadas == 4 || numeroDeJogadas == 8 || numeroDeJogadas == 11) {
-            noite++;
-        }
-
         for (int dia : diasPossiveis) {
             if (dia == numeroDeJogadas) {
                 return true;
@@ -297,4 +286,6 @@ public class TWDGameManager {
         }
         return false;
     }
+
+    //Adicionar brunompc no github
 }
