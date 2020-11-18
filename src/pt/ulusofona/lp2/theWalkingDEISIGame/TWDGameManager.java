@@ -109,7 +109,6 @@ public class TWDGameManager {
 
     public boolean move(int xO, int yO, int xD, int yD) {
         int idCriatura = 0;
-        int verificaDirecao = 0;
         int[] cordenadaSemiValidade = new int[2];
         Equipamento equipamentoRetirar = new Equipamento();
 
@@ -142,29 +141,15 @@ public class TWDGameManager {
 
         //verificar se a jogada destino é uma destas
         if (norte[0] == xD && norte[1] == yD) {
-            verificaDirecao = 1;
+            cordenadaSemiValidade = norte;
         } else if (sul[0] == xD && sul[1] == yD) {
-            verificaDirecao = 2;
+            cordenadaSemiValidade = sul;
         } else if (este[0] == xD && este[1] == yD) {
-            verificaDirecao = 3;
+            cordenadaSemiValidade = este;
         } else if (oeste[0] == xD && oeste[1] == yD) {
-            verificaDirecao = 4;
-        }
-        switch (verificaDirecao) {
-            case 0:
-                return false;
-            case 1:
-                cordenadaSemiValidade = norte;
-                break;
-            case 2:
-                cordenadaSemiValidade = sul;
-                break;
-            case 3:
-                cordenadaSemiValidade = este;
-                break;
-            case 4:
-                cordenadaSemiValidade = oeste;
-                break;
+            cordenadaSemiValidade = oeste;
+        } else {
+            return false;
         }
 
         //verificar se já não existe lá um humano ou jogador
