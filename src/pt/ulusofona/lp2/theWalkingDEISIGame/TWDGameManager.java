@@ -113,7 +113,7 @@ public class TWDGameManager {
         Equipamento equipamentoRetirar = new Equipamento();
 
         //verifica se sai fora das bordas
-        if(xD < 0 || yD < 0 || xD >= linhaColuna[0] || yD >= linhaColuna[1]) {
+        if(xD < 0 || yD < 0 || xD > linhaColuna[0] || yD > linhaColuna[1]) {
             return false;
         }
 
