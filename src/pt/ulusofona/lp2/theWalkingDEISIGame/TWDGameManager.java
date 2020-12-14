@@ -7,15 +7,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 //
 public class TWDGameManager {
-    int[] linhaColuna = new int[2];
-    int idEquipaStart;
-    int idEquipaAtual;
-    int criaturasJogo;
-    int equipamentosJogo;
-    int numeroDeJogadas;
-    ArrayList<Humano> listaHumanos = new ArrayList<>();
-    ArrayList<Zombie> listaZombie = new ArrayList<>();
-    ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
+    private int[] linhaColuna = new int[2];
+    private int idEquipaStart;
+    private int idEquipaAtual;
+    private int criaturasJogo;
+    private int equipamentosJogo;
+    private int numeroDeJogadas;
+    private ArrayList<Creature> creatures = new ArrayList<>();
+    private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
 
     public boolean startGame(File ficheiroInicial) {
         int count = 0;
@@ -54,10 +53,10 @@ public class TWDGameManager {
                             int y = Integer.parseInt(dados[4]);
                             if (dados[1].equals("1")) {
                                 Humano humano = new Humano(id,tipo,nome,x,y);
-                                listaHumanos.add(humano);
+                                creatures.add(humano);
                             } else {
                                 Zombie zombie = new Zombie(id,tipo,nome,x,y);
-                                listaZombie.add(zombie);
+                                creatures.add(zombie);
                             }
                         }
                         count++;
@@ -99,12 +98,8 @@ public class TWDGameManager {
         return idEquipaStart;
     }
 
-    public List<Humano> getHumans() {
-        return listaHumanos;
-    }
-
-    public List<Zombie> getZombies() {
-        return listaZombie;
+    public List<Creature> getCreatures() {
+        return creatures;
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
@@ -118,22 +113,26 @@ public class TWDGameManager {
         }
 
         //verifica se é a equipa atual a jogar
-        if (idEquipaAtual == 0) {
-            for (Humano humano : listaHumanos) {
-                if (humano.getX() == xO && humano.getY() == yO) {
-                    idCriatura = humano.getId();
+        for(Creature creature : creatures) {
+            if (idEquipaAtual == 0) {
+                if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
+                    if (creature.getX() == xO && creature.getY() == yO) {
+                        idCriatura = creature.getId();
+                    }
                 }
-            }
-        } else {
-            for (Zombie zombie : listaZombie) {
-                if (zombie.getX() == xO && zombie.getY() == yO) {
-                    idCriatura = zombie.getId();
+            } else {
+                if(creature.getTipo() >= 5 && creature.getTipo() <= 9) {
+                    if (creature.getX() == xO && creature.getY() == yO) {
+                        idCriatura = creature.getId();
+                    }
                 }
             }
         }
+
         if (idCriatura == 0) {
             return false;
         }
+
         int[] norte = {xO,yO-1};
         int[] sul = {xO,yO+1};
         int[] este = {xO+1,yO};
@@ -152,7 +151,7 @@ public class TWDGameManager {
             return false;
         }
 
-        //verificar se já não existe lá um humano ou jogador
+        /*verificar se já não existe lá um humano ou jogador
         for (Humano humano : listaHumanos) {
             if (humano.getX() == cordenadaSemiValidade[0] && humano.getY() == cordenadaSemiValidade[1]) {
                 return false;
@@ -171,7 +170,7 @@ public class TWDGameManager {
                     for (Equipamento equipamento : listaEquipamento) {
                         if (equipamento.getX() == xD && equipamento.getY() == yD) {
                             equipamentoRetirar = equipamento;
-                            zombie.addEquipamentosDestruidos();
+                            zombie.addEquipamentos();
                         }
                     }
                     zombie.alteraCoordenada(xD,yD);
@@ -190,12 +189,12 @@ public class TWDGameManager {
                                 equipamentoRetirar = listaEquipamento.get(i);
                             } else {
                                 Equipamento equipamentoDrop = humano.getEquipamentoAtual();
-                                equipamentoDrop.alteraCoordenada(xO,yO); //alterei aqui
+                                equipamentoDrop.alteraCoordenada(xO,yO);
                                 listaEquipamento.add(equipamentoDrop);
                                 humano.addEquipamentosAtual(listaEquipamento.get(i));
                                 equipamentoRetirar = listaEquipamento.get(i);
                             }
-                            humano.addEquipamentosApanhados();
+                            humano.addEquipamentos();
                         }
                     }
                     humano.alteraCoordenada(xD,yD);
@@ -205,6 +204,7 @@ public class TWDGameManager {
                 }
             }
         }
+         */
         return true;
     }
 
@@ -229,14 +229,9 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
-        for (Humano humano : listaHumanos) {
-            if (humano.getX() == x && humano.getY() == y) {
-                return humano.getId();
-            }
-        }
-        for (Zombie zombie : listaZombie) {
-            if (zombie.getX() == x && zombie.getY() == y) {
-                return zombie.getId();
+        for(Creature creature : creatures) {
+            if (creature.getX() == x && creature.getY() == y) {
+                return creature.getId();
             }
         }
         for (Equipamento equipamento : listaEquipamento) {
@@ -247,7 +242,7 @@ public class TWDGameManager {
         return 0;
     }
 
-    public List<String> getSurvivors() {
+    /*public List<String> getSurvivors() {
         ArrayList<String> sobreviventes = new ArrayList<>();
         sobreviventes.add("Nr. de turnos terminados:");
         sobreviventes.add(String.valueOf(numeroDeJogadas));
@@ -261,6 +256,9 @@ public class TWDGameManager {
             sobreviventes.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
         }
         return sobreviventes;
+    }*/
+    public List<String> getGameResults() {
+        return new ArrayList<>();
     }
 
     public boolean isDay() {
@@ -273,16 +271,47 @@ public class TWDGameManager {
         return false;
     }
 
-    public boolean hasEquipment(int creatureId, int equipmentTypeId) {
-        for (Humano humano : listaHumanos) {
-            if (humano.getId() == creatureId) {
-                if(humano.getEquipamentoAtual() != null) {
-                    if (humano.getEquipamentoAtual().getTipo() == equipmentTypeId) {
-                        return true;
-                    }
+    public int getEquipmentId(int creatureId) {
+        for (Creature creature : creatures) {
+            if (creature.getId() == creatureId) {
+                if(creature.getEquipamentoAtual() != null) {
+                    return creature.getEquipamentoAtual().getId();
                 }
             }
         }
-        return false;
+        return 0;
+    }
+
+    public List<Integer> getIdsInSafeHaven() {
+        return new ArrayList<>();
+    }
+
+    public boolean isDoorToSafeHaven(int x, int y) {
+        return true;
+    }
+
+    public int getEquipmentTypeId(int equipmentId) {
+        for(Equipamento equipamento : listaEquipamento) {
+            if (equipamento.getId() == equipmentId) {
+                return equipamento.getTipo();
+            }
+        }
+        return 11; //ver com prof
+    }
+
+    public String getEquipmentInfo(int equipmentId) {
+        return null;
+    }
+
+    public boolean saveGame(File fich) {
+        return true;
+    }
+
+    public boolean loadGame(File fich) {
+        return true;
+    }
+
+    public String[] popCultureExtravaganza() {
+        return new String[0];
     }
 }

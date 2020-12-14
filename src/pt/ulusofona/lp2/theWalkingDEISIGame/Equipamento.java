@@ -1,10 +1,10 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Equipamento {
-    int id;
-    int tipo;
-    int x;
-    int y;
+    private int id;
+    private int tipo;
+    private int x;
+    private int y;
 
     public Equipamento() {
     }

@@ -1,12 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-public class Zombie {
-    int id;
-    int tipo;
-    String nome;
-    int x;
-    int y;
-    int equipamentosDestruidos;
+public class Zombie extends Creature{
 
     public Zombie(int id, int tipo, String nome, int x, int y) {
         this.id = id;
@@ -16,37 +10,16 @@ public class Zombie {
         this.y = y;
     }
 
-    public int getId(){
-        return this.id;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void addEquipamentosDestruidos(){
-        this.equipamentosDestruidos++;
-    }
-
-    public void alteraCoordenada(int x,int y) {
-        this.x = x;
-        this.y = y;
-    }
-
     public String getImagePNG() {
         return "Zombie.png";
     }
 
-    public int getX () {
-        return this.x;
-    }
-
-    public int getY () {
-        return this.y;
+    public Equipamento getEquipamentoAtual() {
+        return null;
     }
 
     public String toString() {
-        return this.id + " | Zombie"  + " | Os Outros | " + this.nome + " " + this.equipamentosDestruidos + " @ ("
+        return this.id + " | Zombie"  + " | Os Outros | " + this.nome + " " + this.equipamentos + " @ ("
                 + this.x + ", " + this.y +")" ;
     }
 }
