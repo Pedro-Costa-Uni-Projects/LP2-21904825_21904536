@@ -8,6 +8,7 @@ abstract class Creature {
     protected int y;
     protected int equipamentos; //apanhado -> Humano
                                 //destruido -> Zombie
+    protected boolean verificaSaveHeaven;
 
     public int getId(){
         return this.id;
@@ -33,4 +34,8 @@ abstract class Creature {
     }
     abstract Equipamento getEquipamentoAtual();
     abstract String getImagePNG();
+
+    public boolean passouSavenHeaven() {
+        return this.verificaSaveHeaven;
+    }
 }

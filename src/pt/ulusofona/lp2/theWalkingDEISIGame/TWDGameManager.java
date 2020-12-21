@@ -302,7 +302,13 @@ public class TWDGameManager {
     }
 
     public List<Integer> getIdsInSafeHaven() {
-        return new ArrayList<>();
+        ArrayList<Integer> idsCreature = new ArrayList<>();
+        for (Creature creature : creatures) {
+            if (creature.passouSavenHeaven()) {
+                idsCreature.add(creature.getId());
+            }
+        }
+        return idsCreature;
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
