@@ -306,7 +306,12 @@ public class TWDGameManager {
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
-        return true;
+        for(SaveHeaven saveHeaven : listaSaveHeaven) {
+            if(saveHeaven.getX() == x && saveHeaven.getY() == y) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getEquipmentTypeId(int equipmentId) {
