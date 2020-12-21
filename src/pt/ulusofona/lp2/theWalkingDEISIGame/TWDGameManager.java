@@ -277,6 +277,18 @@ public class TWDGameManager {
         return sobreviventes;
     }*/
     public List<String> getGameResults() {
+        ArrayList<String> resultados = new ArrayList<>();
+        resultados.add("Nr. de turnos terminados:");
+        resultados.add(String.valueOf(numeroDeJogadas));
+        resultados.add("\n");
+        resultados.add("Ainda pelo bairro:\n");
+        resultados.add("OS VIVOS\n");
+        for (Creature humano : creatures) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9) {
+                resultados.add(humano.getId() + " " + humano.getNome());
+            }
+
+        }
         return new ArrayList<>();
     }
 
@@ -342,6 +354,21 @@ public class TWDGameManager {
     }
 
     public String[] popCultureExtravaganza() {
-        return new String[0];
+        String[] respostas = new String[14];
+        respostas[0] = "Resident Evil";
+        respostas[1] = "The Evil Dead";
+        respostas[2] = "The Night Eats the World";
+        respostas[3] = "";
+        respostas[4] = "";
+        respostas[5] = "Resident Evil";
+        respostas[6] = "Mandalorianos";
+        respostas[7] = "A Fúria do Dragão";
+        respostas[8] = "Kill Bill";
+        respostas[9] = "1978";
+        respostas[10] = "James Bond";
+        respostas[11] = "TWD"; //ver melhor
+        respostas[12] = "Cabeça de alho chocho";
+        respostas[13] = "Freddie Mercury";
+        return respostas;
     }
 }

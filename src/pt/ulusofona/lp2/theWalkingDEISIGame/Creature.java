@@ -9,6 +9,7 @@ abstract class Creature {
     protected int equipamentos; //apanhado -> Humano
                                 //destruido -> Zombie
     protected boolean verificaSaveHeaven;
+    protected boolean estaEmJogo = true;
 
     public int getId(){
         return this.id;
@@ -37,5 +38,9 @@ abstract class Creature {
 
     public boolean passouSavenHeaven() {
         return this.verificaSaveHeaven;
+    }
+
+    public boolean verificaEstaEmJogo() {
+        return this.estaEmJogo;
     }
 }
