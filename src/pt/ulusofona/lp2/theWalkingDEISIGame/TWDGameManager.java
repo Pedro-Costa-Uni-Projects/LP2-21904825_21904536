@@ -13,8 +13,11 @@ public class TWDGameManager {
     private int criaturasJogo;
     private int equipamentosJogo;
     private int numeroDeJogadas;
+    private int saveHeavenJogo;
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
+    private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
+
 
     public boolean startGame(File ficheiroInicial) {
         int count = 0;
@@ -51,7 +54,7 @@ public class TWDGameManager {
                             String nome = dados[2];
                             int x = Integer.parseInt(dados[3]);
                             int y = Integer.parseInt(dados[4]);
-                            if (dados[1].equals("1")) {
+                            if (tipo >= 5 && tipo <= 9) {
                                 Humano humano = new Humano(id,tipo,nome,x,y);
                                 creatures.add(humano);
                             } else {
@@ -76,6 +79,22 @@ public class TWDGameManager {
                             int y = Integer.parseInt(dados[3]);
                             Equipamento equipamento = new Equipamento(id,tipo,x,y);
                             listaEquipamento.add(equipamento);
+                        }
+                        count++;
+                        break;
+                    case 6:
+                        linha = leitorFicheiro.nextLine();
+                        saveHeavenJogo = Integer.parseInt(linha);
+                        count++;
+                        break;
+                    case 7:
+                        for (int i = 0;i<saveHeavenJogo;i++) {
+                            linha = leitorFicheiro.nextLine();
+                            dados = linha.split(" : ");
+                            int x = Integer.parseInt(dados[0]);
+                            int y = Integer.parseInt(dados[1]);
+                            SaveHeaven saveHeaven = new SaveHeaven(x,y);
+                            listaSaveHeaven.add(saveHeaven);
                         }
                         count++;
                         break;
