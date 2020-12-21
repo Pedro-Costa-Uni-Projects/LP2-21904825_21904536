@@ -260,34 +260,45 @@ public class TWDGameManager {
         }
         return 0;
     }
-
-    /*public List<String> getSurvivors() {
-        ArrayList<String> sobreviventes = new ArrayList<>();
-        sobreviventes.add("Nr. de turnos terminados:");
-        sobreviventes.add(String.valueOf(numeroDeJogadas));
-        sobreviventes.add("\n");
-        sobreviventes.add("OS VIVOS");
-        for (Humano humano : listaHumanos) {
-            sobreviventes.add(humano.getId() + " " + humano.getNome());
-        }
-        sobreviventes.add("\n");
-        for (Zombie zombie : listaZombie) {
-            sobreviventes.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
-        }
-        return sobreviventes;
-    }*/
+    
     public List<String> getGameResults() {
         ArrayList<String> resultados = new ArrayList<>();
-        resultados.add("Nr. de turnos terminados:");
+        resultados.add("Nr. de turnos terminados:\n");
         resultados.add(String.valueOf(numeroDeJogadas));
         resultados.add("\n");
         resultados.add("Ainda pelo bairro:\n");
         resultados.add("OS VIVOS\n");
         for (Creature humano : creatures) {
-            if (humano.getTipo() >= 5 && humano.getTipo() <= 9) {
-                resultados.add(humano.getId() + " " + humano.getNome());
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.verificaEstaEmJogo()) {
+                resultados.add(humano.getId() + " " + humano.getNome() + "\n");
             }
-
+        }
+        resultados.add("OS OUTROS\n");
+        for (Creature zombie : creatures) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && zombie.verificaEstaEmJogo()) {
+                resultados.add(zombie.getId() + " " + zombie.getNome() + "\n");
+            }
+        }
+        resultados.add("\n");
+        resultados.add("Num safe haven:\n");
+        resultados.add("OS VIVOS\n");
+        for (Creature humano : creatures) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.passouSaveHeaven()) {
+                resultados.add(humano.getId() + " " + humano.getNome() + "\n");
+            }
+        }
+        resultados.add("Envenados / Destruidos\n");
+        resultados.add("OS VIVOS\n");
+        for (Creature humano : creatures) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.verificaEstaEmJogo()) {
+                resultados.add(humano.getId() + " " + humano.getNome() + "\n");
+            }
+        }
+        resultados.add("OS OUTROS\n");
+        for (Creature zombie : creatures) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && !zombie.verificaEstaEmJogo()) {
+                resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")\n");
+            }
         }
         return new ArrayList<>();
     }
@@ -316,7 +327,7 @@ public class TWDGameManager {
     public List<Integer> getIdsInSafeHaven() {
         ArrayList<Integer> idsCreature = new ArrayList<>();
         for (Creature creature : creatures) {
-            if (creature.passouSavenHeaven()) {
+            if (creature.passouSaveHeaven()) {
                 idsCreature.add(creature.getId());
             }
         }
