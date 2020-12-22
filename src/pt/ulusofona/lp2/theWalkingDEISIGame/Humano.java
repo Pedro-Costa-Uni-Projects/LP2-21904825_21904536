@@ -15,7 +15,7 @@ public class Humano extends Creature{
         return this.equipamentoAtual;
     }
 
-    public void addEquipamentosAtual(Equipamento equipamento){
+    public void setEquipamentosAtual(Equipamento equipamento){
         this.equipamentoAtual = equipamento;
     }
 
