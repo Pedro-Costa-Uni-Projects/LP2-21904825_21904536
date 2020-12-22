@@ -8,7 +8,7 @@ public class VampiroZ extends Zombie {
     }
 
     public String toString() {
-        return this.id + " | Zombie Vampiro | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Zombie Vampiro | Os Outros | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", "  + this.y +")";
     }
 }

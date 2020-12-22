@@ -8,7 +8,7 @@ public class MilitarZ extends Zombie {
     }
 
     public String toString() {
-        return this.id + " | Militar (Zombie) | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Militar (Zombie) | Os Outros | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

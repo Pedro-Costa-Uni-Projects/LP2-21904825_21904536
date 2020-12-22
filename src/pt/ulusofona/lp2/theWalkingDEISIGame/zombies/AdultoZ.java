@@ -9,7 +9,7 @@ public class AdultoZ extends Zombie {
     }
 
     public String toString() {
-        return this.id + " | Adulto (Zombie) | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Adulto (Zombie) | Os Outros | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

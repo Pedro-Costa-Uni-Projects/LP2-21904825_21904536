@@ -8,7 +8,7 @@ public class CriancaZ extends Zombie {
     }
 
     public String toString() {
-        return this.id + " | Criança (Zombie) | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Criança (Zombie) | Os Outros | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

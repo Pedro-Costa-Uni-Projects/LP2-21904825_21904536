@@ -8,7 +8,7 @@ public class IdosoH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

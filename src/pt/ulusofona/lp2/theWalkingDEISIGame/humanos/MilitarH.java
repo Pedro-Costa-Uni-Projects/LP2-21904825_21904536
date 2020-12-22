@@ -8,7 +8,7 @@ public class MilitarH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Militar (Vivo) | Os Vivos | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Militar (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

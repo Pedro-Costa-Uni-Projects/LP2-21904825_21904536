@@ -8,7 +8,7 @@ public class CaoH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Cão | Os Vivos | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Cão | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }

@@ -8,7 +8,7 @@ public class IdosoZ  extends Zombie {
     }
 
     public String toString() {
-        return this.id + " | Idoso (Zombie) | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
+        return this.id + " | Idoso (Zombie) | Os Outros | " + this.nome + " " + this.equipamentos + " @ (" + this.x
                 + ", " + this.y +")";
     }
 }
