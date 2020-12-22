@@ -1,4 +1,4 @@
-package pt.ulusofona.lp2.theWalkingDEISIGame.Zombies;
+package pt.ulusofona.lp2.theWalkingDEISIGame.zombies;
 
 
 import pt.ulusofona.lp2.theWalkingDEISIGame.Zombie;
@@ -10,6 +10,6 @@ public class AdultoZ extends Zombie {
 
     public String toString() {
         return this.id + " | Adulto (Zombie) | Os Outros | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
-                + "," + this.y +")";
+                + ", " + this.y +")";
     }
 }

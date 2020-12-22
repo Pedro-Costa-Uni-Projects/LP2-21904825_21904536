@@ -1,4 +1,4 @@
-package pt.ulusofona.lp2.theWalkingDEISIGame.Humanos;
+package pt.ulusofona.lp2.theWalkingDEISIGame.humanos;
 
 import pt.ulusofona.lp2.theWalkingDEISIGame.Humano;
 
@@ -9,6 +9,6 @@ public class CriancaH extends Humano {
 
     public String toString() {
         return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " | " + this.equipamentos + " @ (" + this.x
-                + "," + this.y +")";
+                + ", " + this.y +")";
     }
 }

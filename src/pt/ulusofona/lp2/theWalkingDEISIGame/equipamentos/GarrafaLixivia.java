@@ -1,14 +1,14 @@
-package pt.ulusofona.lp2.theWalkingDEISIGame.Equipamentos;
+package pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos;
 
 import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
 
 public class GarrafaLixivia extends Equipamento {
-    float quantidade = 3;
+    float quantidade = 1;
     public GarrafaLixivia(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
 
     public String toString() {
-        return "Garrafa de Lixivia | " + quantidade;
+        return "Garrafa de Lixívia | " + (int)this.quantidade;
     }
 }

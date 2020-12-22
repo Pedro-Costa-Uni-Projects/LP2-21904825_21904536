@@ -1,4 +1,4 @@
-package pt.ulusofona.lp2.theWalkingDEISIGame.Equipamentos;
+package pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos;
 
 import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
 

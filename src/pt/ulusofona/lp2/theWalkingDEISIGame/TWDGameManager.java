@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamentos.*;
-import pt.ulusofona.lp2.theWalkingDEISIGame.Humanos.*;
-import pt.ulusofona.lp2.theWalkingDEISIGame.Zombies.*;
+import pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos.*;
+import pt.ulusofona.lp2.theWalkingDEISIGame.humanos.*;
+import pt.ulusofona.lp2.theWalkingDEISIGame.zombies.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -455,7 +455,7 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
-        respostas[1] = "The Evil Dead";
+        respostas[1] = "Pokemon";
         respostas[2] = "The Night Eats the World";
         respostas[3] = "";
         respostas[4] = "";
