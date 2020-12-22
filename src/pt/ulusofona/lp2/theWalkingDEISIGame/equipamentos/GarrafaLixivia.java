@@ -9,6 +9,6 @@ public class GarrafaLixivia extends Equipamento {
     }
 
     public String toString() {
-        return "Garrafa de Lixívia | " + (int)this.quantidade;
+        return "Garrafa de Lixívia (1 litro) | " + (int)this.quantidade;
     }
 }
