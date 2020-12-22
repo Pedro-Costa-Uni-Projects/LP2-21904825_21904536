@@ -7,4 +7,8 @@ public class GarrafaLixivia extends Equipamento {
     public GarrafaLixivia(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
+
+    public String toString() {
+        return "Garrafa de Lixivia | " + quantidade;
+    }
 }

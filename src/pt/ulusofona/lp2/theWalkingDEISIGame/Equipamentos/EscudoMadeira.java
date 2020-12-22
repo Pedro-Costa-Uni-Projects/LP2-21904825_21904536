@@ -6,4 +6,8 @@ public class EscudoMadeira extends Equipamento {
     public EscudoMadeira(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
+
+    public String toString() {
+        return "Escudo de Madeira | 1";
+    }
 }

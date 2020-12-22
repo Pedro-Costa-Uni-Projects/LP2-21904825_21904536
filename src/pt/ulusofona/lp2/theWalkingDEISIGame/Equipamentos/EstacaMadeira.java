@@ -6,4 +6,8 @@ public class EstacaMadeira extends Equipamento {
     public EstacaMadeira(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
+
+    public String toString() {
+        return "Estaca de Madeira";
+    }
 }

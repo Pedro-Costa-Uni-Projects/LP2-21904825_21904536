@@ -7,4 +7,8 @@ public class Veneno extends Equipamento {
     public Veneno(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
+
+    public String toString() {
+        return "Veneno";
+    }
 }

@@ -6,4 +6,8 @@ public class BeskarHelmet extends Equipamento {
     public BeskarHelmet(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
+
+    public String toString() {
+        return "Beskar Helmet";
+    }
 }

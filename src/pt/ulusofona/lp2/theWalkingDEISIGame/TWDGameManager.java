@@ -436,7 +436,12 @@ public class TWDGameManager {
     }
 
     public String getEquipmentInfo(int equipmentId) {
-        return null;
+        for(Equipamento equipamento : listaEquipamento) {
+            if(equipamento.getId() == equipmentId) {
+                return equipamento.toString();
+            }
+        }
+        return "";
     }
 
     public boolean saveGame(File fich) {
