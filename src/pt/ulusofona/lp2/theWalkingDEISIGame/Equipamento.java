@@ -1,13 +1,11 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-public class Equipamento {
-    private int id;
-    private int tipo;
-    private int x;
-    private int y;
-
-    public Equipamento() {
-    }
+public abstract class Equipamento {
+    protected int id;
+    protected int tipo;
+    protected int x;
+    protected int y;
+    protected boolean ofensivo;
 
     public Equipamento(int id, int tipo, int x, int y) {
         this.id = id;
@@ -36,4 +34,6 @@ public class Equipamento {
         this.x = x;
         this.y = y;
     }
+
+    public abstract String toString();
 }

@@ -35,6 +35,7 @@ public abstract class Creature {
     }
     public abstract Equipamento getEquipamentoAtual();
     public abstract String getImagePNG();
+    public abstract String toString();
 
     public boolean passouSaveHeaven() {
         return this.verificaSaveHeaven;
