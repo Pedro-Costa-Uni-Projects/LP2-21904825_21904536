@@ -457,7 +457,7 @@ public class TWDGameManager {
         respostas[0] = "Resident Evil";
         respostas[1] = "A Morte Chega de Madrugada";
         respostas[2] = "The Night Eats the World";
-        respostas[3] = "";
+        respostas[3] = "1";
         respostas[4] = "";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
