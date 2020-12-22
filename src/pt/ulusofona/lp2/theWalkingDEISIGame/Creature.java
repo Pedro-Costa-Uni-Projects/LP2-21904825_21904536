@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-abstract class Creature {
+public abstract class Creature {
     protected int id;
     protected int tipo;
     protected String nome;
@@ -33,8 +33,8 @@ abstract class Creature {
     public int getTipo() {
         return this.tipo;
     }
-    abstract Equipamento getEquipamentoAtual();
-    abstract String getImagePNG();
+    public abstract Equipamento getEquipamentoAtual();
+    public abstract String getImagePNG();
 
     public boolean passouSaveHeaven() {
         return this.verificaSaveHeaven;
