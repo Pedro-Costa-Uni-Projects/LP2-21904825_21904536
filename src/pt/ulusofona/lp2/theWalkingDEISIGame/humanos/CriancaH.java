@@ -10,8 +10,14 @@ public class CriancaH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
-                + ", " + this.y +")";
+        if (this.verificaSaveHeaven) {
+            return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
+        } else if (!this.vivo) {
+            return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ RIP";
+        } else {
+            return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
+                    + ", " + this.y + ")";
+        }
     }
 
     @Override

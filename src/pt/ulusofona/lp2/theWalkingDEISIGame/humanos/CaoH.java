@@ -10,8 +10,14 @@ public class CaoH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Cão | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
-                + ", " + this.y +")";
+        if (this.verificaSaveHeaven) {
+            return this.id + " | Cão (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
+        } else if (!this.vivo) {
+            return this.id + " | Cão (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ RIP";
+        } else {
+            return this.id + " | Cão (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
+                    + ", " + this.y + ")";
+        }
     }
 
 

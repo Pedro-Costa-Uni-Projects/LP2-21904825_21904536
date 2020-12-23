@@ -10,8 +10,14 @@ public class IdosoH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
-                + ", " + this.y +")";
+        if (this.verificaSaveHeaven) {
+            return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
+        } else if (!this.vivo) {
+            return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ RIP";
+        } else {
+            return this.id + " | Idoso (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
+                    + ", " + this.y + ")";
+        }
     }
 
     @Override
