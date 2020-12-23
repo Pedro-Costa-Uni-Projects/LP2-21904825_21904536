@@ -488,7 +488,7 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
-        respostas[1] = "Ash vs Evil Dead";
+        respostas[1] = "Evil dead 2";
         respostas[2] = "The Night Eats the World";
         respostas[3] = "1";
         respostas[4] = "";
