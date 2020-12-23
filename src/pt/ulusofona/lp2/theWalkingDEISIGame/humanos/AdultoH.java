@@ -10,8 +10,15 @@ public class AdultoH extends Humano {
     }
 
     public String toString() {
-        return this.id + " | Adulto (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
-                + ", " + this.y +")";
+        if(this.verificaSaveHeaven) {
+            return this.id + " | Adulto (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo" ;
+        } else if(!this.vivo){
+            return this.id + " | Adulto (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ RIP";
+        } else {
+            return this.id + " | Adulto (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ (" + this.x
+                    + ", " + this.y +")";
+        }
+
     }
     @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
