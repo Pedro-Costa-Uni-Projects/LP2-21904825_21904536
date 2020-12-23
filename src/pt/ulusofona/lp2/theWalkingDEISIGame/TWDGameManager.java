@@ -385,13 +385,13 @@ public class TWDGameManager {
         resultados.add("Ainda pelo bairro:\n");
         resultados.add("OS VIVOS\n");
         for (Creature humano : creatures) {
-            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.verificaEstaEmJogo()) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.verificaSeEstaVivo()) {
                 resultados.add(humano.getId() + " " + humano.getNome() + "\n");
             }
         }
         resultados.add("OS OUTROS\n");
         for (Creature zombie : creatures) {
-            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && zombie.verificaEstaEmJogo()) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && zombie.verificaSeEstaVivo()) {
                 resultados.add(zombie.getId() + " " + zombie.getNome() + "\n");
             }
         }
@@ -406,13 +406,13 @@ public class TWDGameManager {
         resultados.add("Envenados / Destruidos\n");
         resultados.add("OS VIVOS\n");
         for (Creature humano : creatures) {
-            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.verificaEstaEmJogo()) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.verificaSeEstaVivo()) {
                 resultados.add(humano.getId() + " " + humano.getNome() + "\n");
             }
         }
         resultados.add("OS OUTROS\n");
         for (Creature zombie : creatures) {
-            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && !zombie.verificaEstaEmJogo()) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && !zombie.verificaSeEstaVivo()) {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")\n");
             }
         }
@@ -488,7 +488,7 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
-        respostas[1] = "Exército das Trevas";
+        respostas[1] = "Ash vs Evil Dead";
         respostas[2] = "The Night Eats the World";
         respostas[3] = "1";
         respostas[4] = "";
