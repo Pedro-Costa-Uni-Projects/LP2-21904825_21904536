@@ -11,4 +11,14 @@ public class PistolaPPK extends Equipamento {
     public String toString() {
         return "Pistola Walther PPK | " + this.balas;
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return true;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return false;
+    }
 }

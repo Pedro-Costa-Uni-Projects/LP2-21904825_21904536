@@ -11,4 +11,14 @@ public class Veneno extends Equipamento {
     public String toString() {
         return "Veneno";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return true;
+    }
 }

@@ -10,4 +10,14 @@ public class EscudoTactico extends Equipamento {
     public String toString() {
         return "Escudo Táctico";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return true;
+    }
 }

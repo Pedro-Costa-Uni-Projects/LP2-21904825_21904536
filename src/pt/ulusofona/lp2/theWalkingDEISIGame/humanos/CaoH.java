@@ -14,7 +14,7 @@ public class CaoH extends Humano {
                 + ", " + this.y +")";
     }
 
-    @Override
+
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
         listaPossiveis.add(new int[]{xO - 1, yO - 1});

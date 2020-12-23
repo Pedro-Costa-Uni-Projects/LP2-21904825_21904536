@@ -10,4 +10,12 @@ public class Antidoto extends Equipamento {
     public String toString() {
         return "Antídoto";
     }
+
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    public boolean isDefensivo() {
+        return true;
+    }
 }

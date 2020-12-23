@@ -10,4 +10,12 @@ public class CabecaAlho extends Equipamento {
     public String toString() {
         return "Cabeça de Alho";
     }
+
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    public boolean isDefensivo() {
+        return true;
+    }
 }

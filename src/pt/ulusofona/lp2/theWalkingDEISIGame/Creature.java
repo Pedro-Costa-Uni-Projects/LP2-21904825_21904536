@@ -45,4 +45,8 @@ public abstract class Creature {
     public boolean verificaEstaEmJogo() {
         return this.estaEmJogo;
     }
+
+    public void alteraEstadoSave() {
+        this.verificaSaveHeaven = true;
+    }
 }

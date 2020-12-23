@@ -10,4 +10,14 @@ public class EscudoMadeira extends Equipamento {
     public String toString() {
         return "Escudo de Madeira | 1";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return true;
+    }
 }

@@ -10,4 +10,14 @@ public class EspadaHanzo extends Equipamento {
     public String toString() {
         return "Espada Hattori Hanzo";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return true;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return false;
+    }
 }

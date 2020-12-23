@@ -10,4 +10,14 @@ public class RevistaMaria extends Equipamento {
     public String toString() {
         return "Revista Maria";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return false;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return true;
+    }
 }

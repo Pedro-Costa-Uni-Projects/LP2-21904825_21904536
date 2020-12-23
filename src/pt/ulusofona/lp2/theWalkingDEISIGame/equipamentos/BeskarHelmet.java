@@ -10,4 +10,12 @@ public class BeskarHelmet extends Equipamento {
     public String toString() {
         return "Beskar Helmet";
     }
+
+    public boolean isOfensivo() {
+        return true;
+    }
+
+    public boolean isDefensivo() {
+        return true;
+    }
 }

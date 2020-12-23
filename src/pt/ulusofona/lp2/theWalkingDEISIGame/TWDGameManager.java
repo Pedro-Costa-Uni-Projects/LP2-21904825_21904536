@@ -21,9 +21,11 @@ public class TWDGameManager {
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
-
+    private int idEquipaOsVivos = 10;
+    private int idEquipaOsOutros = 20;
 
     public boolean startGame(File ficheiroInicial) {
+
         int count = 0;
         String linha;
         String[] dados;
@@ -205,9 +207,9 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+        Creature zombieARemover = null;
         int idCriatura = 0;
-        int[] cordenadaSemiValidade = new int[2];
-        Equipamento equipamentoRetirar;
+        Equipamento equipamentoRetirar = null;
 
         //verifica se sai fora das bordas
         if(xD < 0 || yD < 0 || xD > linhaColuna[0] || yD > linhaColuna[1]) {
@@ -216,54 +218,86 @@ public class TWDGameManager {
 
         //verifica se é a equipa atual a jogar
         for(Creature creature : creatures) {
-            if (idEquipaAtual == 0) {
-                if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
-                    if (creature.getX() == xO && creature.getY() == yO) {
-                        idCriatura = creature.getId();
-                    }
-                }
-            } else {
+            if (idEquipaAtual == idEquipaOsVivos) {
                 if(creature.getTipo() >= 5 && creature.getTipo() <= 9) {
                     if (creature.getX() == xO && creature.getY() == yO) {
                         idCriatura = creature.getId();
                     }
                 }
+            } else {
+                if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
+                    if (creature.getX() == xO && creature.getY() == yO) {
+                        idCriatura = creature.getId();
+                    }
+                }
             }
         }
-
         if (idCriatura == 0) {
             return false;
         }
+        if(idEquipaAtual == idEquipaOsVivos) {
+            for(Creature creature : creatures) {
+                if(creature.getTipo() >= 5 && creature.getTipo() <= 9 ) { //verifica se é humano
+                    if(creature.getX() == xO && creature.getY() == yO) {
+                        if(creature.movimento(xO,yO,xD,yD)) {
+                            for(Creature creature1 : creatures) {
+                                if(creature1.getX() == xD && creature1.getY() == yD) {
+                                    if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
+                                        return false;
+                                    }
+                                    if(creature1.getTipo() >= 0 && creature1.getTipo() <= 4) {
+                                        if(creature.getEquipamentoAtual() != null) {
+                                            if(creature.getEquipamentoAtual().isOfensivo()) {
+                                                zombieARemover = creature1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            for(Equipamento equipamento : listaEquipamento) {
+                                if(equipamento.getX() == xD && equipamento.getY() == yD) {
+                                    if(creature.getEquipamentoAtual() == null) {
+                                        ((Humano)creature).setEquipamentosAtual(equipamento);
+                                        creature.addEquipamentos();
+                                    } else {
+                                        Equipamento equipamentoDrop = creature.getEquipamentoAtual();
+                                        equipamentoDrop.alteraCoordenada(xO,yO);
+                                        listaEquipamento.add(equipamentoDrop);
+                                        ((Humano)creature).setEquipamentosAtual(equipamento);
+                                        equipamentoRetirar = equipamento;
+                                    }
+                                }
+                            }
+                           if (isDoorToSafeHaven(xD,yD)) {
+                               creature.alteraEstadoSave();
+                           }
+                            creature.alteraCoordenada(xD,yD);
+                        } else {
+                            return false;
+                        }
 
-        int[] norte = {xO,yO-1};
-        int[] sul = {xO,yO+1};
-        int[] este = {xO+1,yO};
-        int[] oeste = {xO-1,yO};
+                    }
+                }
 
-        //verificar se a jogada destino é uma destas
-        if (norte[0] == xD && norte[1] == yD) {
-            cordenadaSemiValidade = norte;
-        } else if (sul[0] == xD && sul[1] == yD) {
-            cordenadaSemiValidade = sul;
-        } else if (este[0] == xD && este[1] == yD) {
-            cordenadaSemiValidade = este;
-        } else if (oeste[0] == xD && oeste[1] == yD) {
-            cordenadaSemiValidade = oeste;
+            }
+            if(zombieARemover != null) {
+                creatures.remove(zombieARemover);
+            }
+            if(equipamentoRetirar != null) {
+                listaEquipamento.remove(equipamentoRetirar);
+            }
+
+            idEquipaAtual = idEquipaOsOutros;
+            numeroDeJogadas++;
+            return true;
         } else {
             return false;
         }
 
+
+
+
         /*verificar se já não existe lá um humano ou jogador
-        for (Humano humano : listaHumanos) {
-            if (humano.getX() == cordenadaSemiValidade[0] && humano.getY() == cordenadaSemiValidade[1]) {
-                return false;
-            }
-        }
-        for (Zombie zombie : listaZombie) {
-            if (zombie.getX() == cordenadaSemiValidade[0] && zombie.getY() == cordenadaSemiValidade[1]) {
-                return false;
-            }
-        }
 
         //se chegou aqui a jogada foi validada
         if(idEquipaAtual == 1) {
@@ -307,7 +341,6 @@ public class TWDGameManager {
             }
         }
          */
-        return true;
     }
 
     public boolean gameIsOver() {
@@ -455,7 +488,7 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
-        respostas[1] = "A Morte Chega de Madrugada";
+        respostas[1] = "Exército das Trevas";
         respostas[2] = "The Night Eats the World";
         respostas[3] = "1";
         respostas[4] = "";

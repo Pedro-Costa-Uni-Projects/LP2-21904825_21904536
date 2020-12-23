@@ -10,4 +10,14 @@ public class EstacaMadeira extends Equipamento {
     public String toString() {
         return "Estaca de Madeira";
     }
+
+    @Override
+    public boolean isOfensivo() {
+        return true;
+    }
+
+    @Override
+    public boolean isDefensivo() {
+        return false;
+    }
 }

@@ -36,4 +36,10 @@ public abstract class Equipamento {
     }
 
     public abstract String toString();
+
+    public abstract boolean isOfensivo();
+
+    public abstract boolean isDefensivo();
+
+
 }
