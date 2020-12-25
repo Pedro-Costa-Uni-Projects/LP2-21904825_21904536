@@ -209,7 +209,7 @@ public class TWDGameManager {
     public boolean move(int xO, int yO, int xD, int yD) {
         Creature zombieARemover = null;
         int idCriatura = 0;
-        Equipamento equipamentoRetirar = null;
+        Equipamento equipamentoRemove = null;
 
         //verifica se sai fora das bordas
         if(xD < 0 || yD < 0 || xD > linhaColuna[0] || yD > linhaColuna[1]) {
@@ -249,10 +249,11 @@ public class TWDGameManager {
                                         if(creature.getEquipamentoAtual() != null) {
                                             if(creature.getEquipamentoAtual().isOfensivo()) {
                                                 zombieARemover = creature1;
+                                            } else {
+                                                return false;
                                             }
                                         } else {
                                             return false;
-                                            //Adicionei isto pq era possivel um humano sem arma ir para cima de 1 zombie
                                         }
                                     }
                                 }
@@ -262,14 +263,13 @@ public class TWDGameManager {
                                     if(creature.getEquipamentoAtual() == null) {
                                         ((Humano)creature).setEquipamentosAtual(equipamento);
                                         creature.addEquipamentos();
-                                        //Falta adicionar uma cena pq o humano quando apanha 1 equipamento, o equipamento continua na casa de origem
-
+                                        equipamentoRemove = equipamento;
                                     } else {
                                         Equipamento equipamentoDrop = creature.getEquipamentoAtual();
                                         equipamentoDrop.alteraCoordenada(xO,yO);
                                         listaEquipamento.add(equipamentoDrop);
                                         ((Humano)creature).setEquipamentosAtual(equipamento);
-                                        equipamentoRetirar = equipamento;
+                                        equipamentoRemove = equipamento;
                                     }
                                 }
                             }
@@ -288,8 +288,8 @@ public class TWDGameManager {
             if(zombieARemover != null) {
                 creatures.remove(zombieARemover);
             }
-            if(equipamentoRetirar != null) {
-                listaEquipamento.remove(equipamentoRetirar);
+            if(equipamentoRemove != null) {
+                listaEquipamento.remove(equipamentoRemove);
             }
 
             idEquipaAtual = idEquipaOsOutros;
@@ -315,7 +315,7 @@ public class TWDGameManager {
                             }
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
-                                    equipamentoRetirar = equipamento;
+                                    equipamentoRemove = equipamento;
                                     creature.addEquipamentos();
                                 }
                             }
@@ -333,8 +333,8 @@ public class TWDGameManager {
             if(zombieARemover != null) {
                 creatures.remove(zombieARemover);
             }
-            if(equipamentoRetirar != null) {
-                listaEquipamento.remove(equipamentoRetirar);
+            if(equipamentoRemove != null) {
+                listaEquipamento.remove(equipamentoRemove);
             }
 
             idEquipaAtual = idEquipaOsVivos;
@@ -536,10 +536,10 @@ public class TWDGameManager {
     public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
-        respostas[1] = "Evil dead 2";
+        respostas[1] = "Evil Dead";
         respostas[2] = "The Night Eats the World";
-        respostas[3] = "1";
-        respostas[4] = "";
+        respostas[3] = "The Village";
+        respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "A Fúria do Dragão";

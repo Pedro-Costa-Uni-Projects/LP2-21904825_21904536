@@ -5,7 +5,6 @@ public abstract class Equipamento {
     protected int tipo;
     protected int x;
     protected int y;
-    protected boolean ofensivo;
 
     public Equipamento(int id, int tipo, int x, int y) {
         this.id = id;
