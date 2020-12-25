@@ -250,6 +250,9 @@ public class TWDGameManager {
                                             if(creature.getEquipamentoAtual().isOfensivo()) {
                                                 zombieARemover = creature1;
                                             }
+                                        } else {
+                                            return false;
+                                            //Adicionei isto pq era possivel um humano sem arma ir para cima de 1 zombie
                                         }
                                     }
                                 }
@@ -259,6 +262,8 @@ public class TWDGameManager {
                                     if(creature.getEquipamentoAtual() == null) {
                                         ((Humano)creature).setEquipamentosAtual(equipamento);
                                         creature.addEquipamentos();
+                                        //Falta adicionar uma cena pq o humano quando apanha 1 equipamento, o equipamento continua na casa de origem
+
                                     } else {
                                         Equipamento equipamentoDrop = creature.getEquipamentoAtual();
                                         equipamentoDrop.alteraCoordenada(xO,yO);
@@ -291,7 +296,50 @@ public class TWDGameManager {
             numeroDeJogadas++;
             return true;
         } else {
-            return false;
+            for(Creature creature : creatures) {
+                if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
+                    if(creature.getX() == xO && creature.getY() == yO) {
+                        if(creature.movimento(xO,yO,xD,yD)) {
+                            for(Creature creature1 : creatures) {
+                                if(creature1.getX() == xD && creature1.getY() == yD) {
+                                    if(creature1.getTipo() >= 0 && creature1.getTipo() <= 4) {
+                                        return false;
+                                    }
+                                    if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
+                                        if(creature1.getEquipamentoAtual() == null) {
+                                            zombieARemover = creature1;
+
+                                        }
+                                    }
+                                }
+                            }
+                            for(Equipamento equipamento : listaEquipamento) {
+                                if(equipamento.getX() == xD && equipamento.getY() == yD) {
+                                    equipamentoRetirar = equipamento;
+                                    creature.addEquipamentos();
+                                }
+                            }
+
+                            if (isDoorToSafeHaven(xD,yD)) {
+                                return false;
+                            }
+                        creature.alteraCoordenada(xD,yD);
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+            }
+            if(zombieARemover != null) {
+                creatures.remove(zombieARemover);
+            }
+            if(equipamentoRetirar != null) {
+                listaEquipamento.remove(equipamentoRetirar);
+            }
+
+            idEquipaAtual = idEquipaOsVivos;
+            numeroDeJogadas++;
+            return true;
         }
 
 
