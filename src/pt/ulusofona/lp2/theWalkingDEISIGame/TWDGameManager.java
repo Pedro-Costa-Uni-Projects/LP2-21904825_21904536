@@ -21,8 +21,8 @@ public class TWDGameManager {
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
-    private static final int idEquipaOsVivos = 10;
-    private static final int idEquipaOsOutros = 20;
+    private static final int id_equipa_os_vivos = 10;
+    private static final int id_equipa_os_outros = 20;
 
     public boolean startGame(File ficheiroInicial) {
 
@@ -219,7 +219,7 @@ public class TWDGameManager {
 
         //verifica se é a equipa atual a jogar
         for(Creature creature : creatures) {
-            if (idEquipaAtual == idEquipaOsVivos) {
+            if (idEquipaAtual == id_equipa_os_vivos) {
                 if(creature.getTipo() >= 5 && creature.getTipo() <= 9) {
                     if (creature.getX() == xO && creature.getY() == yO) {
                         idCriatura = creature.getId();
@@ -238,7 +238,7 @@ public class TWDGameManager {
         }
 
         //HUMANOS A JOGAR
-        if(idEquipaAtual == idEquipaOsVivos) {
+        if(idEquipaAtual == id_equipa_os_vivos) {
             for(Creature creature : creatures) {
                 if(creature.getTipo() >= 5 && creature.getTipo() <= 9 ) { //verifica se é humano
                     if(creature.getX() == xO && creature.getY() == yO) {
@@ -297,7 +297,7 @@ public class TWDGameManager {
             if (equipamentoDrop != null) {
                 listaEquipamento.add(equipamentoDrop);
             }
-            idEquipaAtual = idEquipaOsOutros;
+            idEquipaAtual = id_equipa_os_outros;
             numeroDeJogadas++;
             return true;
 
@@ -346,7 +346,7 @@ public class TWDGameManager {
                 listaEquipamento.remove(equipamentoRemove);
             }
 
-            idEquipaAtual = idEquipaOsVivos;
+            idEquipaAtual = id_equipa_os_vivos;
             numeroDeJogadas++;
             return true;
         }
@@ -474,13 +474,27 @@ public class TWDGameManager {
                 return equipamento.getTipo();
             }
         }
-        return 11; //ver com prof
+        for(Creature creature : creatures) {
+            if (creature.getEquipamentoAtual() != null) {
+               if (creature.getEquipamentoAtual().getId() == equipmentId) {
+                   return creature.getEquipamentoAtual().getTipo();
+               }
+            }
+        }
+        return -1;
     }
 
     public String getEquipmentInfo(int equipmentId) {
         for(Equipamento equipamento : listaEquipamento) {
             if(equipamento.getId() == equipmentId) {
                 return equipamento.toString();
+            }
+        }
+        for(Creature creature : creatures) {
+            if (creature.getEquipamentoAtual() != null) {
+                if (creature.getEquipamentoAtual().getId() == equipmentId) {
+                    return creature.getEquipamentoAtual().toString();
+                }
             }
         }
         return "";
