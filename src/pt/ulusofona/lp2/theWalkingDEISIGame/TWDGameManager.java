@@ -21,8 +21,8 @@ public class TWDGameManager {
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
-    private int idEquipaOsVivos = 10;
-    private int idEquipaOsOutros = 20;
+    private static final int idEquipaOsVivos = 10;
+    private static final int idEquipaOsOutros = 20;
 
     public boolean startGame(File ficheiroInicial) {
 
@@ -210,6 +210,7 @@ public class TWDGameManager {
         Creature zombieARemover = null;
         int idCriatura = 0;
         Equipamento equipamentoRemove = null;
+        Equipamento equipamentoDrop = null;
 
         //verifica se sai fora das bordas
         if(xD < 0 || yD < 0 || xD > linhaColuna[0] || yD > linhaColuna[1]) {
@@ -235,6 +236,8 @@ public class TWDGameManager {
         if (idCriatura == 0) {
             return false;
         }
+
+        //HUMANOS A JOGAR
         if(idEquipaAtual == idEquipaOsVivos) {
             for(Creature creature : creatures) {
                 if(creature.getTipo() >= 5 && creature.getTipo() <= 9 ) { //verifica se é humano
@@ -262,15 +265,13 @@ public class TWDGameManager {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
                                     if(creature.getEquipamentoAtual() == null) {
                                         ((Humano)creature).setEquipamentosAtual(equipamento);
-                                        creature.addEquipamentos();
-                                        equipamentoRemove = equipamento;
                                     } else {
-                                        Equipamento equipamentoDrop = creature.getEquipamentoAtual();
+                                        equipamentoDrop = creature.getEquipamentoAtual();
                                         equipamentoDrop.alteraCoordenada(xO,yO);
-                                        listaEquipamento.add(equipamentoDrop);
                                         ((Humano)creature).setEquipamentosAtual(equipamento);
-                                        equipamentoRemove = equipamento;
                                     }
+                                    creature.addEquipamentos();
+                                    equipamentoRemove = equipamento;
                                 }
                             }
                            if (isDoorToSafeHaven(xD,yD)) {
@@ -285,16 +286,22 @@ public class TWDGameManager {
                 }
 
             }
+
             if(zombieARemover != null) {
                 creatures.remove(zombieARemover);
             }
+
             if(equipamentoRemove != null) {
                 listaEquipamento.remove(equipamentoRemove);
             }
-
+            if (equipamentoDrop != null) {
+                listaEquipamento.add(equipamentoDrop);
+            }
             idEquipaAtual = idEquipaOsOutros;
             numeroDeJogadas++;
             return true;
+
+        //ZOMBIES A JOGAR
         } else {
             for(Creature creature : creatures) {
                 if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
@@ -330,9 +337,11 @@ public class TWDGameManager {
                     }
                 }
             }
+
             if(zombieARemover != null) {
                 creatures.remove(zombieARemover);
             }
+
             if(equipamentoRemove != null) {
                 listaEquipamento.remove(equipamentoRemove);
             }
@@ -341,54 +350,6 @@ public class TWDGameManager {
             numeroDeJogadas++;
             return true;
         }
-
-
-
-
-        /*verificar se já não existe lá um humano ou jogador
-
-        //se chegou aqui a jogada foi validada
-        if(idEquipaAtual == 1) {
-            for (Zombie zombie : listaZombie) {
-                if (zombie.getX() == xO && zombie.getY() == yO) {
-                    for (Equipamento equipamento : listaEquipamento) {
-                        if (equipamento.getX() == xD && equipamento.getY() == yD) {
-                            equipamentoRetirar = equipamento;
-                            zombie.addEquipamentos();
-                        }
-                    }
-                    zombie.alteraCoordenada(xD,yD);
-                    idEquipaAtual = 0;
-                    numeroDeJogadas++;
-                    listaEquipamento.remove(equipamentoRetirar);
-                }
-            }
-        } else {
-            for (Humano humano : listaHumanos) {
-                if (humano.getX() == xO && humano.getY() == yO) {
-                    for (int i = 0; i < listaEquipamento.size(); i++) {
-                        if (listaEquipamento.get(i).getX() == xD && listaEquipamento.get(i).getY() == yD) {
-                            if(humano.getEquipamentoAtual() == null) {
-                                humano.addEquipamentosAtual(listaEquipamento.get(i));
-                                equipamentoRetirar = listaEquipamento.get(i);
-                            } else {
-                                Equipamento equipamentoDrop = humano.getEquipamentoAtual();
-                                equipamentoDrop.alteraCoordenada(xO,yO);
-                                listaEquipamento.add(equipamentoDrop);
-                                humano.addEquipamentosAtual(listaEquipamento.get(i));
-                                equipamentoRetirar = listaEquipamento.get(i);
-                            }
-                            humano.addEquipamentos();
-                        }
-                    }
-                    humano.alteraCoordenada(xD,yD);
-                    idEquipaAtual = 1;
-                    numeroDeJogadas++;
-                    listaEquipamento.remove(equipamentoRetirar);
-                }
-            }
-        }
-         */
     }
 
     public boolean gameIsOver() {
@@ -537,7 +498,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "The Night Eats the World";
+        respostas[2] = "Zombie Movie";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
