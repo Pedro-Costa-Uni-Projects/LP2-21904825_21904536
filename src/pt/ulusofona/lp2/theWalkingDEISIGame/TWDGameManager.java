@@ -339,7 +339,19 @@ public class TWDGameManager {
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
-
+                                            if(humano.getEquipamentoAtual().getTipo() == 7) {
+                                                if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
+                                                    transforma(zombie,humano);
+                                                    creatures.remove(humano);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    return true;
+                                                } else {
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    return true;
+                                                }
+                                            }
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
@@ -359,6 +371,7 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                             }
+
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -564,7 +577,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "Uncle Sam";
+        respostas[2] = "Sam Harper";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
