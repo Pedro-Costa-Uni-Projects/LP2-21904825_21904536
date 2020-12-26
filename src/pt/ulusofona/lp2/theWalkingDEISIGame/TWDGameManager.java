@@ -257,6 +257,12 @@ public class TWDGameManager {
                                                         return false;
                                                     }
                                                 }
+
+                                                if(humano.getEquipamentoAtual().getTipo() == 1 && !(zombie.getTipo() == 0)) {
+                                                    if(humano.getTipo() == 5) {
+                                                        return false;
+                                                    }
+                                                }
                                                 zombieARemover = zombie;
                                             } else {
                                                 return false;
@@ -337,6 +343,15 @@ public class TWDGameManager {
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
+                                                    transforma(zombie,humano);
+                                                    creatures.remove(humano);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    return true;
+                                                }
+                                            }
+                                            if(humano.getEquipamentoAtual().getTipo() == 1) {
+                                                if(humano.getTipo() == 5) {
                                                     transforma(zombie,humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -549,7 +564,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "Spring Break Zombie Massacre";
+        respostas[2] = "Uncle Sam";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";

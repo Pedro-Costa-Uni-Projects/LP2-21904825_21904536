@@ -1,14 +1,14 @@
 7 7
 10
 6
-1 : 1 : Freddie M. : 3 : 3
-2 : 1 : Jackie Chan : 3 : 4
+1 : 0 : Freddie M. : 3 : 3
+2 : 5 : Jackie Chan : 3 : 4
 3 : 1 : Alice : 5 : 5
 4 : 1 : Ash : 2 : 2
 5 : 6 : Sam : 1 : 1
 6 : 1 : Paciente Zero : 4 : 3
 2
 -1 : 2 : 0 : 0
--2 : 5 : 2 : 3
+-2 : 1 : 2 : 3
 1
 6 : 6
