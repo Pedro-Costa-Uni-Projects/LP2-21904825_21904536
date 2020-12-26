@@ -343,15 +343,11 @@ public class TWDGameManager {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(zombie,humano);
                                                     creatures.remove(humano);
-                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
-                                                    numeroDeJogadas++;
-                                                    return true;
-                                                } else {
-                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
-                                                    numeroDeJogadas++;
-                                                    return true;
                                                 }
                                             }
+                                            idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                            numeroDeJogadas++;
+                                            return true;
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
