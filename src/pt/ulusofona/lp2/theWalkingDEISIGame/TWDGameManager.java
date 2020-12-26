@@ -582,7 +582,7 @@ public class TWDGameManager {
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
-        respostas[7] = "A Fúria do Dragão";
+        respostas[7] = "1972";
         respostas[8] = "Kill Bill";
         respostas[9] = "1978";
         respostas[10] = "James Bond";
