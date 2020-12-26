@@ -21,4 +21,10 @@ public class PistolaPPK extends Equipamento {
     public boolean isDefensivo() {
         return false;
     }
+
+    public void disparar() { // Adicionado para disparar;
+        if(this.balas > 0) {
+            this.balas--;
+        }
+    }
 }

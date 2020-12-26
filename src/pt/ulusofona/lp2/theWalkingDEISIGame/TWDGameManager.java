@@ -251,6 +251,10 @@ public class TWDGameManager {
                                     if(creature1.getTipo() >= 0 && creature1.getTipo() <= 4) {
                                         if(creature.getEquipamentoAtual() != null) {
                                             if(creature.getEquipamentoAtual().isOfensivo()) {
+                                                if(creature.getEquipamentoAtual().getTipo() == 2) { //Pistola
+
+                                                    zombieARemover = creature1;
+                                                }
                                                 zombieARemover = creature1;
                                             } else {
                                                 return false;
@@ -315,7 +319,7 @@ public class TWDGameManager {
                                     if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
                                         if(creature1.getEquipamentoAtual() == null) {
                                             int id = creature1.getId();
-                                            int tipo = creature1.getTipo();
+                                            int tipo = creature.getTipo(); // alteração
                                             String nome = creature1.getNome();
                                             int posX = creature1.getX();
                                             int posY= creature1.getY();
@@ -368,9 +372,9 @@ public class TWDGameManager {
                 }
             }
 
-            if(zombieARemover != null) {
+            /*if(zombieARemover != null) {
                 creatures.remove(zombieARemover);
-            }
+            } */
 
             if(equipamentoRemove != null) {
                 listaEquipamento.remove(equipamentoRemove);
@@ -455,7 +459,7 @@ public class TWDGameManager {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")\n");
             }
         }
-        return new ArrayList<>();
+        return new ArrayList<>(); // nao devia dar return nos resultados?
     }
 
     public boolean isDay() {
