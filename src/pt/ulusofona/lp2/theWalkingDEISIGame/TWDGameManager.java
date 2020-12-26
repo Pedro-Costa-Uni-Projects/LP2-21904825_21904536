@@ -252,7 +252,7 @@ public class TWDGameManager {
                                         if(creature.getEquipamentoAtual() != null) {
                                             if(creature.getEquipamentoAtual().isOfensivo()) {
                                                 if(creature.getEquipamentoAtual().getTipo() == 2) { //Pistola
-
+                                                    ((PistolaPPK)creature.getEquipamentoAtual()).disparar();
                                                     zombieARemover = creature1;
                                                 }
                                                 zombieARemover = creature1;
@@ -349,12 +349,26 @@ public class TWDGameManager {
                                             numeroDeJogadas++;
                                             return true;
 
+                                        } else if (creature1.getEquipamentoAtual().isDefensivo()) {
+
+                                        } else {
+                                            if(creature1.getEquipamentoAtual().getTipo() == 2) { //Pistola
+                                                ((PistolaPPK)creature1.getEquipamentoAtual()).disparar();
+                                            }
+                                            creatures.remove(creature);
+                                            idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                            numeroDeJogadas++;
+                                            return true;
+
                                         }
                                     }
                                 }
                             }
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
+                                    if(creature.getTipo() == 4 && equipamento.getTipo() == 5) {
+                                        return false;
+                                    }
                                     equipamentoRemove = equipamento;
                                     creature.addEquipamentos();
 
