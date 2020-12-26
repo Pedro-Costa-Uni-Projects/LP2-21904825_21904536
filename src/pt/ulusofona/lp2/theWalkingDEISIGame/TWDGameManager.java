@@ -314,7 +314,36 @@ public class TWDGameManager {
                                     }
                                     if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
                                         if(creature1.getEquipamentoAtual() == null) {
-                                            zombieARemover = creature1;
+                                            int id = creature1.getId();
+                                            int tipo = creature1.getTipo();
+                                            String nome = creature1.getNome();
+                                            int posX = creature1.getX();
+                                            int posY= creature1.getY();
+                                            if(creature1.getTipo() == 5) {
+                                                Zombie zombie = new CriancaZ(id,tipo,nome,posX,posY);
+                                                creatures.add(zombie);
+                                            }
+
+                                            if(creature1.getTipo() == 6) {
+                                                Zombie zombie = new AdultoZ(id,tipo,nome,posX,posY);
+                                                creatures.add(zombie);
+                                            }
+                                            if(creature1.getTipo() == 7) {
+                                                Zombie zombie = new MilitarZ(id,tipo,nome,posX,posY);
+                                                creatures.add(zombie);
+                                            }
+                                            if(creature1.getTipo() == 8) {
+                                                Zombie zombie = new IdosoZ(id,tipo,nome,posX,posY);
+                                                creatures.add(zombie);
+                                            }
+                                            if(creature1.getTipo() == 9) {
+                                                return false;
+                                            }
+
+                                            creatures.remove(creature1);
+                                            idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                            numeroDeJogadas++;
+                                            return true;
 
                                         }
                                     }
@@ -324,6 +353,7 @@ public class TWDGameManager {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
                                     equipamentoRemove = equipamento;
                                     creature.addEquipamentos();
+
                                 }
                             }
 
