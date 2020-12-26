@@ -319,6 +319,9 @@ public class TWDGameManager {
                 if(zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
                     if(zombie.getX() == xO && zombie.getY() == yO) {
                         if(zombie.movimento(xO,yO,xD,yD)) {
+                            if (zombie.getTipo() == 4 && isDay()) { //se for de dia o VampiroZ não pode mover
+                                return false;
+                            }
                             for(Creature humano : creatures) {
                                 if(humano.getX() == xD && humano.getY() == yD) {
                                     if(humano.getTipo() >= 0 && humano.getTipo() <= 4) {

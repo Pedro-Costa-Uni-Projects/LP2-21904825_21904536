@@ -6,7 +6,7 @@
 3 : 1 : Alice : 5 : 5
 4 : 1 : Ash : 2 : 2
 5 : 6 : Sam : 1 : 1
-6 : 1 : Paciente Zero : 4 : 3
+6 : 4 : Paciente Zero : 4 : 3
 2
 -1 : 2 : 0 : 0
 -2 : 7 : 2 : 3
