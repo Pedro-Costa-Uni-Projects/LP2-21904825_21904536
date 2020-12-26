@@ -117,7 +117,7 @@ public class TWDGameManager {
                         for (int i = 0;i<equipamentosJogo;i++) {
                             linha = leitorFicheiro.nextLine();
                             dados = linha.split(" : ");
-                            if (dados.length == 5) {
+                            if (dados.length == 4) {
                                 int id = Integer.parseInt(dados[0]);
                                 int tipo = Integer.parseInt(dados[1]);
                                 int x = Integer.parseInt(dados[2]);
