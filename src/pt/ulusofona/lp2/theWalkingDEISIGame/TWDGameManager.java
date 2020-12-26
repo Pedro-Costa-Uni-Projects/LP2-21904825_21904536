@@ -616,7 +616,7 @@ public class TWDGameManager {
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
-        respostas[3] = "The Village";
+        respostas[3] = "I Am Legend";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
