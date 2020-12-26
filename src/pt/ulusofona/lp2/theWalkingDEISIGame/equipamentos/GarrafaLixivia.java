@@ -9,7 +9,7 @@ public class GarrafaLixivia extends Equipamento {
     }
 
     public String toString() {
-        return "Garrafa de lixívia (1 litro) | " + this.quantidade;
+        return "Garrafa de lixívia (1 litro) | " + (int)this.quantidade;
     }
 
     @Override
