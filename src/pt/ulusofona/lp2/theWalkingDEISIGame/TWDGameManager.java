@@ -248,6 +248,9 @@ public class TWDGameManager {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
+                            if (humano.getTipo() == 3 && !isDay()) { //se for de noite o idosoH não pode mover
+                                return false;
+                            }
                             for(Creature zombie : creatures) {
                                 if(zombie.getX() == xD && zombie.getY() == yD) {
                                     if(zombie.getTipo() >= 5 && zombie.getTipo() <= 9) {
@@ -286,6 +289,13 @@ public class TWDGameManager {
                                         equipamentoDrop.alteraCoordenada(xO,yO);
                                         ((Humano)humano).setEquipamentosAtual(equipamento);
                                     }
+                                    if (equipamento.getTipo() == 8) {
+                                        ((Humano) humano).alteraVeneno(true);
+                                    }
+                                    if (equipamento.getTipo() == 9) {
+                                        ((Humano) humano).alteraVeneno(false);
+                                        ((Humano) humano).reporTurnosPoison();
+                                    }
                                     humano.addEquipamentos();
                                     equipamentoRemove = equipamento;
                                 }
@@ -315,6 +325,7 @@ public class TWDGameManager {
             }
             idEquipaAtual = ID_EQUIPA_OS_OUTROS;
             numeroDeJogadas++;
+            tiraTurnosVeneno();
             return true;
 
         //ZOMBIES A JOGAR
@@ -343,6 +354,7 @@ public class TWDGameManager {
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            tiraTurnosVeneno();
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
@@ -352,8 +364,21 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                 }
                                             }
+                                            if(humano.getEquipamentoAtual().getTipo() == 0) {
+                                                if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
+                                                    transforma(zombie,humano);
+                                                    creatures.remove(humano);
+                                                }
+                                            }
+                                            if(humano.getEquipamentoAtual().getTipo() == 4) {
+                                                if(zombie.getTipo() != 3) {
+                                                    transforma(zombie,humano);
+                                                    creatures.remove(humano);
+                                                }
+                                            }
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            tiraTurnosVeneno();
                                             return true;
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
@@ -362,6 +387,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    tiraTurnosVeneno();
                                                     return true;
                                                 }
                                             }
@@ -371,6 +397,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    tiraTurnosVeneno();
                                                     return true;
                                                 }
                                             }
@@ -378,6 +405,7 @@ public class TWDGameManager {
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            tiraTurnosVeneno();
                                             return true;
 
                                         }
@@ -387,6 +415,9 @@ public class TWDGameManager {
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
                                     if(zombie.getTipo() == 4 && equipamento.getTipo() == 5) {
+                                        return false;
+                                    }
+                                    if(equipamento.getTipo() == 8) {
                                         return false;
                                     }
                                     equipamentoRemove = equipamento;
@@ -412,6 +443,7 @@ public class TWDGameManager {
 
             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
             numeroDeJogadas++;
+            tiraTurnosVeneno();
             return true;
         }
     }
@@ -618,6 +650,22 @@ public class TWDGameManager {
         if(humano.getTipo() == 8) {
             Zombie zombieNovo = new IdosoZ(id,3,nome,posX,posY);
             creatures.add(zombieNovo);
+        }
+    }
+
+    public void tiraTurnosVeneno() {
+        Creature creatureRemover = null;
+        for(Creature creature : creatures) {
+            if(creature.getTipo() >= 5 && creature.getTipo() <= 9) {
+                if (((Humano)creature).estadoVeneno()) {
+                    if(!((Humano)creature).tiraTurnosPoison()) {
+                        creatureRemover = creature;
+                    }
+                }
+            }
+        }
+        if (creatureRemover != null) {
+            creatures.remove(creatureRemover);
         }
     }
 }
