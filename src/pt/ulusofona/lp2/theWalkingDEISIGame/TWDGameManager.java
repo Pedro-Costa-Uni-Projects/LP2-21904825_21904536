@@ -577,7 +577,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "Sam Harper";
+        respostas[2] = "A Noite Devorou o Mundo";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
