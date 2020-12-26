@@ -240,23 +240,24 @@ public class TWDGameManager {
 
         //HUMANOS A JOGAR
         if(idEquipaAtual == ID_EQUIPA_OS_VIVOS) {
-            for(Creature creature : creatures) {
-                if(creature.getTipo() >= 5 && creature.getTipo() <= 9 ) { //verifica se é humano
-                    if(creature.getX() == xO && creature.getY() == yO) {
-                        if(creature.movimento(xO,yO,xD,yD)) {
-                            for(Creature creature1 : creatures) {
-                                if(creature1.getX() == xD && creature1.getY() == yD) {
-                                    if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
+            for(Creature humano : creatures) {
+                if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
+                    if(humano.getX() == xO && humano.getY() == yO) {
+                        if(humano.movimento(xO,yO,xD,yD)) {
+                            for(Creature zombie : creatures) {
+                                if(zombie.getX() == xD && zombie.getY() == yD) {
+                                    if(zombie.getTipo() >= 5 && zombie.getTipo() <= 9) {
                                         return false;
                                     }
-                                    if(creature1.getTipo() >= 0 && creature1.getTipo() <= 4) {
-                                        if(creature.getEquipamentoAtual() != null) {
-                                            if(creature.getEquipamentoAtual().isOfensivo()) {
-                                                if(creature.getEquipamentoAtual().getTipo() == 2) { //Pistola
-                                                    ((PistolaPPK)creature.getEquipamentoAtual()).disparar();
-                                                    zombieARemover = creature1;
+                                    if(zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
+                                        if(humano.getEquipamentoAtual() != null) {
+                                            if(humano.getEquipamentoAtual().isOfensivo()) {
+                                                if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
+                                                    if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
+                                                        return false;
+                                                    }
                                                 }
-                                                zombieARemover = creature1;
+                                                zombieARemover = zombie;
                                             } else {
                                                 return false;
                                             }
@@ -268,21 +269,21 @@ public class TWDGameManager {
                             }
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
-                                    if(creature.getEquipamentoAtual() == null) {
-                                        ((Humano)creature).setEquipamentosAtual(equipamento);
+                                    if(humano.getEquipamentoAtual() == null) {
+                                        ((Humano)humano).setEquipamentosAtual(equipamento);
                                     } else {
-                                        equipamentoDrop = creature.getEquipamentoAtual();
+                                        equipamentoDrop = humano.getEquipamentoAtual();
                                         equipamentoDrop.alteraCoordenada(xO,yO);
-                                        ((Humano)creature).setEquipamentosAtual(equipamento);
+                                        ((Humano)humano).setEquipamentosAtual(equipamento);
                                     }
-                                    creature.addEquipamentos();
+                                    humano.addEquipamentos();
                                     equipamentoRemove = equipamento;
                                 }
                             }
                            if (isDoorToSafeHaven(xD,yD)) {
-                               creature.alteraEstadoSave();
+                               humano.alteraEstadoSave();
                            }
-                            creature.alteraCoordenada(xD,yD);
+                            humano.alteraCoordenada(xD,yD);
                         } else {
                             return false;
                         }
@@ -308,42 +309,42 @@ public class TWDGameManager {
 
         //ZOMBIES A JOGAR
         } else {
-            for(Creature creature : creatures) {
-                if(creature.getTipo() >= 0 && creature.getTipo() <= 4) {
-                    if(creature.getX() == xO && creature.getY() == yO) {
-                        if(creature.movimento(xO,yO,xD,yD)) {
-                            for(Creature creature1 : creatures) {
-                                if(creature1.getX() == xD && creature1.getY() == yD) {
-                                    if(creature1.getTipo() >= 0 && creature1.getTipo() <= 4) {
+            for(Creature zombie : creatures) {
+                if(zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
+                    if(zombie.getX() == xO && zombie.getY() == yO) {
+                        if(zombie.movimento(xO,yO,xD,yD)) {
+                            for(Creature humano : creatures) {
+                                if(humano.getX() == xD && humano.getY() == yD) {
+                                    if(humano.getTipo() >= 0 && humano.getTipo() <= 4) {
                                         return false;
                                     }
-                                    if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
-                                        if(creature1.getEquipamentoAtual() == null || creature1.getEquipamentoAtual().getTipo() == 5) {
-                                            if(creature.getTipo() == 4) {
+                                    if(humano.getTipo() >= 5 && humano.getTipo() <= 9) {
+                                        if(humano.getEquipamentoAtual() == null || humano.getEquipamentoAtual().getTipo() == 5) {
+                                            if(zombie.getTipo() == 4) {
                                                 return false;
                                             }
-                                            if(creature1.getTipo() == 9) {
+                                            if(humano.getTipo() == 9) {
                                                 return false;
                                             }
-                                            transforma(creature,creature1);
-                                            creatures.remove(creature1);
+                                            transforma(zombie,humano);
+                                            creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             return true;
 
-                                        } else if (creature1.getEquipamentoAtual().isDefensivo()) {
+                                        } else if (humano.getEquipamentoAtual().isDefensivo()) {
 
                                         } else {
-                                            if(creature1.getEquipamentoAtual().getTipo() == 2) { //Pistola
-                                                if (!((PistolaPPK)creature1.getEquipamentoAtual()).disparar()) {
-                                                    transforma(creature,creature1);
-                                                    creatures.remove(creature1);
+                                            if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
+                                                if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
+                                                    transforma(zombie,humano);
+                                                    creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
                                                     return true;
                                                 }
                                             }
-                                            creatures.remove(creature);
+                                            creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             return true;
@@ -354,11 +355,11 @@ public class TWDGameManager {
                             }
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
-                                    if(creature.getTipo() == 4 && equipamento.getTipo() == 5) {
+                                    if(zombie.getTipo() == 4 && equipamento.getTipo() == 5) {
                                         return false;
                                     }
                                     equipamentoRemove = equipamento;
-                                    creature.addEquipamentos();
+                                    zombie.addEquipamentos();
 
                                 }
                             }
@@ -366,7 +367,7 @@ public class TWDGameManager {
                             if (isDoorToSafeHaven(xD,yD)) {
                                 return false;
                             }
-                        creature.alteraCoordenada(xD,yD);
+                            zombie.alteraCoordenada(xD,yD);
                         } else {
                             return false;
                         }
@@ -548,7 +549,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "La nuit a dévoré le monde";
+        respostas[2] = "Spring Break Zombie Massacre";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";
