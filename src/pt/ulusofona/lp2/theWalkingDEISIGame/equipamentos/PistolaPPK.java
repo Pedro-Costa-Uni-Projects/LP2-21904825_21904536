@@ -22,9 +22,12 @@ public class PistolaPPK extends Equipamento {
         return false;
     }
 
-    public void disparar() { // Adicionado para disparar;
+    public boolean disparar() { // Adicionado para disparar;
         if(this.balas > 0) {
             this.balas--;
+            return true;
+        } else {
+            return false;
         }
     }
 }

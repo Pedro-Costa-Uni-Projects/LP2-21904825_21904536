@@ -24,6 +24,7 @@ public class TWDGameManager {
     private static final int ID_EQUIPA_OS_VIVOS = 10;
     private static final int ID_EQUIPA_OS_OUTROS = 20;
 
+
     public boolean startGame(File ficheiroInicial) {
 
         int count = 0;
@@ -317,33 +318,14 @@ public class TWDGameManager {
                                         return false;
                                     }
                                     if(creature1.getTipo() >= 5 && creature1.getTipo() <= 9) {
-                                        if(creature1.getEquipamentoAtual() == null) {
-                                            int id = creature1.getId();
-                                            int tipo = creature.getTipo(); // alteração
-                                            String nome = creature1.getNome();
-                                            int posX = creature1.getX();
-                                            int posY= creature1.getY();
-                                            if(creature1.getTipo() == 5) {
-                                                Zombie zombie = new CriancaZ(id,tipo,nome,posX,posY);
-                                                creatures.add(zombie);
-                                            }
-
-                                            if(creature1.getTipo() == 6) {
-                                                Zombie zombie = new AdultoZ(id,tipo,nome,posX,posY);
-                                                creatures.add(zombie);
-                                            }
-                                            if(creature1.getTipo() == 7) {
-                                                Zombie zombie = new MilitarZ(id,tipo,nome,posX,posY);
-                                                creatures.add(zombie);
-                                            }
-                                            if(creature1.getTipo() == 8) {
-                                                Zombie zombie = new IdosoZ(id,tipo,nome,posX,posY);
-                                                creatures.add(zombie);
+                                        if(creature1.getEquipamentoAtual() == null || creature1.getEquipamentoAtual().getTipo() == 5) {
+                                            if(creature.getTipo() == 4) {
+                                                return false;
                                             }
                                             if(creature1.getTipo() == 9) {
                                                 return false;
                                             }
-
+                                            transforma(creature,creature1);
                                             creatures.remove(creature1);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -353,7 +335,13 @@ public class TWDGameManager {
 
                                         } else {
                                             if(creature1.getEquipamentoAtual().getTipo() == 2) { //Pistola
-                                                ((PistolaPPK)creature1.getEquipamentoAtual()).disparar();
+                                                if (!((PistolaPPK)creature1.getEquipamentoAtual()).disparar()) {
+                                                    transforma(creature,creature1);
+                                                    creatures.remove(creature1);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    return true;
+                                                }
                                             }
                                             creatures.remove(creature);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -473,7 +461,7 @@ public class TWDGameManager {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")\n");
             }
         }
-        return new ArrayList<>(); // nao devia dar return nos resultados?
+        return resultados;
     }
 
     public boolean isDay() {
@@ -573,5 +561,29 @@ public class TWDGameManager {
         respostas[12] = "Cabeça de alho chocho";
         respostas[13] = "Freddie Mercury";
         return respostas;
+    }
+
+    public void transforma(Creature zombie,Creature humano) {
+        int id = humano.getId();
+        String nome = humano.getNome();
+        int posX = humano.getX();
+        int posY= humano.getY();
+        if(humano.getTipo() == 5) {
+            Zombie zombieNovo = new CriancaZ(id,0,nome,posX,posY);
+            creatures.add(zombieNovo);
+        }
+
+        if(humano.getTipo() == 6) {
+            Zombie zombieNovo = new AdultoZ(id,1,nome,posX,posY);
+            creatures.add(zombieNovo);
+        }
+        if(humano.getTipo() == 7) {
+            Zombie zombieNovo = new MilitarZ(id,2,nome,posX,posY);
+            creatures.add(zombieNovo);
+        }
+        if(humano.getTipo() == 8) {
+            Zombie zombieNovo = new IdosoZ(id,3,nome,posX,posY);
+            creatures.add(zombieNovo);
+        }
     }
 }
