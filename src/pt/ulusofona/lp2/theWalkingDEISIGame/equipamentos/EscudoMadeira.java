@@ -30,4 +30,5 @@ public class EscudoMadeira extends Equipamento {
             return false;
         }
     }
+
 }

@@ -303,7 +303,8 @@ public class TWDGameManager {
                            if (isDoorToSafeHaven(xD,yD)) {
                                humano.alteraEstadoSave();
                            }
-                            humano.alteraCoordenada(xD,yD);
+
+                           humano.alteraCoordenada(xD,yD);
                         } else {
                             return false;
                         }
@@ -614,7 +615,7 @@ public class TWDGameManager {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
-        respostas[2] = "A Noite Devorou o Mundo";
+        respostas[2] = "I Am Legend";
         respostas[3] = "The Village";
         respostas[4] = "Dungeons & Dragons";
         respostas[5] = "Resident Evil";

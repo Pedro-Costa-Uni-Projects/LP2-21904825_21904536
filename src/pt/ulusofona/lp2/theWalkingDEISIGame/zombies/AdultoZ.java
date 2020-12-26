@@ -38,6 +38,7 @@ public class AdultoZ extends Zombie {
         listaPossiveis.add(new int[]{xO - 2, yO + 2});
         listaPossiveis.add(new int[]{xO + 2, yO - 2});
         listaPossiveis.add(new int[]{xO + 2, yO + 2});
+
         for(int[] posicao : listaPossiveis) {
             if (posicao[0] == xD && posicao[1] == yD) {
                 return true;
