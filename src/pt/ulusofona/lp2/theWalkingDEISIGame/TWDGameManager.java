@@ -5,6 +5,7 @@ import pt.ulusofona.lp2.theWalkingDEISIGame.humanos.*;
 import pt.ulusofona.lp2.theWalkingDEISIGame.zombies.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
@@ -21,6 +22,8 @@ public class TWDGameManager {
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
+    Comparator<Creature> creatureComparator = Comparator.comparing(Creature::getId);
+    Comparator<Equipamento> equipamentoComparator = Comparator.comparing(Equipamento::getId);
     private static final int ID_EQUIPA_OS_VIVOS = 10;
     private static final int ID_EQUIPA_OS_OUTROS = 20;
 
@@ -327,6 +330,7 @@ public class TWDGameManager {
             idEquipaAtual = ID_EQUIPA_OS_OUTROS;
             numeroDeJogadas++;
             tiraTurnosVeneno();
+            organizaListas();
             return true;
 
         //ZOMBIES A JOGAR
@@ -356,6 +360,7 @@ public class TWDGameManager {
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             tiraTurnosVeneno();
+                                            organizaListas();
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
@@ -380,6 +385,7 @@ public class TWDGameManager {
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             tiraTurnosVeneno();
+                                            organizaListas();
                                             return true;
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
@@ -389,6 +395,7 @@ public class TWDGameManager {
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
                                                     tiraTurnosVeneno();
+                                                    organizaListas();
                                                     return true;
                                                 }
                                             }
@@ -399,6 +406,7 @@ public class TWDGameManager {
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
                                                     tiraTurnosVeneno();
+                                                    organizaListas();
                                                     return true;
                                                 }
                                             }
@@ -407,6 +415,7 @@ public class TWDGameManager {
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             tiraTurnosVeneno();
+                                            organizaListas();
                                             return true;
 
                                         }
@@ -445,6 +454,7 @@ public class TWDGameManager {
             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
             numeroDeJogadas++;
             tiraTurnosVeneno();
+            organizaListas();
             return true;
         }
     }
@@ -671,5 +681,10 @@ public class TWDGameManager {
         if (creatureRemover != null) {
             creatures.remove(creatureRemover);
         }
+    }
+
+    public  void organizaListas() {
+        creatures.sort(creatureComparator);
+        listaEquipamento.sort(equipamentoComparator);
     }
 }
