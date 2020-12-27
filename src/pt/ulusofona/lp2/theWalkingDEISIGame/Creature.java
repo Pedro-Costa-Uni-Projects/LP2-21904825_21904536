@@ -46,6 +46,10 @@ public abstract class Creature {
         return this.vivo;
     }
 
+    public void mata() {
+        this.vivo = false;
+    }
+
     public void alteraEstadoSave() {
         this.verificaSaveHeaven = true;
     }

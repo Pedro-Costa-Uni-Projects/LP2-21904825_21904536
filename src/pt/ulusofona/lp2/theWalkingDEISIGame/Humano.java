@@ -40,6 +40,7 @@ public abstract class Humano extends Creature{
         }
         return false;
     }
+
     public void reporTurnosPoison() {
         this.turnosPoison = 3;
     }
