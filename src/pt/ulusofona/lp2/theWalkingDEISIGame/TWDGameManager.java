@@ -248,7 +248,7 @@ public class TWDGameManager {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
-                            if (humano.getTipo() == 3 && !isDay()) { //se for de noite o idosoH não pode mover
+                            if (humano.getTipo() == 8 && !isDay()) { //se for de noite o idosoH não pode mover
                                 return false;
                             }
                             for(Creature zombie : creatures) {
@@ -452,7 +452,7 @@ public class TWDGameManager {
     public boolean gameIsOver() {
         int numeroVivos = 0;
         for(Creature creature : creatures) {
-            if (creature.getTipo() >= 5 && creature.getTipo() <= 9) {
+            if (creature.getTipo() >= 5 && creature.getTipo() <= 9 && !creature.verificaSaveHeaven) {
                 numeroVivos++;
             }
         }
