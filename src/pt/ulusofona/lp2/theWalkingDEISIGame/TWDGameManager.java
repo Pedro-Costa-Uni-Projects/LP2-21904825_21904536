@@ -505,11 +505,6 @@ public class TWDGameManager {
                 return creature.getId();
             }
         }
-        for(Creature creature : mortos) {
-            if (creature.getX() == x && creature.getY() == y) {
-                return creature.getId();
-            }
-        }
         for (Equipamento equipamento : listaEquipamento) {
             if (equipamento.getX() == x && equipamento.getY() == y) {
                 return equipamento.getId();
