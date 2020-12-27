@@ -512,6 +512,7 @@ public class TWDGameManager {
         ArrayList<String> resultados = new ArrayList<>();
         resultados.add("Nr. de turnos terminados:");
         resultados.add(String.valueOf(numeroDeJogadas));
+        resultados.add("");
         resultados.add("Ainda pelo bairro:");
         resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
@@ -519,6 +520,7 @@ public class TWDGameManager {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
+        resultados.add("");
         resultados.add("OS OUTROS");
         for (Creature zombie : creatures) {
             if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
@@ -526,7 +528,6 @@ public class TWDGameManager {
             }
         }
         resultados.add("Num safe haven:");
-        resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
             if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.passouSaveHeaven()) {
                 resultados.add(humano.getId() + " " + humano.getNome());
@@ -539,12 +540,14 @@ public class TWDGameManager {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
+        resultados.add("");
         resultados.add("OS OUTROS");
         for (Creature zombie : mortos) {
             if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
+        resultados.add("");
         return resultados;
     }
 
