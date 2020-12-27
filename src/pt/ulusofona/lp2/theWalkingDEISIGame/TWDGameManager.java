@@ -288,14 +288,19 @@ public class TWDGameManager {
                                 }
                             }
                             for(Equipamento equipamento : listaEquipamento) {
+                                if(humano.getTipo() == 8 && humano.getEquipamentoAtual() != null) { //idoso move e dropa
+                                    equipamentoDrop = humano.getEquipamentoAtual();
+                                    ((Humano) humano).setEquipamentosAtual(null);
+                                }
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
                                     if(humano.getEquipamentoAtual() == null) {
                                         ((Humano)humano).setEquipamentosAtual(equipamento);
                                     } else {
-                                        equipamentoDrop = humano.getEquipamentoAtual();
-                                        equipamentoDrop.alteraCoordenada(xO,yO);
-                                        ((Humano)humano).setEquipamentosAtual(equipamento);
+                                            equipamentoDrop = humano.getEquipamentoAtual();
+                                            equipamentoDrop.alteraCoordenada(xO, yO);
+                                            ((Humano) humano).setEquipamentosAtual(equipamento);
                                     }
+
                                     if (equipamento.getTipo() == 8) {
                                         ((Humano) humano).alteraVeneno(true);
                                     }
@@ -306,12 +311,13 @@ public class TWDGameManager {
                                     humano.addEquipamentos();
                                     equipamentoRemove = equipamento;
                                 }
+
                             }
                            if (isDoorToSafeHaven(xD,yD)) {
                                humano.alteraEstadoSave();
                            }
-
                            humano.alteraCoordenada(xD,yD);
+
                         } else {
                             return false;
                         }
