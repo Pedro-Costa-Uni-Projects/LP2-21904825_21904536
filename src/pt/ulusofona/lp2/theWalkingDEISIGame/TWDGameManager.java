@@ -22,6 +22,7 @@ public class TWDGameManager {
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
+    private ArrayList<Creature> mortos = new ArrayList<>();
     Comparator<Creature> creatureComparator = Comparator.comparing(Creature::getId);
     Comparator<Equipamento> equipamentoComparator = Comparator.comparing(Equipamento::getId);
     private static final int ID_EQUIPA_OS_VIVOS = 10;
@@ -318,6 +319,7 @@ public class TWDGameManager {
             }
 
             if(zombieARemover != null) {
+                adicionaMortos(zombieARemover);
                 creatures.remove(zombieARemover);
             }
 
@@ -356,6 +358,7 @@ public class TWDGameManager {
                                                 return false;
                                             }
                                             transforma(zombie,humano);
+                                            adicionaMortos(humano);
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -367,18 +370,21 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(zombie,humano);
+                                                    adicionaMortos(humano);
                                                     creatures.remove(humano);
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 0) {
                                                 if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(zombie,humano);
+                                                    adicionaMortos(humano);
                                                     creatures.remove(humano);
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 4) {
                                                 if(zombie.getTipo() != 3) {
                                                     transforma(zombie,humano);
+                                                    adicionaMortos(humano);
                                                     creatures.remove(humano);
                                                 }
                                             }
@@ -391,6 +397,7 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
                                                     transforma(zombie,humano);
+                                                    adicionaMortos(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
@@ -402,6 +409,7 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 1) {
                                                 if(humano.getTipo() == 5) {
                                                     transforma(zombie,humano);
+                                                    adicionaMortos(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
@@ -410,7 +418,7 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                             }
-
+                                            adicionaMortos(zombie);
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -500,19 +508,20 @@ public class TWDGameManager {
     }
     
     public List<String> getGameResults() {
+        organizaListas();
         ArrayList<String> resultados = new ArrayList<>();
         resultados.add("Nr. de turnos terminados:");
         resultados.add(String.valueOf(numeroDeJogadas));
         resultados.add("Ainda pelo bairro:");
         resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
-            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && humano.verificaSeEstaVivo()) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.passouSaveHeaven()) {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
         resultados.add("OS OUTROS");
         for (Creature zombie : creatures) {
-            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && zombie.verificaSeEstaVivo()) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
@@ -523,16 +532,16 @@ public class TWDGameManager {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
-        resultados.add("Envenados / Destruidos");
+        resultados.add("Envenenados / Destruídos");
         resultados.add("OS VIVOS");
-        for (Creature humano : creatures) {
-            if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.verificaSeEstaVivo()) {
+        for (Creature humano : mortos) {
+            if (humano.getTipo() >= 5 && humano.getTipo() <= 9) {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
         resultados.add("OS OUTROS");
-        for (Creature zombie : creatures) {
-            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4 && !zombie.verificaSeEstaVivo()) {
+        for (Creature zombie : mortos) {
+            if (zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
@@ -683,8 +692,14 @@ public class TWDGameManager {
         }
     }
 
-    public  void organizaListas() {
+    public void organizaListas() {
         creatures.sort(creatureComparator);
         listaEquipamento.sort(equipamentoComparator);
+        mortos.sort(creatureComparator);
+    }
+
+    public void adicionaMortos(Creature creature) {
+        creature.mata();
+        mortos.add(creature);
     }
 }
