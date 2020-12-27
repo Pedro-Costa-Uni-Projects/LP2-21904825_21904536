@@ -546,6 +546,7 @@ public class TWDGameManager {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
+        resultados.add("");
         resultados.add("Envenenados / Destruídos");
         resultados.add("OS VIVOS");
         for (Creature humano : mortos) {
@@ -560,6 +561,7 @@ public class TWDGameManager {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
+        resultados.add("");
         return resultados;
     }
 
