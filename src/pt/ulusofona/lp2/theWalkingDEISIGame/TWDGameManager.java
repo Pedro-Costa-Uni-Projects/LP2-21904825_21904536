@@ -260,7 +260,7 @@ public class TWDGameManager {
                             }
                             for(Creature zombie : creatures) {
                                 if(zombie.getX() == xD && zombie.getY() == yD) {
-                                    if(zombie.getTipo() >= 5 && zombie.getTipo() <= 9) {
+                                    if(zombie.getTipo() >= 5 && zombie.getTipo() <= 9 && !zombie.passouSaveHeaven()) {
                                         return false;
                                     }
                                     if(zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
@@ -357,7 +357,7 @@ public class TWDGameManager {
                                 return false;
                             }
                             for(Creature humano : creatures) {
-                                if(humano.getX() == xD && humano.getY() == yD) {
+                                if(humano.getX() == xD && humano.getY() == yD && !humano.verificaSaveHeaven) { //zombie nao pode matar em safeheaven
                                     if(humano.getTipo() >= 0 && humano.getTipo() <= 4) {
                                         return false;
                                     }
@@ -541,7 +541,6 @@ public class TWDGameManager {
                 resultados.add(humano.getId() + " " + humano.getNome());
             }
         }
-        resultados.add("");
         resultados.add("Envenenados / Destruídos");
         resultados.add("OS VIVOS");
         for (Creature humano : mortos) {
@@ -577,9 +576,11 @@ public class TWDGameManager {
                 }
             }
         }
-        for(Equipamento equipamento : listaEquipamento) {
-            if (equipamento.getId() == creatureId) {
-                return equipamento.getId();
+        for (Creature creature : mortos) {
+            if (creature.getId() == creatureId) {
+                if(creature.getEquipamentoAtual() != null) {
+                    return creature.getEquipamentoAtual().getId();
+                }
             }
         }
         return 0;
@@ -650,7 +651,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "Captain America";
+        respostas[4] = "Guardian";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";
