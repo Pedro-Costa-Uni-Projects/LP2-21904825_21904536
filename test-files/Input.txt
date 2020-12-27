@@ -3,10 +3,10 @@
 6
 1 : 9 : Freddie M. : 3 : 3
 2 : 1 : Jackie Chan : 3 : 4
-3 : 1 : Alice : 4 : 4
+3 : 4 : Alice : 4 : 4
 4 : 1 : Ash : 2 : 2
-5 : 1 : Sam : 1 : 1
-6 : 1 : Paciente Zero : 4 : 3
+5 : 7 : Sam : 1 : 1
+6 : 2 : Paciente Zero : 4 : 3
 2
 -1 : 9 : 2 : 4
 -2 : 8 : 2 : 3
