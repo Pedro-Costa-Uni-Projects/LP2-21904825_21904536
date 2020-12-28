@@ -3,13 +3,13 @@ package pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos;
 import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
 
 public class GarrafaLixivia extends Equipamento {
-    float quantidade = 3;
+    int quantidade = 3;
     public GarrafaLixivia(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
 
     public String toString() {
-        return "Garrafa de Lixívia (1 litro) | " + (int)this.quantidade;
+        return "Garrafa de Lixívia (1 litro) | " + this.quantidade;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class GarrafaLixivia extends Equipamento {
     }
 
     public boolean retirar() {
-        if(this.quantidade >= 0.3) {
-            this.quantidade -= 0.3;
+        if(this.quantidade > 0) {
+            this.quantidade --;
             return true;
         } else {
             return false;
