@@ -663,7 +663,7 @@ public class TWDGameManager {
         respostas[10] = "James Bond";
         respostas[11] = "TWD"; //ver melhor
         respostas[12] = "Cabeça de alho chocho";
-        respostas[13] = "Freddie Mercury";
+        respostas[13] = "Freddie Mercury1";
         return respostas;
     }
 
