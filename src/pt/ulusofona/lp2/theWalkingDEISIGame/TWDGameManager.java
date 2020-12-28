@@ -258,6 +258,10 @@ public class TWDGameManager {
                             if (humano.getTipo() == 8 && !isDay()) { //se for de noite o idosoH não pode mover
                                 return false;
                             }
+                            if(humano.getTipo() == 8 && humano.getEquipamentoAtual() != null) { //idoso move e dropa
+                                equipamentoDrop = humano.getEquipamentoAtual();
+                                ((Humano) humano).setEquipamentosAtual(null);
+                            }
                             for(Creature zombie : creatures) {
                                 if(zombie.getX() == xD && zombie.getY() == yD) {
                                     if(zombie.getTipo() >= 5 && zombie.getTipo() <= 9 && !zombie.passouSaveHeaven()) {
@@ -288,10 +292,7 @@ public class TWDGameManager {
                                 }
                             }
                             for(Equipamento equipamento : listaEquipamento) {
-                                if(humano.getTipo() == 8 && humano.getEquipamentoAtual() != null) { //idoso move e dropa
-                                    equipamentoDrop = humano.getEquipamentoAtual();
-                                    ((Humano) humano).setEquipamentosAtual(null);
-                                }
+
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
                                     if(humano.getEquipamentoAtual() == null) {
                                         ((Humano)humano).setEquipamentosAtual(equipamento);
@@ -480,7 +481,8 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        return numeroDeJogadas == 12 || numeroVivos == 0;
+        //return numeroDeJogadas == 12 || numeroVivos == 0;
+        return false;
     }
 
     public List<String> getAuthors() {
@@ -567,7 +569,7 @@ public class TWDGameManager {
                 return true;
             }
         }
-        return false;
+        return true;
     }
 
     public int getEquipmentId(int creatureId) {
