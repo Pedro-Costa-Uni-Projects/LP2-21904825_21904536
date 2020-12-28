@@ -481,8 +481,7 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        //return numeroDeJogadas == 12 || numeroVivos == 0;
-        return false;
+        return numeroDeJogadas == 12 || numeroVivos == 0;
     }
 
     public List<String> getAuthors() {
@@ -569,7 +568,7 @@ public class TWDGameManager {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public int getEquipmentId(int creatureId) {
