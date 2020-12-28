@@ -654,7 +654,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "Gladiator Academy";
+        respostas[4] = "Gladiators";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";
@@ -663,7 +663,7 @@ public class TWDGameManager {
         respostas[10] = "James Bond";
         respostas[11] = "TWD"; //ver melhor
         respostas[12] = "Cabeça de alho chocho";
-        respostas[13] = "Freddie Mercury1";
+        respostas[13] = "Freddie Mercury";
         return respostas;
     }
 
