@@ -481,8 +481,7 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        //return numeroDeJogadas == 12 || numeroVivos == 0;
-        return false;
+        return numeroDeJogadas == 12 || numeroVivos == 0;
     }
 
     public List<String> getAuthors() {
@@ -569,7 +568,7 @@ public class TWDGameManager {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     public int getEquipmentId(int creatureId) {
@@ -655,7 +654,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "The Vikings";
+        respostas[4] = "Gladiator Academy";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";

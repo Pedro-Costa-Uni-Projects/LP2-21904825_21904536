@@ -23,7 +23,7 @@ public class GarrafaLixivia extends Equipamento {
     }
 
     public boolean retirar() {
-        if(this.quantidade > 0.3) {
+        if(this.quantidade >= 0.3) {
             this.quantidade -= 0.3;
             return true;
         } else {
