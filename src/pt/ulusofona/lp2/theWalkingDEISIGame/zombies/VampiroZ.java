@@ -8,7 +8,6 @@ public class VampiroZ extends Zombie {
     public VampiroZ(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if(!this.vivo) {
             return this.id + " | Zombie Vampiro | Os Outros | " + this.nome + " " + this.equipamentos + " @ RIP";
@@ -17,7 +16,6 @@ public class VampiroZ extends Zombie {
                     + this.x + ", " + this.y +")";
         }
     }
-
     @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
@@ -45,4 +43,5 @@ public class VampiroZ extends Zombie {
         }
         return false;
     }
+
 }

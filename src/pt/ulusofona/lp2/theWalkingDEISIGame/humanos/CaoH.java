@@ -8,7 +8,6 @@ public class CaoH extends Humano {
     public CaoH(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if (this.verificaSaveHeaven) {
             return this.id + " | Cão | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
@@ -19,8 +18,7 @@ public class CaoH extends Humano {
                     + ", " + this.y + ")";
         }
     }
-
-
+    @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
         listaPossiveis.add(new int[]{xO - 1, yO - 1});
@@ -38,4 +36,5 @@ public class CaoH extends Humano {
         }
         return false;
     }
+
 }

@@ -8,7 +8,6 @@ public class CriancaH extends Humano {
     public CriancaH(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if (this.verificaSaveHeaven) {
             return this.id + " | Criança (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
@@ -19,7 +18,6 @@ public class CriancaH extends Humano {
                     + ", " + this.y + ")";
         }
     }
-
     @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
@@ -34,4 +32,5 @@ public class CriancaH extends Humano {
         }
         return false;
     }
+
 }
