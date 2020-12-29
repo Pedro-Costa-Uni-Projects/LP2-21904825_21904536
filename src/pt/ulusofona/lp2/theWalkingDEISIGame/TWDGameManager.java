@@ -250,7 +250,7 @@ public class TWDGameManager {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
-                            if(passarPorCima(humano, xO, yO, xD, yD)) {
+                            if(passarPorCima(humano, xD, yD)) {
                                 return false;
                             }
                             if (humano.getTipo() == 8 && !isDay()) { //se for de noite o idosoH não pode mover
@@ -359,7 +359,7 @@ public class TWDGameManager {
                 if(zombie.getTipo() >= 0 && zombie.getTipo() <= 4) {
                     if(zombie.getX() == xO && zombie.getY() == yO) {
                         if(zombie.movimento(xO,yO,xD,yD)) {
-                            if(passarPorCima(zombie, xO, yO, xD, yD)) {
+                            if(passarPorCima(zombie, xD, yD)) {
                                 return false;
                             }
                             if (zombie.getTipo() == 4 && isDay()) { //se for de dia o VampiroZ não pode mover
@@ -1157,7 +1157,7 @@ public class TWDGameManager {
         mortos.add(creature);
     }
 
-    public boolean passarPorCima(Creature creature, int xO, int yO, int xD, int yD) {
+    public boolean passarPorCima(Creature creature, int xD, int yD) {
         for (Creature creature1 : creatures) {
             //Horizontal
             if (creature.getX() + 2 == xD && creature.getY() == yD) {
@@ -1348,3 +1348,34 @@ public class TWDGameManager {
         return false;
     }
 }
+
+/*
+AS CRIATURAS:
+0 = “Criança (Zombie)”
+1 = “Adulto (Zombie)”
+2 = “Militar (Zombie)”
+3 = “Idoso (Zombie)”
+4 = “Zombie Vampiro”
+5 = “Criança (Vivo)”
+6 = “Adulto (Vivo)”
+7 = “Militar (Vivo)”
+8 = “Idoso (Vivo)”
+9 = “Cão”
+
+AS EQUIPAS:
+Os Vivos (ID = 10)
+Os Outros (ID = 20)
+
+OS EQUIPAMENTOS:
+0 = "Escudo de Madeira"
+1 = "Espada Hattori"
+2 = "Pistola PPK"
+3 = "Escudo Tatico"
+4 = "Revista Maria"
+5 = "Cabeça de Alho"
+6 = "Estaca de Madeira"
+7 = "Garrafa de Lixivia"
+8 = "Veneno"
+9 = "Antidoto"
+10 = "Beskar Helmet"
+ */
