@@ -304,12 +304,6 @@ public class TWDGameManager {
                                             equipamentoDrop.alteraCoordenada(xO, yO);
                                             ((Humano) humano).setEquipamentosAtual(equipamento);
                                         }
-
-                                        if (equipamento.getTipo() == 8) {
-                                            ((Humano) humano).alteraVeneno(true);
-                                        }
-                                        humano.addEquipamentos();
-                                        equipamentoRemove = equipamento;
                                     } else if (equipamento.getTipo() != 9){
                                         if(humano.getEquipamentoAtual() == null) {
                                             ((Humano)humano).setEquipamentosAtual(equipamento);
@@ -322,11 +316,11 @@ public class TWDGameManager {
                                         if (equipamento.getTipo() == 8) {
                                             ((Humano) humano).alteraVeneno(true);
                                         }
-                                        humano.addEquipamentos();
-                                        equipamentoRemove = equipamento;
                                     } else {
                                         return false;
                                     }
+                                    humano.addEquipamentos();
+                                    equipamentoRemove = equipamento;
                                 }
 
                             }
@@ -670,7 +664,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "The Shield";
+        respostas[4] = "Teenage Mutant Ninja Turtles";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";
