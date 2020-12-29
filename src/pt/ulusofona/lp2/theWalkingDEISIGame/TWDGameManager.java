@@ -405,6 +405,9 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                 }
                                             }
+                                            if (humano.getEquipamentoAtual().getTipo() == 8) {
+                                                return false;
+                                            }
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             tiraTurnosVeneno();
