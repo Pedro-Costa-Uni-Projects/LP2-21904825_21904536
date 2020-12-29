@@ -294,23 +294,39 @@ public class TWDGameManager {
                             for(Equipamento equipamento : listaEquipamento) {
 
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
-                                    if(humano.getEquipamentoAtual() == null) {
-                                        ((Humano)humano).setEquipamentosAtual(equipamento);
-                                    } else {
+                                    if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
+                                        ((Humano) humano).alteraVeneno(false);
+                                        ((Humano) humano).reporTurnosPoison();
+                                        if(humano.getEquipamentoAtual() == null) {
+                                            ((Humano)humano).setEquipamentosAtual(equipamento);
+                                        } else {
                                             equipamentoDrop = humano.getEquipamentoAtual();
                                             equipamentoDrop.alteraCoordenada(xO, yO);
                                             ((Humano) humano).setEquipamentosAtual(equipamento);
-                                    }
+                                        }
 
-                                    if (equipamento.getTipo() == 8) {
-                                        ((Humano) humano).alteraVeneno(true);
+                                        if (equipamento.getTipo() == 8) {
+                                            ((Humano) humano).alteraVeneno(true);
+                                        }
+                                        humano.addEquipamentos();
+                                        equipamentoRemove = equipamento;
+                                    } else if (equipamento.getTipo() != 9){
+                                        if(humano.getEquipamentoAtual() == null) {
+                                            ((Humano)humano).setEquipamentosAtual(equipamento);
+                                        } else {
+                                            equipamentoDrop = humano.getEquipamentoAtual();
+                                            equipamentoDrop.alteraCoordenada(xO, yO);
+                                            ((Humano) humano).setEquipamentosAtual(equipamento);
+                                        }
+
+                                        if (equipamento.getTipo() == 8) {
+                                            ((Humano) humano).alteraVeneno(true);
+                                        }
+                                        humano.addEquipamentos();
+                                        equipamentoRemove = equipamento;
+                                    } else {
+                                        return false;
                                     }
-                                    if (equipamento.getTipo() == 9) {
-                                        ((Humano) humano).alteraVeneno(false);
-                                        ((Humano) humano).reporTurnosPoison();
-                                    }
-                                    humano.addEquipamentos();
-                                    equipamentoRemove = equipamento;
                                 }
 
                             }
