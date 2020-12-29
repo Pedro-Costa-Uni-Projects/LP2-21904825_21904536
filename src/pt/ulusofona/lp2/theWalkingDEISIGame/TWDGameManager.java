@@ -1172,12 +1172,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) {
                 if (creature.getX() + 3 == xD && creature.getY() == yD) {
-                    if (creature1.getX() == xD - 2 && creature1.getY() == yD) {
+                    if (creature1.getX() == xD - 1 && creature1.getY() == yD) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() == yD) {
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD) {
+                    if (creature1.getX() == xD + 1 && creature1.getY() == yD) {
                         return true;
                     }
                 }
@@ -1195,12 +1195,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) {
                 if (creature.getX() == xD && creature.getY() + 3 == yD) {
-                    if (creature1.getX() == xD && creature1.getY() == yD - 2) {
+                    if (creature1.getX() == xD && creature1.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() == xD && creature.getY() == yD - 3) {
-                    if (creature1.getX() == xD && creature1.getY() == yD + 2) {
+                    if (creature1.getX() == xD && creature1.getY() == yD + 1) {
                         return true;
                     }
                 }
@@ -1218,12 +1218,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
                 if (creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
-                    if (creature1.getX() == xD - 2 && creature1.getY() == yD - 2) {
+                    if (creature1.getX() == xD - 1 && creature1.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() - 3 == yD) {
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD + 2) {
+                    if (creature1.getX() == xD + 1 && creature1.getY() == yD + 1) {
                         return true;
                     }
                 }
@@ -1240,12 +1240,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
                 if (creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD - 2) {
+                    if (creature1.getX() == xD + 1 && creature1.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD - 2) {
+                    if (creature1.getX() == xD + 1 && creature1.getY() == yD - 1) {
                         return true;
                     }
                 }
@@ -1266,12 +1266,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) {
                 if (creature.getX() + 3 == xD && creature.getY() == yD) {
-                    if (equipamento.getX() == xD - 2 && equipamento.getY() == yD) {
+                    if (equipamento.getX() == xD - 1 && equipamento.getY() == yD) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() == yD) {
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD) {
+                    if (equipamento.getX() == xD + 1 && equipamento.getY() == yD) {
                         return true;
                     }
                 }
@@ -1289,12 +1289,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) {
                 if (creature.getX() == xD && creature.getY() + 3 == yD) {
-                    if (equipamento.getX() == xD && equipamento.getY() == yD - 2) {
+                    if (equipamento.getX() == xD && equipamento.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() == xD && creature.getY() == yD - 3) {
-                    if (equipamento.getX() == xD && equipamento.getY() == yD + 2) {
+                    if (equipamento.getX() == xD && equipamento.getY() == yD + 1) {
                         return true;
                     }
                 }
@@ -1312,12 +1312,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
                 if (creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
-                    if (equipamento.getX() == xD - 2 && equipamento.getY() == yD - 2) {
+                    if (equipamento.getX() == xD - 1 && equipamento.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() - 3 == yD) {
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD + 2) {
+                    if (equipamento.getX() == xD + 1 && equipamento.getY() == yD + 1) {
                         return true;
                     }
                 }
@@ -1334,12 +1334,12 @@ public class TWDGameManager {
             }
             if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
                 if (creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD - 2) {
+                    if (equipamento.getX() == xD + 1 && equipamento.getY() == yD - 1) {
                         return true;
                     }
                 }
                 if (creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD - 2) {
+                    if (equipamento.getX() == xD + 1 && equipamento.getY() == yD - 1) {
                         return true;
                     }
                 }
