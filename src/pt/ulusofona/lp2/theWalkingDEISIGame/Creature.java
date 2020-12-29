@@ -20,6 +20,9 @@ public abstract class Creature {
     public void addEquipamentos(){
         this.equipamentos++;
     }
+    public int getNumEquipamentos() {
+        return this.equipamentos;
+    }
     public void alteraCoordenada(int x,int y) {
         this.x = x;
         this.y = y;
