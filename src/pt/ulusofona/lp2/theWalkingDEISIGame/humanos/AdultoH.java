@@ -8,7 +8,6 @@ public class AdultoH extends Humano {
     public AdultoH(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if(this.verificaSaveHeaven) {
             return this.id + " | Adulto (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo" ;
@@ -47,4 +46,5 @@ public class AdultoH extends Humano {
         }
         return false;
     }
+
 }

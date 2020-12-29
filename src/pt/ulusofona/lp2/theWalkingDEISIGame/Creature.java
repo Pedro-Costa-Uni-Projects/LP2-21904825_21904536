@@ -6,8 +6,7 @@ public abstract class Creature {
     protected String nome;
     protected int x;
     protected int y;
-    protected int equipamentos; //apanhado -> Humano
-                                //destruido -> Zombie
+    protected int equipamentos; //apanhado -> Humano - : - destruido -> Zombie
     protected boolean verificaSaveHeaven;
     protected boolean vivo = true;
 
@@ -19,6 +18,12 @@ public abstract class Creature {
     }
     public void addEquipamentos(){
         this.equipamentos++;
+    }
+    public int getNumEquipamentos() {
+        return this.equipamentos;
+    }
+    public void addXEquipamentos(int num) {
+        this.equipamentos = num;
     }
     public void alteraCoordenada(int x,int y) {
         this.x = x;
@@ -37,20 +42,17 @@ public abstract class Creature {
     public abstract String getImagePNG();
     public abstract String toString();
     public abstract boolean movimento(int xO, int yO, int xD, int yD);
-
     public boolean passouSaveHeaven() {
         return this.verificaSaveHeaven;
     }
-
     public boolean verificaSeEstaVivo() {
         return this.vivo;
     }
-
     public void mata() {
         this.vivo = false;
     }
-
     public void alteraEstadoSave() {
         this.verificaSaveHeaven = true;
     }
+
 }

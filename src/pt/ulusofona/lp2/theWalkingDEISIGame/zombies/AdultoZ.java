@@ -9,7 +9,6 @@ public class AdultoZ extends Zombie {
     public AdultoZ(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if(!this.vivo) {
             return this.id + " | Adulto (Zombie) | Os Outros | " + this.nome + " " + this.equipamentos + " @ RIP";
@@ -18,7 +17,6 @@ public class AdultoZ extends Zombie {
                     + ", " + this.y +")";
         }
     }
-
     @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
@@ -46,4 +44,5 @@ public class AdultoZ extends Zombie {
         }
         return false;
     }
+
 }

@@ -8,7 +8,6 @@ public class MilitarH extends Humano {
     public MilitarH(int id, int tipo, String nome, int x, int y) {
         super(id, tipo, nome, x, y);
     }
-
     public String toString() {
         if (this.verificaSaveHeaven) {
             return this.id + " | Militar (Vivo) | Os Vivos | " + this.nome + " " + this.equipamentos + " @ A salvo";
@@ -19,7 +18,6 @@ public class MilitarH extends Humano {
                     + ", " + this.y + ")";
         }
     }
-
     @Override
     public boolean movimento(int xO, int yO, int xD, int yD) {
         ArrayList<int[]> listaPossiveis = new ArrayList<>();
@@ -54,4 +52,5 @@ public class MilitarH extends Humano {
         }
         return false;
     }
+
 }
