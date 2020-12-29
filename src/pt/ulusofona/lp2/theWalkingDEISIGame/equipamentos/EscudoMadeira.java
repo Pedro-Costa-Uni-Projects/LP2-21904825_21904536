@@ -1,9 +1,11 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos;
 
 import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
+import pt.ulusofona.lp2.theWalkingDEISIGame.humanos.MilitarH;
 
 public class EscudoMadeira extends Equipamento {
-    private int hits = 1;
+    private int hits;
+
     public EscudoMadeira(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
