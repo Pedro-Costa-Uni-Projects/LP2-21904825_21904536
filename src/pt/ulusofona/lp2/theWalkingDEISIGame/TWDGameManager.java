@@ -26,6 +26,7 @@ public class TWDGameManager {
     Comparator<Equipamento> equipamentoComparator = Comparator.comparing(Equipamento::getId);
     private static final int ID_EQUIPA_OS_VIVOS = 10;
     private static final int ID_EQUIPA_OS_OUTROS = 20;
+    private boolean houveTransformacao;
 
 
     public boolean startGame(File ficheiroInicial) {
@@ -504,7 +505,13 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        return numeroDeJogadas == 12 || numeroVivos == 0;
+        if(numeroDeJogadas == 12 && !houveTransformacao) {
+            return true;
+        }
+        if(numeroVivos == 0) {
+            return true;
+        }
+        return false;
     }
 
     public List<String> getAuthors() {
@@ -1121,6 +1128,7 @@ public class TWDGameManager {
     }
 
     public void transforma(Creature humano) {
+        houveTransformacao = true;
         int id = humano.getId();
         String nome = humano.getNome();
         int posX = humano.getX();
