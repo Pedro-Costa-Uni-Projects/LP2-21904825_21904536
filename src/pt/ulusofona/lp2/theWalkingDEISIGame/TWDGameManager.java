@@ -277,11 +277,8 @@ public class TWDGameManager {
                                                         return false;
                                                     }
                                                 }
-
                                                 if(humano.getEquipamentoAtual().getTipo() == 1 && !(zombie.getTipo() == 0)) {
                                                     if(humano.getTipo() == 5) {
-                                                        return false;
-                                                    } else {
                                                         idEquipaAtual = ID_EQUIPA_OS_OUTROS;
                                                         numeroDeJogadas++;
                                                         tiraTurnosVeneno();
