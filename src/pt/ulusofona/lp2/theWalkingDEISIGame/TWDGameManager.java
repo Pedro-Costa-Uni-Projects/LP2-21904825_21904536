@@ -301,8 +301,9 @@ public class TWDGameManager {
                                             ((EscudoMadeira)equipamento).foiUtilizadoPorMilitar();
                                         }
                                     } else if (equipamento.getTipo() == 0) {
-
-                                        ((EscudoMadeira)equipamento).alteraHit();
+                                        if(!((EscudoMadeira)equipamento).mostraSeFoiUtilizado()) {
+                                            ((EscudoMadeira)equipamento).alteraHit();
+                                        }
                                     }
                                     if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
                                         ((Humano) humano).alteraVeneno(false);
