@@ -269,6 +269,9 @@ public class TWDGameManager {
                                         if(humano.getEquipamentoAtual() != null) {
                                             if(humano.getEquipamentoAtual().isOfensivo()) {
                                                 if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
+                                                    if(zombie.getTipo() == 4) {
+                                                        return false;
+                                                    }
                                                     if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
                                                         return false;
                                                     }
@@ -415,6 +418,15 @@ public class TWDGameManager {
                                             return true;
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
+                                                if(zombie.getTipo() == 4) {
+                                                    transforma(humano);
+                                                    creatures.remove(humano);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    tiraTurnosVeneno();
+                                                    organizaListas();
+                                                    return true;
+                                                }
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
                                                     transforma(humano);
                                                     creatures.remove(humano);
@@ -1095,7 +1107,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "One Punch Man";
+        respostas[4] = "Adventure Time";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";
