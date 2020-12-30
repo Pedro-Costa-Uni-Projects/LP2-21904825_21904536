@@ -279,11 +279,7 @@ public class TWDGameManager {
                                                 }
                                                 if(humano.getEquipamentoAtual().getTipo() == 1 && !(zombie.getTipo() == 0)) {
                                                     if(humano.getTipo() == 5) {
-                                                        idEquipaAtual = ID_EQUIPA_OS_OUTROS;
-                                                        numeroDeJogadas++;
-                                                        tiraTurnosVeneno();
-                                                        organizaListas();
-                                                        return true;
+                                                        return false;
                                                     }
                                                 }
                                                 zombieARemover = zombie;
