@@ -1161,176 +1161,185 @@ public class TWDGameManager {
     }
 
     public boolean passarPorCima(Creature creature, int xD, int yD) {
-        for (Creature creature1 : creatures) {
-            //Horizontal
-            if (creature.getX()+ 2 == xD  && creature.getY() == yD || creature.getX()- 2 == xD  && creature.getY() == yD) {
-                if (creature1.getX() == xD - 1 && creature1.getY() == yD) {
-                    return true;
-                }
-                if (creature1.getX() == xD + 1 && creature1.getY() == yD) {
-                    return true;
-                }
-            }
-            if (creature.getX()+ 3 == xD  && creature.getY() == yD || creature.getX()- 3 == xD  && creature.getY() == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (creature1.getX() == xD - 2 && creature1.getY() == yD) {
-                        return true;
-                    }
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD) {
-                        return true;
-                    }
-                }
-            }
+        for(Creature creature1 : creatures) {
             //Vertical
-            if (creature.getX() == xD && creature.getY() + 2 == yD || creature.getX() == xD && creature.getY() - 2 == yD) {
-                if (creature1.getX() == xD && creature1.getY() == yD - 1) {
-                    return true;
-                }
-                if (creature1.getX() == xD && creature1.getY() == yD + 1) {
+            if(creature.getX() == xD && creature.getY() + 2 == yD) {
+                if(creature1.getX() == xD && creature1.getY() + 1== yD) {
                     return true;
                 }
             }
-            if (creature.getX() == xD && creature.getY() + 3 == yD || creature.getX() == xD && creature.getY() - 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (creature1.getX() == xD && creature1.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (creature1.getX() == xD && creature1.getY() == yD + 2) {
-                        return true;
-                    }
+            if(creature.getX() == xD && creature.getY() - 2 == yD) {
+                if(creature1.getX() == xD && creature1.getY() - 1== yD) {
+                    return true;
+                }
+            }
+
+            if(creature.getX() == xD && creature.getY() + 3 == yD) {
+                if(creature1.getX() == xD && creature1.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() == xD && creature.getY() - 3 == yD) {
+                if(creature1.getX() == xD && creature1.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+            //Horizontal
+            if(creature.getX() + 2 == xD && creature.getY() == yD) {
+                if(creature1.getX() + 1 == xD && creature1.getY()== yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 2 == xD && creature.getY() == yD) {
+                if(creature1.getX() - 1 == xD && creature1.getY() == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 3 == xD && creature.getY() == yD) {
+                if(creature1.getX() + 1 == xD && creature1.getY() == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 3 == xD && creature.getY() == yD) {
+                if(creature1.getX() - 1 == xD && creature1.getY() == yD) {
+                    return true;
                 }
             }
             //Diagonal
-            if (creature.getX()- 2 == xD  && creature.getY() - 2 == yD || creature.getX() + 2 == xD && creature.getY() + 2 == yD) {
-                if (creature1.getX() == xD - 1 && creature1.getY() == yD - 1) {
-                    return true;
-                }
-                if (creature1.getX() == xD + 1 && creature1.getY() == yD + 1) {
+            if(creature.getX() - 2 == xD && creature.getY() - 2 == yD) {
+                if (creature1.getX() - 1 == xD && creature1.getY() - 1 == yD) {
                     return true;
                 }
             }
-            if (creature.getX()- 3 == xD  && creature.getY() - 3 == yD || creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (creature1.getX() == xD - 2 && creature1.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD + 2) {
-                        return true;
-                    }
-
-                }
-            }
-
-            if (creature.getX() - 2== xD  && creature.getY() + 2 == yD || creature.getX() + 2 == xD && creature.getY() - 2 == yD) {
-
-                if (creature1.getX() == xD - 1 && creature1.getY() == yD + 1) {
+            if(creature.getX() + 2 == xD && creature.getY() + 2 == yD) {
+                if (creature1.getX() + 1 == xD && creature1.getY() + 1 == yD) {
                     return true;
                 }
-                if (creature1.getX() == xD + 1 && creature1.getY() == yD - 1) {
+            }
+            if(creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
+                if (creature1.getX() + 1 == xD&& creature1.getY() + 1 == yD) {
                     return true;
                 }
-
-
             }
-            if (creature.getX() - 3== xD  && creature.getY() + 3 == yD || creature.getX() + 3 == xD && creature.getY() - 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (creature1.getX() == xD + 2 && creature1.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (creature1.getX() == xD - 2 && creature1.getY() == yD + 2) {
-                        return true;
-                    }
+            if(creature.getX() - 3 == xD && creature.getY() - 3 == yD) {
+                if (creature1.getX() - 1 == xD && creature1.getY() - 1 == yD) {
+                    return true;
                 }
             }
-
+            if(creature.getX() - 2 == xD && creature.getY() + 2 == yD) {
+                if (creature1.getX() - 1 == xD && creature1.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 2 == xD && creature.getY() - 2 == yD) {
+                if (creature1.getX() + 1 == xD && creature1.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
+                if (creature1.getX() - 1 == xD && creature1.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 3 == xD && creature.getY() - 3 == yD) {
+                if (creature1.getX() + 1== xD && creature1.getY() - 1 == yD) {
+                    return true;
+                }
+            }
         }
 
-        for (Equipamento equipamento : listaEquipamento) {
-            //Horizontal
-            if (creature.getX()+ 2 == xD  && creature.getY() == yD || creature.getX()- 2 == xD  && creature.getY() == yD) {
 
-                if (equipamento.getX() == xD - 1 && equipamento.getY() == yD) {
-                    return true;
-                }
-                if (equipamento.getX() == xD + 1 && equipamento.getY() == yD) {
-                    return true;
-                }
-
-            }
-            if (creature.getX()+ 3 == xD  && creature.getY() == yD || creature.getX()- 3 == xD  && creature.getY() == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (equipamento.getX() == xD - 2 && equipamento.getY() == yD) {
-                        return true;
-                    }
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD) {
-                        return true;
-                    }
-                }
-            }
-
+        for(Equipamento equipamento : listaEquipamento) {
             //Vertical
-            if (creature.getX() == xD && creature.getY() + 2 == yD || creature.getX() == xD && creature.getY() - 2 == yD) {
-                if (equipamento.getX() == xD && equipamento.getY() == yD - 1) {
+            if(creature.getX() == xD && creature.getY() + 2 == yD) {
+                if(equipamento.getX() == xD && equipamento.getY() + 1== yD) {
                     return true;
                 }
-
-                if (equipamento.getX() == xD && equipamento.getY() == yD + 1) {
-                    return true;
-                }
-
             }
-            if (creature.getX() == xD && creature.getY() + 3 == yD || creature.getX() == xD && creature.getY() - 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (equipamento.getX() == xD && equipamento.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (equipamento.getX() == xD && equipamento.getY() == yD + 2) {
-                        return true;
-                    }
+            if(creature.getX() == xD && creature.getY() - 2 == yD) {
+                if(equipamento.getX() == xD && equipamento.getY() - 1== yD) {
+                    return true;
+                }
+            }
+
+            if(creature.getX() == xD && creature.getY() + 3 == yD) {
+                if(equipamento.getX() == xD && equipamento.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() == xD && creature.getY() - 3 == yD) {
+                if(equipamento.getX() == xD && equipamento.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+            //Horizontal
+            if(creature.getX() + 2 == xD && creature.getY() == yD) {
+                if(equipamento.getX() + 1 == xD && equipamento.getY()== yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 2 == xD && creature.getY() == yD) {
+                if(equipamento.getX() - 1 == xD && equipamento.getY() == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 3 == xD && creature.getY() == yD) {
+                if(equipamento.getX() + 1 == xD && equipamento.getY() == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 3 == xD && creature.getY() == yD) {
+                if(equipamento.getX() - 1 == xD && equipamento.getY() == yD) {
+                    return true;
                 }
             }
             //Diagonal
-            if (creature.getX() - 2  == xD&& creature.getY() - 2 == yD || creature.getX() + 2 == xD && creature.getY() + 2 == yD) {
-
-                if (equipamento.getX() == xD - 1 && equipamento.getY() == yD - 1) {
-                    return true;
-                }
-                if (equipamento.getX() == xD + 1 && equipamento.getY() == yD + 1) {
-                    return true;
-                }
-
-            }
-            if(creature.getX() - 3  == xD&& creature.getY() - 3 == yD || creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (equipamento.getX() == xD - 2 && equipamento.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD + 2) {
-                        return true;
-                    }
-
-                }
-            }
-            if (creature.getX() - 2 == xD && creature.getY() + 2 == yD || creature.getX() + 2 == xD && creature.getY() - 2 == yD) {
-
-                if (equipamento.getX() == xD - 1 && equipamento.getY() == yD + 1) {
-                    return true;
-                }
-                if (equipamento.getX() == xD + 1 && equipamento.getY() == yD - 1) {
+            if(creature.getX() - 2 == xD && creature.getY() - 2 == yD) {
+                if (equipamento.getX() - 1 == xD && equipamento.getY() - 1 == yD) {
                     return true;
                 }
             }
-            if (creature.getX() - 3 == xD && creature.getY() + 3 == yD || creature.getX() + 3 == xD && creature.getY() - 3 == yD) {
-                if (creature.getTipo() == 2 || creature.getTipo() == 7) { //MILITAR Z E H
-                    if (equipamento.getX() == xD + 2 && equipamento.getY() == yD - 2) {
-                        return true;
-                    }
-                    if (equipamento.getX() == xD - 2 && equipamento.getY() == yD + 2) {
-                        return true;
-                    }
+            if(creature.getX() + 2 == xD && creature.getY() + 2 == yD) {
+                if (equipamento.getX() + 1 == xD && equipamento.getY() + 1 == yD) {
+                    return true;
                 }
             }
+            if(creature.getX() + 3 == xD && creature.getY() + 3 == yD) {
+                if (equipamento.getX() + 1 == xD&& equipamento.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 3 == xD && creature.getY() - 3 == yD) {
+                if (equipamento.getX() - 1 == xD && equipamento.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 2 == xD && creature.getY() + 2 == yD) {
+                if (equipamento.getX() - 1 == xD && equipamento.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 2 == xD && creature.getY() - 2 == yD) {
+                if (equipamento.getX() + 1 == xD && equipamento.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() - 3 == xD && creature.getY() + 3 == yD) {
+                if (equipamento.getX() - 1 == xD && equipamento.getY() + 1 == yD) {
+                    return true;
+                }
+            }
+            if(creature.getX() + 3 == xD && creature.getY() - 3 == yD) {
+                if (equipamento.getX() + 1== xD && equipamento.getY() - 1 == yD) {
+                    return true;
+                }
+            }
+
+
+
+
         }
+
 
         return false;
     }
