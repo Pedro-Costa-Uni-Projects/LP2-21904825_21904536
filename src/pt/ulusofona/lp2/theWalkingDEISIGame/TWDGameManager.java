@@ -295,6 +295,15 @@ public class TWDGameManager {
                             for(Equipamento equipamento : listaEquipamento) {
 
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
+                                    if(humano.getTipo() == 7 && equipamento.getTipo() == 0) {
+                                        if(((EscudoMadeira)equipamento).mostraSeFoiUtilizado()) {
+                                            ((EscudoMadeira)equipamento).alteraHit();
+                                            ((EscudoMadeira)equipamento).foiUtilizadoPorMilitar();
+                                        }
+                                    } else if (equipamento.getTipo() == 0) {
+
+                                        ((EscudoMadeira)equipamento).alteraHit();
+                                    }
                                     if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
                                         ((Humano) humano).alteraVeneno(false);
                                         ((Humano) humano).reporTurnosPoison();
@@ -318,11 +327,7 @@ public class TWDGameManager {
                                             ((Humano) humano).alteraVeneno(true);
                                         }
                                     } else {
-                                        idEquipaAtual = ID_EQUIPA_OS_OUTROS;
-                                        numeroDeJogadas++;
-                                        tiraTurnosVeneno();
-                                        organizaListas();
-                                        return true;
+                                        return false;
                                     }
                                     humano.addEquipamentos();
                                     equipamentoRemove = equipamento;
@@ -405,6 +410,14 @@ public class TWDGameManager {
                                                 if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(humano);
                                                     creatures.remove(humano);
+                                                }
+                                                if(((EscudoMadeira)humano.getEquipamentoAtual()).mostrahits() == 0) {
+                                                    ((Humano) humano).setEquipamentosAtual(null);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    tiraTurnosVeneno();
+                                                    organizaListas();
+                                                    return true;
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 8) {

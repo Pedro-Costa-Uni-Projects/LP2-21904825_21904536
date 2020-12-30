@@ -4,6 +4,7 @@ import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
 
 public class EscudoMadeira extends Equipamento {
     private int hits = 1;
+    private boolean utilizadoPorMilitar;
     public EscudoMadeira(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
@@ -24,6 +25,22 @@ public class EscudoMadeira extends Equipamento {
             return true;
         } else {
             return false;
+        }
+    }
+    public void foiUtilizadoPorMilitar() {
+        this.utilizadoPorMilitar = true;
+    }
+    public boolean mostraSeFoiUtilizado() {
+        return !this.utilizadoPorMilitar;
+    }
+    public int mostrahits() {
+        return this.hits;
+    }
+    public void alteraHit() {
+        if(!this.utilizadoPorMilitar) {
+            this.hits = 2;
+        } else {
+            this.hits = 1;
         }
     }
 }
