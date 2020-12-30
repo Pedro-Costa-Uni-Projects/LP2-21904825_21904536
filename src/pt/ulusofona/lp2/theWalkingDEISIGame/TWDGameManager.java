@@ -407,6 +407,12 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                 }
                                             }
+                                            if(humano.getEquipamentoAtual().getTipo() == 8) {
+                                                if(((Humano)humano).mostraTurnos() == 0) {
+                                                    transforma(humano);
+                                                    creatures.remove(humano);
+                                                }
+                                            }
                                             if(humano.getEquipamentoAtual().getTipo() == 4) {
                                                 if(zombie.getTipo() != 3) {
                                                     transforma(humano);
