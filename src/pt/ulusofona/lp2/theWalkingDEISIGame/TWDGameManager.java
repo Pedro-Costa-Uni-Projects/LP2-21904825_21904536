@@ -394,6 +394,7 @@ public class TWDGameManager {
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
+
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(humano);
@@ -411,9 +412,6 @@ public class TWDGameManager {
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
-                                            }
-                                            if (humano.getEquipamentoAtual().getTipo() == 8) {
-                                                return false;
                                             }
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -1117,7 +1115,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "Adventure Time";
+        respostas[4] = "";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";

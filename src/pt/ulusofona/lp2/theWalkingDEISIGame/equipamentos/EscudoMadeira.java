@@ -4,7 +4,6 @@ import pt.ulusofona.lp2.theWalkingDEISIGame.Equipamento;
 
 public class EscudoMadeira extends Equipamento {
     private int hits = 1;
-
     public EscudoMadeira(int id, int tipo, int x, int y) {
         super(id, tipo, x, y);
     }
@@ -27,5 +26,4 @@ public class EscudoMadeira extends Equipamento {
             return false;
         }
     }
-
 }
