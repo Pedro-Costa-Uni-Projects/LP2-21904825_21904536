@@ -318,7 +318,11 @@ public class TWDGameManager {
                                             ((Humano) humano).alteraVeneno(true);
                                         }
                                     } else {
-                                        return false;
+                                        idEquipaAtual = ID_EQUIPA_OS_OUTROS;
+                                        numeroDeJogadas++;
+                                        tiraTurnosVeneno();
+                                        organizaListas();
+                                        return true;
                                     }
                                     humano.addEquipamentos();
                                     equipamentoRemove = equipamento;
