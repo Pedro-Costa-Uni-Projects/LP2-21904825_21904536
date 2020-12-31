@@ -52,4 +52,19 @@ public class TestTWDMove {
         assertTrue(game.move(6, 0, 5, 0));  //zombie vampiro para casa vazia e esta de noite
         assertTrue(game.isDay());
     }
+
+    @Test
+    public void IdosoComArma() {
+        TWDGameManager game = new TWDGameManager();
+        assertTrue(game.startGame(ficheiro)); //já agora testa-se o start game
+        assertTrue(game.move(3, 3, 3, 4)); //idoso para cima de Arma
+        assertTrue(game.move(0, 4, 3, 4)); //zombie para cima de idoso com arma
+        assertEquals(game.getEquipmentInfo(-3),"Pistola Walther PPK | 2"); //verifica se gastou bala
+        assertFalse(game.move(3, 4, 3, 3)); //idoso não se pode mover de noite
+        assertTrue(game.move(0, 3, 1, 4)); //jogada normal vivos
+        assertTrue(game.move(6, 5, 4, 5)); //jogada normal zombie
+        assertTrue(game.move(3, 4, 4, 4)); //idoso move-se para o lado, dropa arma
+        assertEquals(game.getElementId(3, 4),-3); //se devolver -3 o idoso dropou arma com sucesso
+        assertTrue(game.move(4, 5, 4, 4)); //zombie transforma idoso pois já não tem arma
+    }
 }

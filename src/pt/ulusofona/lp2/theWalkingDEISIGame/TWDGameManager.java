@@ -526,7 +526,7 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        if(numeroDeJogadas == 12 && !houveTransformacao) {
+        if(numeroDeJogadas >= 12 && !houveTransformacao) {
             return true;
         }
         if(numeroVivos == 0) {
