@@ -33,7 +33,7 @@ public class EscudoMadeira extends Equipamento {
     public boolean mostraSeFoiUtilizado() {
         return !this.utilizadoPorMilitar;
     }
-    public int mostrahits() {
+    public int mostraHits() {
         return this.hits;
     }
     public void alteraHit() {
@@ -43,4 +43,5 @@ public class EscudoMadeira extends Equipamento {
             this.hits = 1;
         }
     }
+    
 }

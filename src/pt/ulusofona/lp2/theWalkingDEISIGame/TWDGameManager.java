@@ -412,7 +412,7 @@ public class TWDGameManager {
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
-                                                if(((EscudoMadeira)humano.getEquipamentoAtual()).mostrahits() == 0) {
+                                                if(((EscudoMadeira)humano.getEquipamentoAtual()).mostraHits() == 0) {
                                                     ((Humano) humano).setEquipamentosAtual(null);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
