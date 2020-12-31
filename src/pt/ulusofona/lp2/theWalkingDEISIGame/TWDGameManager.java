@@ -526,7 +526,7 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        if(numeroDeJogadas >= 12 && !houveTransformacao) {
+        if(numeroDeJogadas >= 13 && !houveTransformacao) {
             return true;
         }
         if(numeroVivos == 0) {
@@ -613,15 +613,6 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        /*
-        int[] diasPossiveis = {0, 1, 4, 5, 8, 9, 12, 13, 16, 17, 20, 23, 24, 27, 28, 31, 32, 35, 36, 37, 40, 41, 44};
-        for (int dia : diasPossiveis) {
-            if (dia == numeroDeJogadas) {
-                return true;
-            }
-        }
-        return false;
-         */
         for(int i = 0; i < 100; i += 4) {
             if(i == numeroDeJogadas) {
                 return true;
