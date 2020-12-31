@@ -67,4 +67,21 @@ public class TestTWDMove {
         assertEquals(game.getElementId(3, 4),-3); //se devolver -3 o idoso dropou arma com sucesso
         assertTrue(game.move(4, 5, 4, 4)); //zombie transforma idoso pois já não tem arma
     }
+
+    @Test
+    public void ZombieVsCao() {
+        TWDGameManager game = new TWDGameManager();
+        game.startGame(ficheiro);
+        assertFalse(game.move(0, 3, 1, 3)); //cao so pode mover nas diagonais
+        assertTrue(game.move(0, 3, 1, 4)); //cao move-se
+        assertFalse(game.move(0, 4, 1, 4)); //zombie tenta atacar cão
+    }
+
+    @Test
+    public void MilitarWoodenShield() {
+        TWDGameManager game = new TWDGameManager();
+        game.startGame(ficheiro);
+        assertTrue(game.move(3, 6, 3, 5)); //Militar apanha escudo
+        assertEquals(game.getEquipmentInfo(-4),"Escudo de Madeira | 2");
+    }
 }
