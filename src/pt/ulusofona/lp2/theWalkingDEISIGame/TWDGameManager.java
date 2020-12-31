@@ -460,7 +460,7 @@ public class TWDGameManager {
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 1) {
-                                                if(humano.getTipo() == 5) {
+                                                if(humano.getTipo() == 5 && zombie.getTipo() != 0) {
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
