@@ -784,7 +784,11 @@ public class TWDGameManager {
                         break;
                     case 3:
                         linha = leitorFicheiro.nextLine();
-                        criaturasJogo = Integer.parseInt(linha);
+                        try {
+                            criaturasJogo = Integer.parseInt(linha);
+                        } catch (NumberFormatException exception) {
+                            criaturasJogo = 0;
+                        }
                         count++;
                         break;
                     case 4:
