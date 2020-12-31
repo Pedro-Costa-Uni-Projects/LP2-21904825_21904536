@@ -891,7 +891,11 @@ public class TWDGameManager {
                         break;
                     case 5:
                         linha = leitorFicheiro.nextLine();
-                        numMortos = Integer.parseInt(linha);
+                        try {
+                            numMortos = Integer.parseInt(linha);
+                        } catch (NumberFormatException exception) {
+                            numMortos = 0;
+                        }
                         count++;
                         break;
                     case 6:
@@ -973,7 +977,11 @@ public class TWDGameManager {
                         break;
                     case 7:
                         linha = leitorFicheiro.nextLine();
-                        equipamentosJogo = Integer.parseInt(linha);
+                        try {
+                            equipamentosJogo = Integer.parseInt(linha);
+                        } catch (NumberFormatException exception) {
+                            equipamentosJogo = 0;
+                        }
                         count++;
                         break;
                     case 8:
@@ -1037,7 +1045,11 @@ public class TWDGameManager {
                         break;
                     case 9:
                         linha = leitorFicheiro.nextLine();
-                        saveHeavenJogo = Integer.parseInt(linha);
+                        try {
+                            saveHeavenJogo = Integer.parseInt(linha);
+                        } catch (NumberFormatException exception) {
+                            saveHeavenJogo = 0;
+                        }
                         count++;
                         break;
                     case 10:
@@ -1053,7 +1065,11 @@ public class TWDGameManager {
                         break;
                     case 11:
                         linha = leitorFicheiro.nextLine();
-                        numeroEquipNasCreaturas = Integer.parseInt(linha);
+                        try {
+                            numeroEquipNasCreaturas = Integer.parseInt(linha);
+                        } catch (NumberFormatException exception) {
+                            numeroEquipNasCreaturas = 0;
+                        }
                         count++;
                         break;
                     case 12:
