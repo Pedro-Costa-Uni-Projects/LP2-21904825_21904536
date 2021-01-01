@@ -17,6 +17,7 @@ public class TWDGameManager {
     private int criaturasJogo;
     private int equipamentosJogo;
     private int numeroDeJogadas;
+    private int numeroDeJogadasParaReset;
     private int saveHeavenJogo;
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
@@ -362,6 +363,7 @@ public class TWDGameManager {
             }
             idEquipaAtual = ID_EQUIPA_OS_OUTROS;
             numeroDeJogadas++;
+            numeroDeJogadasParaReset++;
             tiraTurnosVeneno();
             organizaListas();
             return true;
@@ -395,6 +397,7 @@ public class TWDGameManager {
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            numeroDeJogadasParaReset++;
                                             tiraTurnosVeneno();
                                             organizaListas();
                                             return true;
@@ -416,6 +419,7 @@ public class TWDGameManager {
                                                     ((Humano) humano).setEquipamentosAtual(null);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
                                                     tiraTurnosVeneno();
                                                     organizaListas();
                                                     return true;
@@ -435,6 +439,7 @@ public class TWDGameManager {
                                             }
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            numeroDeJogadasParaReset++;
                                             tiraTurnosVeneno();
                                             organizaListas();
                                             return true;
@@ -445,6 +450,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
                                                     tiraTurnosVeneno();
                                                     organizaListas();
                                                     return true;
@@ -454,6 +460,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
                                                     tiraTurnosVeneno();
                                                     organizaListas();
                                                     return true;
@@ -465,6 +472,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
                                                     tiraTurnosVeneno();
                                                     organizaListas();
                                                     return true;
@@ -474,6 +482,7 @@ public class TWDGameManager {
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
+                                            numeroDeJogadasParaReset++;
                                             tiraTurnosVeneno();
                                             organizaListas();
                                             return true;
@@ -513,6 +522,7 @@ public class TWDGameManager {
 
             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
             numeroDeJogadas++;
+            numeroDeJogadasParaReset++;
             tiraTurnosVeneno();
             organizaListas();
             return true;
@@ -526,7 +536,7 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        if(numeroDeJogadas == 12){
+        if(numeroDeJogadasParaReset == 12){
             return true;
         }
         houveTransformacao = false;
@@ -1180,7 +1190,7 @@ public class TWDGameManager {
 
     public void transforma(Creature humano) {
         houveTransformacao = true;
-        numeroDeJogadas = 0;
+        numeroDeJogadasParaReset = 0;
         int id = humano.getId();
         String nome = humano.getNome();
         int posX = humano.getX();
