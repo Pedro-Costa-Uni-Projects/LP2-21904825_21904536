@@ -612,7 +612,7 @@ public class TWDGameManager {
             }
         }
         resultados.add("");
-        resultados.add("Envenenados / Destruídos");
+        resultados.add("Envenenados / Destruidos");
         resultados.add("");
         resultados.add("OS VIVOS");
         for (Creature humano : mortos) {
