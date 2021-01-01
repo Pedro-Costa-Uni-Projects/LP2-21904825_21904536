@@ -526,9 +526,16 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        if(numeroDeJogadas >= 13 && !houveTransformacao) {
+        System.out.println(numeroDeJogadas);
+        if(numeroDeJogadas == 12){
             return true;
         }
+        houveTransformacao = false;
+         /*if(numeroDeJogadas == 12 && !houveTransformacao) {
+            return true;
+        }*/
+
+
         if(numeroVivos == 0) {
             return true;
         }
@@ -1174,6 +1181,7 @@ public class TWDGameManager {
 
     public void transforma(Creature humano) {
         houveTransformacao = true;
+        numeroDeJogadas = 0;
         int id = humano.getId();
         String nome = humano.getNome();
         int posX = humano.getX();
