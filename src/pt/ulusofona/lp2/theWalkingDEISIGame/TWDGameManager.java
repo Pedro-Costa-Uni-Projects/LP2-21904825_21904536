@@ -544,7 +544,6 @@ public class TWDGameManager {
             return true;
         }*/
 
-
         if(numeroVivos == 0) {
             return true;
         }
@@ -1190,7 +1189,7 @@ public class TWDGameManager {
 
     public void transforma(Creature humano) {
         houveTransformacao = true;
-        numeroDeJogadasParaReset = 0;
+        numeroDeJogadasParaReset = -1;
         int id = humano.getId();
         String nome = humano.getNome();
         int posX = humano.getX();
