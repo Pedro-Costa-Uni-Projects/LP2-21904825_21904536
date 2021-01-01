@@ -583,7 +583,7 @@ public class TWDGameManager {
         resultados.add("Nr. de turnos terminados:");
         resultados.add(String.valueOf(numeroDeJogadas));
         resultados.add("");
-        resultados.add("Ainda pelo bairro:");
+        resultados.add("Ainda pelo bairo:");
         resultados.add("");
         resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
@@ -824,7 +824,7 @@ public class TWDGameManager {
                                         CriancaZ criancaZ = new CriancaZ(id, tipo, nome, x, y);
                                         criancaZ.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            criancaZ.passouSaveHeaven();
+                                            criancaZ.alteraEstadoSave();
                                         }
                                         creatures.add(criancaZ);
                                         break;
@@ -832,7 +832,7 @@ public class TWDGameManager {
                                         AdultoZ adultoZ = new AdultoZ(id, tipo, nome, x, y);
                                         adultoZ.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            adultoZ.passouSaveHeaven();
+                                            adultoZ.alteraEstadoSave();
                                         }
                                         creatures.add(adultoZ);
                                         break;
@@ -840,7 +840,7 @@ public class TWDGameManager {
                                         MilitarZ militarZ = new MilitarZ(id, tipo, nome, x, y);
                                         militarZ.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            militarZ.passouSaveHeaven();
+                                            militarZ.alteraEstadoSave();
                                         }
                                         creatures.add(militarZ);
                                         break;
@@ -848,7 +848,7 @@ public class TWDGameManager {
                                         IdosoZ idosoZ = new IdosoZ(id, tipo, nome, x, y);
                                         idosoZ.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            idosoZ.passouSaveHeaven();
+                                            idosoZ.alteraEstadoSave();
                                         }
                                         creatures.add(idosoZ);
                                         break;
@@ -856,7 +856,7 @@ public class TWDGameManager {
                                         VampiroZ vampiroZ = new VampiroZ(id, tipo, nome, x, y);
                                         vampiroZ.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            vampiroZ.passouSaveHeaven();
+                                            vampiroZ.alteraEstadoSave();
                                         }
                                         creatures.add(vampiroZ);
                                         break;
@@ -864,7 +864,7 @@ public class TWDGameManager {
                                         CriancaH criancaH = new CriancaH(id, tipo, nome, x, y);
                                         criancaH.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            criancaH.passouSaveHeaven();
+                                            criancaH.alteraEstadoSave();
                                         }
                                         creatures.add(criancaH);
                                         break;
@@ -872,7 +872,7 @@ public class TWDGameManager {
                                         AdultoH adultoH = new AdultoH(id, tipo, nome, x, y);
                                         adultoH.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            adultoH.passouSaveHeaven();
+                                            adultoH.alteraEstadoSave();
                                         }
                                         creatures.add(adultoH);
                                         break;
@@ -880,7 +880,7 @@ public class TWDGameManager {
                                         MilitarH militarH = new MilitarH(id, tipo, nome, x, y);
                                         militarH.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            militarH.passouSaveHeaven();
+                                            militarH.alteraEstadoSave();
                                         }
                                         creatures.add(militarH);
                                         break;
@@ -888,7 +888,7 @@ public class TWDGameManager {
                                         IdosoH idosoH = new IdosoH(id, tipo, nome, x, y);
                                         idosoH.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            idosoH.passouSaveHeaven();
+                                            idosoH.alteraEstadoSave();
                                         }
                                         creatures.add(idosoH);
                                         break;
@@ -896,7 +896,7 @@ public class TWDGameManager {
                                         CaoH caoH = new CaoH(id, tipo, nome, x, y);
                                         caoH.addXEquipamentos(numEqui);
                                         if (passouSafe.equals("true")) {
-                                            caoH.passouSaveHeaven();
+                                            caoH.alteraEstadoSave();
                                         }
                                         creatures.add(caoH);
                                         break;

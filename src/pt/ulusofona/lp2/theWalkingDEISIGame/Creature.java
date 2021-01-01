@@ -45,9 +45,6 @@ public abstract class Creature {
     public boolean passouSaveHeaven() {
         return this.verificaSaveHeaven;
     }
-    public boolean verificaSeEstaVivo() {
-        return this.vivo;
-    }
     public void mata() {
         this.vivo = false;
     }
