@@ -572,6 +572,7 @@ public class TWDGameManager {
         resultados.add(String.valueOf(numeroDeJogadas));
         resultados.add("");
         resultados.add("Ainda pelo bairro:");
+        resultados.add("");
         resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
             if (humano.getTipo() >= 5 && humano.getTipo() <= 9 && !humano.passouSaveHeaven()) {
@@ -585,6 +586,7 @@ public class TWDGameManager {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
+        resultados.add("");
         resultados.add("Num safe haven:");
         resultados.add("");
         resultados.add("OS VIVOS");
@@ -595,6 +597,7 @@ public class TWDGameManager {
         }
         resultados.add("");
         resultados.add("Envenenados / Destruídos");
+        resultados.add("");
         resultados.add("OS VIVOS");
         for (Creature humano : mortos) {
             if (humano.getTipo() >= 5 && humano.getTipo() <= 9) {
@@ -608,7 +611,6 @@ public class TWDGameManager {
                 resultados.add(zombie.getId() + " (antigamente conhecido como " + zombie.getNome() + ")");
             }
         }
-        resultados.add("");
         return resultados;
     }
 
