@@ -526,7 +526,6 @@ public class TWDGameManager {
                 numeroVivos++;
             }
         }
-        System.out.println(numeroDeJogadas);
         if(numeroDeJogadas == 12){
             return true;
         }
@@ -578,7 +577,7 @@ public class TWDGameManager {
         resultados.add("Nr. de turnos terminados:");
         resultados.add(String.valueOf(numeroDeJogadas));
         resultados.add("");
-        resultados.add("Ainda pelo bairo:");
+        resultados.add("Ainda pelo bairro:");
         resultados.add("");
         resultados.add("OS VIVOS");
         for (Creature humano : creatures) {
