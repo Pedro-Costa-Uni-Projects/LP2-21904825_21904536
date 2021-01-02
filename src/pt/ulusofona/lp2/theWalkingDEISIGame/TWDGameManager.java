@@ -391,10 +391,8 @@ public class TWDGameManager {
                                         if(humano.getTipo() == 9) {
                                             return false;
                                         }
-                                        if(humano.getEquipamentoAtual() == null || humano.getEquipamentoAtual().getTipo() == 5) {
-                                            if(zombie.getTipo() == 4) {
-                                                return false;
-                                            }
+
+                                        if(humano.getEquipamentoAtual() == null ) {
                                             transforma(humano);
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -405,6 +403,15 @@ public class TWDGameManager {
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
+                                            if(zombie.getTipo() == 4 && humano.getEquipamentoAtual().getTipo() == 5) {
+                                                //Zombie ataca e humano com cabeça de alho
+                                                idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                numeroDeJogadas++;
+                                                numeroDeJogadasParaReset++;
+                                                tiraTurnosVeneno();
+                                                organizaListas();
+                                                return true;
+                                            }
 
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
