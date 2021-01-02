@@ -392,10 +392,7 @@ public class TWDGameManager {
                                             return false;
                                         }
 
-                                        if(humano.getEquipamentoAtual() == null || humano.getEquipamentoAtual().getTipo() == 5) {
-                                            if (zombie.getTipo() == 4) {
-                                                return false;
-                                            }
+                                        if(humano.getEquipamentoAtual() == null) {
                                             transforma(humano);
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -406,6 +403,16 @@ public class TWDGameManager {
                                             return true;
 
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
+                                            if(humano.getEquipamentoAtual().getTipo() == 5) {
+                                                if (zombie.getTipo() == 4) {
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
+                                                    tiraTurnosVeneno();
+                                                    organizaListas();
+                                                    return true;
+                                                }
+                                            }
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
                                                     transforma(humano);
@@ -495,6 +502,7 @@ public class TWDGameManager {
                             }
                             for(Equipamento equipamento : listaEquipamento) {
                                 if(equipamento.getX() == xD && equipamento.getY() == yD) {
+                                    //Zombie Vampiro não pode ir para cima de alho
                                     if(zombie.getTipo() == 4 && equipamento.getTipo() == 5) {
                                         return false;
                                     }

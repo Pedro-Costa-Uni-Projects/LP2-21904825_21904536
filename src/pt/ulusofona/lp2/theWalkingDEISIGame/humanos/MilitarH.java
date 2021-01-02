@@ -40,7 +40,7 @@ public class MilitarH extends Humano {
         listaPossiveis.add(new int[]{xO, yO - 3});
         listaPossiveis.add(new int[]{xO, yO + 3});
         listaPossiveis.add(new int[]{xO + 3, yO});
-        listaPossiveis.add(new int[]{xO - 1, yO});
+        listaPossiveis.add(new int[]{xO - 3, yO});
         listaPossiveis.add(new int[]{xO - 3, yO - 3});
         listaPossiveis.add(new int[]{xO - 3, yO + 3});
         listaPossiveis.add(new int[]{xO + 3, yO - 3});
