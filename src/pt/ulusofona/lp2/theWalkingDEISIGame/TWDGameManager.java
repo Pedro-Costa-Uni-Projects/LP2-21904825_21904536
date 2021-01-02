@@ -26,7 +26,7 @@ public class TWDGameManager {
     Comparator<Creature> creatureComparator = Comparator.comparing(Creature::getId);
     Comparator<Equipamento> equipamentoComparator = Comparator.comparing(Equipamento::getId);
     private static final int ID_EQUIPA_OS_VIVOS = 10;
-    private static final int ID_EQUIPA_OS_OUTROS = 10;
+    private static final int ID_EQUIPA_OS_OUTROS = 20;
 
 
     public boolean startGame(File ficheiroInicial) {
@@ -543,10 +543,10 @@ public class TWDGameManager {
             }
         }
         if(numeroVivos == 0) {
-            return false;
+            return true;
         }
         if(numeroDeJogadasParaReset == 12){
-            return false;
+            return true;
         }
         return false;
     }
