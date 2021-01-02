@@ -26,7 +26,7 @@ public class TWDGameManager {
     Comparator<Creature> creatureComparator = Comparator.comparing(Creature::getId);
     Comparator<Equipamento> equipamentoComparator = Comparator.comparing(Equipamento::getId);
     private static final int ID_EQUIPA_OS_VIVOS = 10;
-    private static final int ID_EQUIPA_OS_OUTROS = 20;
+    private static final int ID_EQUIPA_OS_OUTROS = 10;
 
 
     public boolean startGame(File ficheiroInicial) {
@@ -252,6 +252,10 @@ public class TWDGameManager {
         if(idEquipaAtual == ID_EQUIPA_OS_VIVOS) {
             for(Creature humano : creatures) {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
+                    //quando esta na safe nao se pode mover
+                    if(humano.verificaSaveHeaven) {
+                        return false;
+                    }
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
                             if(passarPorCima(humano, xD, yD)) {
@@ -546,10 +550,10 @@ public class TWDGameManager {
             }
         }
         if(numeroVivos == 0) {
-            return true;
+            return false;
         }
         if(numeroDeJogadasParaReset == 12){
-            return true;
+            return false;
         }
         return false;
     }
