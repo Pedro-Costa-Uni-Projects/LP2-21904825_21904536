@@ -1186,7 +1186,7 @@ public class TWDGameManager {
         respostas[8] = "Kill Bill";
         respostas[9] = "1978";
         respostas[10] = "Bond, James Bond.";
-        respostas[11] = "Dead Set";
+        respostas[11] = "Glitch";
         respostas[12] = "Cabeça de alho chocho";
         respostas[13] = "Freddie Mercury";
         return respostas;
