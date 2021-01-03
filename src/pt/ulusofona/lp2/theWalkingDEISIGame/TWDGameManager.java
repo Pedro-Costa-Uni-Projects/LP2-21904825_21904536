@@ -412,6 +412,14 @@ public class TWDGameManager {
                                                     tiraTurnosVeneno();
                                                     organizaListas();
                                                     return true;
+                                                } else {
+                                                    transforma(humano);
+                                                    creatures.remove(humano);
+                                                    idEquipaAtual = ID_EQUIPA_OS_VIVOS;
+                                                    numeroDeJogadas++;
+                                                    numeroDeJogadasParaReset++;
+                                                    organizaListas();
+                                                    return true;
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
