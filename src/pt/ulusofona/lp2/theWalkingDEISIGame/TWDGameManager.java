@@ -252,9 +252,6 @@ public class TWDGameManager {
         if(idEquipaAtual == ID_EQUIPA_OS_VIVOS) {
             for(Creature humano : creatures) {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
-                    if(humano.passouSaveHeaven()) {
-                        return false;
-                    }
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
                             if(passarPorCima(humano, xD, yD)) {
