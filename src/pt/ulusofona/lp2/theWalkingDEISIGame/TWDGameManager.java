@@ -1179,7 +1179,7 @@ public class TWDGameManager {
         respostas[1] = "Evil Dead";
         respostas[2] = "I Am Legend";
         respostas[3] = "I Am Legend";
-        respostas[4] = "";
+        respostas[4] = "Dragon Ball";
         respostas[5] = "Resident Evil";
         respostas[6] = "Mandalorianos";
         respostas[7] = "1972";
