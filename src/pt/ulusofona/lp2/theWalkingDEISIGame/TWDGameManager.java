@@ -252,6 +252,9 @@ public class TWDGameManager {
         if(idEquipaAtual == ID_EQUIPA_OS_VIVOS) {
             for(Creature humano : creatures) {
                 if(humano.getTipo() >= 5 && humano.getTipo() <= 9 ) { //verifica se é humano
+                    if(humano.passouSaveHeaven()) {
+                        return false;
+                    }
                     if(humano.getX() == xO && humano.getY() == yO) {
                         if(humano.movimento(xO,yO,xD,yD)) {
                             if(passarPorCima(humano, xD, yD)) {
@@ -1185,8 +1188,8 @@ public class TWDGameManager {
         respostas[7] = "1972";
         respostas[8] = "Kill Bill";
         respostas[9] = "1978";
-        respostas[10] = "James Bond";
-        respostas[11] = "TWD"; //ver melhor
+        respostas[10] = "Bond, James Bond";
+        respostas[11] = "The Others";
         respostas[12] = "Cabeça de alho chocho";
         respostas[13] = "Freddie Mercury";
         return respostas;
