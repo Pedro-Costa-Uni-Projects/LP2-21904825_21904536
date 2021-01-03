@@ -214,6 +214,7 @@ public class TWDGameManager {
         ArrayList<Creature> todasAsCreatures = new ArrayList<>();
         todasAsCreatures.addAll(creatures);
         todasAsCreatures.addAll(mortos);
+        todasAsCreatures.sort(creatureComparator);
         return todasAsCreatures;
     }
 
