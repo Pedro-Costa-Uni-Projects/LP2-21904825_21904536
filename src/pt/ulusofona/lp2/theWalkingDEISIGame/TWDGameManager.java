@@ -1187,7 +1187,7 @@ public class TWDGameManager {
         respostas[9] = "1978";
         respostas[10] = "Bond, James Bond.";
         respostas[11] = "Lost";
-        respostas[12] = "Cabeça de alho chocho";
+        respostas[12] = "Chocho";
         respostas[13] = "Farrokh Bulsara";
         return respostas;
     }
