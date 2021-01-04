@@ -303,11 +303,17 @@ public class TWDGameManager {
                                         if(((EscudoMadeira)equipamento).mostraSeFoiUtilizado()) {
                                             ((EscudoMadeira)equipamento).alteraHit();
                                             ((EscudoMadeira)equipamento).foiUtilizadoPorMilitar();
-                                        }
-                                    } else if (equipamento.getTipo() == 0) {
-                                        if(!((EscudoMadeira)equipamento).mostraSeFoiUtilizado()) {
+                                        } else {
                                             ((EscudoMadeira)equipamento).alteraHit();
                                         }
+                                    } else {
+                                        if(equipamento.getTipo() == 0) {
+                                            if(!((EscudoMadeira)equipamento).mostraSeFoiUtilizado()) {
+                                                ((EscudoMadeira)equipamento).alteraHit();
+                                            }
+
+                                        }
+
                                     }
                                     if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
                                         ((Humano) humano).alteraVeneno(false);
