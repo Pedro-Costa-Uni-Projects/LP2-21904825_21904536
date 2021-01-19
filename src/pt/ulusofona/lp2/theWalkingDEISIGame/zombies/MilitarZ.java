@@ -50,5 +50,7 @@ public class MilitarZ extends Zombie {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "MilitarZ.png";
+    }
 }

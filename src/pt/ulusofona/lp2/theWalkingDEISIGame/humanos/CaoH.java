@@ -36,5 +36,7 @@ public class CaoH extends Humano {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "Cao.png";
+    }
 }

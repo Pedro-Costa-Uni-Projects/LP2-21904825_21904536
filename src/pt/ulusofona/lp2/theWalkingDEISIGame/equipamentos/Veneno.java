@@ -22,5 +22,4 @@ public class Veneno extends Equipamento {
     public boolean isDefensivo() {
         return true;
     }
-
 }

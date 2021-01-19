@@ -52,5 +52,7 @@ public class MilitarH extends Humano {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "MilitarH.png";
+    }
 }

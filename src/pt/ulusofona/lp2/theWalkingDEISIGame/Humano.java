@@ -18,9 +18,6 @@ public abstract class Humano extends Creature{
     public void setEquipamentosAtual(Equipamento equipamento){
         this.equipamentoAtual = equipamento;
     }
-    public String getImagePNG() {
-        return "Humano.png";
-    }
     public boolean estadoVeneno() {
         return this.poison;
     }

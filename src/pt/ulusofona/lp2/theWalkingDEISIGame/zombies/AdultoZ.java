@@ -44,5 +44,7 @@ public class AdultoZ extends Zombie {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "AdultoZ.png";
+    }
 }

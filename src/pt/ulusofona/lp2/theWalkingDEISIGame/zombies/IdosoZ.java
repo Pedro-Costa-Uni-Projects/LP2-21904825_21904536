@@ -30,5 +30,7 @@ public class IdosoZ  extends Zombie {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "IdosoZ.png";
+    }
 }

@@ -32,5 +32,7 @@ public class CriancaH extends Humano {
         }
         return false;
     }
-
+    public String getImagePNG() {
+        return "CriancaH.png";
+    }
 }

@@ -9,9 +9,7 @@ public abstract class Zombie extends Creature{
         this.x = x;
         this.y = y;
     }
-    public String getImagePNG() {
-        return "Zombie.png";
-    }
+
     public Equipamento getEquipamentoAtual() {
         return null;
     }
