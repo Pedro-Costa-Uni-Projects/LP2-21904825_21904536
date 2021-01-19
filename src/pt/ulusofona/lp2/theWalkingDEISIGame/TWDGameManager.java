@@ -54,7 +54,7 @@ public class TWDGameManager {
                     linha = leitorFicheiro.nextLine();
                     criaturasJogo = Integer.parseInt(linha);
                     if (criaturasJogo < 2) {
-                        exception.setNumeroCreatures(criaturasJogo);
+                        exception.setNumeroCreatures(false);
                         throw exception;
                     }
                     count++;
@@ -1508,7 +1508,10 @@ public class TWDGameManager {
     }
 
     public Map<String, List<String>> getGameStatistics() {
-        Map<String, List<String>> mapa = Collections.emptyMap();
+        Map<String, List<String>> mapa = new HashMap<>();
+        List<String> listA = new ArrayList<>();
+        listA.add("");
+        mapa.put("",listA);
         return mapa;
     }
 }

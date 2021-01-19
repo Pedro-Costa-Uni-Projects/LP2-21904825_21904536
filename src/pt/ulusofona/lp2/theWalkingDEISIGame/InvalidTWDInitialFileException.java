@@ -1,13 +1,13 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class InvalidTWDInitialFileException extends Exception{
-    private int numeroCreatures;
+    private boolean creaturas = true;
     private boolean validoDefinicao = true;
-    private String linhaFalhada;
+    private String linhaFalhada = "";
 
 
     public boolean validNrOfCreatures() {
-        return numeroCreatures >= 2;
+        return this.creaturas;
     }
 
     public boolean validCreatureDefinition() {
@@ -15,11 +15,11 @@ public class InvalidTWDInitialFileException extends Exception{
     }
 
     public String getErroneousLine() {
-        return "";
+        return this.linhaFalhada;
     }
 
-    public void setNumeroCreatures(int numeroCreatures) {
-        this.numeroCreatures = numeroCreatures;
+    public void setNumeroCreatures(boolean creaturas) {
+        this.creaturas = creaturas;
     }
 
     public void setValidoDefinicao(boolean validoDefinicao) {
