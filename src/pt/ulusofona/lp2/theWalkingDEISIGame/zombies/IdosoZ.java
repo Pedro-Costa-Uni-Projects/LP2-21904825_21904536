@@ -23,9 +23,9 @@ public class IdosoZ  extends Zombie {
         listaPossiveis.add(new int[]{xO, yO + 1});
         listaPossiveis.add(new int[]{xO + 1, yO});
         listaPossiveis.add(new int[]{xO - 1, yO});
-        for(int[] posicao : listaPossiveis) {
-            if (posicao[0] == xD && posicao[1] == yD) {
-                return true;
+    for(int[] posicao : listaPossiveis) {
+        if (posicao[0] == xD && posicao[1] == yD) {
+            return true;
             }
         }
         return false;

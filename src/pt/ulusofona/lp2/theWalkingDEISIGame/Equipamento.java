@@ -5,6 +5,7 @@ public abstract class Equipamento {
     protected int tipo;
     protected int x;
     protected int y;
+    protected int nrVezesQueSafou;
 
     public Equipamento(int id, int tipo, int x, int y) {
         this.id = id;
@@ -23,6 +24,12 @@ public abstract class Equipamento {
     }
     public int getTipo () {
         return this.tipo;
+    }
+    public int getNrVezesQueSafou () {
+        return this.nrVezesQueSafou;
+    }
+    public void aumentaNrVezesQueSafou() {
+        this.nrVezesQueSafou++;
     }
     public void alteraCoordenada(int x,int y) {
         this.x = x;

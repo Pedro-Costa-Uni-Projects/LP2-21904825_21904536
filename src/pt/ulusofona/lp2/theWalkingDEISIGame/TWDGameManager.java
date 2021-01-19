@@ -420,6 +420,7 @@ public class TWDGameManager {
                                         } else if (humano.getEquipamentoAtual().isDefensivo()) {
                                             if(humano.getEquipamentoAtual().getTipo() == 5) {
                                                 if (zombie.getTipo() == 4) {
+                                                    humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
                                                     numeroDeJogadasParaReset++;
@@ -474,6 +475,7 @@ public class TWDGameManager {
                                                     creatures.remove(humano);
                                                 }
                                             }
+                                            humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
                                             numeroDeJogadasParaReset++;
@@ -518,6 +520,7 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                             }
+                                            humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                             adicionaMortos(zombie);
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -1560,9 +1563,33 @@ public class TWDGameManager {
         }
         mapa.put("os3VivosMaisDuros",listB);
         //
+        //tiposDeEquipamentosMaisUteis
         mapa.put("tiposDeEquipamentoMaisUteis",listA);
+        //
+        //tipodesDeZombiesESeusEquipamentosDestruidos
+        /* List<String> listD;
+        listD = geral.stream()
+                .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
+                .
+                .collect(Collectors.toList()); */
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listA);
-        mapa.put("criaturasMaisEquipadas",listA);
+        //
+        //criaturasMaisEquipadas
+        List<String> listE;
+        listE = creatures.stream()
+                .filter(c -> !c.passouSaveHeaven())
+                .sorted((c1,c2) -> c2.getNumEquipamentos() - c1.getNumEquipamentos())
+                .limit(5)
+                .map(c -> c.getId() + ":" + c.getNome() + ":" + c.getNumEquipamentos())
+                .collect(Collectors.toList());
+        if(listE.size() < 5) {
+            listE = creatures.stream()
+                    .filter(c -> !c.passouSaveHeaven())
+                    .sorted((c1,c2) -> c2.getNumEquipamentos() - c1.getNumEquipamentos())
+                    .map(c -> c.getId() + ":" + c.getNome() + ":" + c.getNumEquipamentos())
+                    .collect(Collectors.toList());
+        }
+        mapa.put("criaturasMaisEquipadas",listE);
         return mapa;
     }
 }
