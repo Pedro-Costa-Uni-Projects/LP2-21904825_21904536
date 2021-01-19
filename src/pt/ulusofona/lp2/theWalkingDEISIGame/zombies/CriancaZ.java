@@ -33,4 +33,5 @@ public class CriancaZ extends Zombie {
     public String getImagePNG() {
         return "CriancaZ.png";
     }
+
 }

@@ -53,4 +53,5 @@ public class MilitarZ extends Zombie {
     public String getImagePNG() {
         return "MilitarZ.png";
     }
+
 }

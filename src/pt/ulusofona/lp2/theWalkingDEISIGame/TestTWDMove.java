@@ -2,6 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 import org.junit.Test;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +10,7 @@ public class TestTWDMove {
     private File ficheiro = new File("test-files/JUnit.txt");
 
     @Test
-    public void testForaDoMapa() {
+    public void testForaDoMapa() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         boolean obtido = game.move(3,3,4,6);
@@ -18,7 +19,7 @@ public class TestTWDMove {
     }
 
     @Test
-    public void testSafeHeavenZombieHumano() {
+    public void testSafeHeavenZombieHumano() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         assertTrue(game.move(5, 6, 6, 6)); //humano para safe heaven
@@ -27,7 +28,7 @@ public class TestTWDMove {
     }
 
     @Test
-    public void criancaComEspada() {
+    public void criancaComEspada() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         assertTrue(game.move(0, 0, 1, 0)); //crinca apanha espada
@@ -40,7 +41,7 @@ public class TestTWDMove {
     }
 
     @Test
-    public void ZombieVsAlhoVsDia() {
+    public void ZombieVsAlhoVsDia() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         assertTrue(game.move(0, 0, 0, 1)); //jogada normal vivos só para mudar de equipa
@@ -54,9 +55,9 @@ public class TestTWDMove {
     }
 
     @Test
-    public void IdosoComArma() {
+    public void IdosoComArma() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
-        assertTrue(game.startGame(ficheiro)); //já agora testa-se o start game
+        game.startGame(ficheiro); //já agora testa-se o start game
         assertTrue(game.move(3, 3, 3, 4)); //idoso para cima de Arma
         assertTrue(game.move(0, 4, 3, 4)); //zombie para cima de idoso com arma
         assertEquals(game.getEquipmentInfo(-3),"Pistola Walther PPK | 2"); //verifica se gastou bala
@@ -69,7 +70,7 @@ public class TestTWDMove {
     }
 
     @Test
-    public void ZombieVsCao() {
+    public void ZombieVsCao() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         assertFalse(game.move(0, 3, 1, 3)); //cao so pode mover nas diagonais
@@ -78,7 +79,7 @@ public class TestTWDMove {
     }
 
     @Test
-    public void MilitarWoodenShield() {
+    public void MilitarWoodenShield() throws InvalidTWDInitialFileException, FileNotFoundException {
         TWDGameManager game = new TWDGameManager();
         game.startGame(ficheiro);
         assertTrue(game.move(3, 6, 3, 5)); //Militar apanha escudo

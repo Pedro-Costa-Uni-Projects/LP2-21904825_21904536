@@ -33,6 +33,7 @@ public class IdosoH extends Humano {
         return false;
     }
     public String getImagePNG() {
-        return "Humano.png";
+        return "IdosoH.png";
     }
+
 }

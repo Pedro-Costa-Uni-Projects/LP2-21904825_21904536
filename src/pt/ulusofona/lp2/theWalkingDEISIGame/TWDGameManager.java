@@ -29,178 +29,181 @@ public class TWDGameManager {
     private static final int ID_EQUIPA_OS_OUTROS = 20;
 
 
-    public boolean startGame(File ficheiroInicial) {
-
+    public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
+        InvalidTWDInitialFileException exception = new InvalidTWDInitialFileException();
         int count = 0;
         String linha;
         String[] dados;
-        try {
-            Scanner leitorFicheiro = new Scanner(ficheiroInicial);
-            while(leitorFicheiro.hasNextLine()) {
-                switch (count) {
-                    case 0:
+        Scanner leitorFicheiro = new Scanner(ficheiroInicial);
+        while(leitorFicheiro.hasNextLine()) {
+            switch (count) {
+                case 0:
+                    linha = leitorFicheiro.nextLine();
+                    dados = linha.split(" ");
+                    linhaColuna[0] = Integer.parseInt(dados[0]);
+                    linhaColuna[1] = Integer.parseInt(dados[1]);
+                    count++;
+                    break;
+                case 1:
+                    linha = leitorFicheiro.nextLine();
+                    idEquipaStart = Integer.parseInt(linha);
+                    idEquipaAtual = idEquipaStart;
+                    count++;
+                    break;
+                case 2:
+                    linha = leitorFicheiro.nextLine();
+                    criaturasJogo = Integer.parseInt(linha);
+                    if (criaturasJogo < 2) {
+                        exception.setNumeroCreatures(criaturasJogo);
+                        throw exception;
+                    }
+                    count++;
+                    break;
+                case 3:
+                    for (int i = 0;i<criaturasJogo;i++) {
                         linha = leitorFicheiro.nextLine();
-                        dados = linha.split(" ");
-                        linhaColuna[0] = Integer.parseInt(dados[0]);
-                        linhaColuna[1] = Integer.parseInt(dados[1]);
-                        count++;
-                        break;
-                    case 1:
+                        dados = linha.split(" : ");
+                        if (dados.length == 5) {
+                            int id = Integer.parseInt(dados[0]);
+                            int tipo = Integer.parseInt(dados[1]);
+                            String nome = dados[2];
+                            int x = Integer.parseInt(dados[3]);
+                            int y = Integer.parseInt(dados[4]);
+                            switch (tipo) {
+                                case 0:
+                                    CriancaZ criancaZ = new CriancaZ(id, tipo, nome, x, y);
+                                    creatures.add(criancaZ);
+                                    break;
+                                case 1:
+                                    AdultoZ adultoZ = new AdultoZ(id, tipo, nome, x, y);
+                                    creatures.add(adultoZ);
+                                    break;
+                                case 2:
+                                    MilitarZ militarZ = new MilitarZ(id, tipo, nome, x, y);
+                                    creatures.add(militarZ);
+                                    break;
+                                case 3:
+                                    IdosoZ idosoZ = new IdosoZ(id, tipo, nome, x, y);
+                                    creatures.add(idosoZ);
+                                    break;
+                                case 4:
+                                    VampiroZ vampiroZ = new VampiroZ(id, tipo, nome, x, y);
+                                    creatures.add(vampiroZ);
+                                    break;
+                                case 5:
+                                    CriancaH criancaH = new CriancaH(id, tipo, nome, x, y);
+                                    creatures.add(criancaH);
+                                    break;
+                                case 6:
+                                    AdultoH adultoH = new AdultoH(id, tipo, nome, x, y);
+                                    creatures.add(adultoH);
+                                    break;
+                                case 7:
+                                    MilitarH militarH = new MilitarH(id, tipo, nome, x, y);
+                                    creatures.add(militarH);
+                                    break;
+                                case 8:
+                                    IdosoH idosoH = new IdosoH(id, tipo, nome, x, y);
+                                    creatures.add(idosoH);
+                                    break;
+                                case 9:
+                                    CaoH caoH = new CaoH(id, tipo, nome, x, y);
+                                    creatures.add(caoH);
+                                    break;
+                            }
+                        } else {
+                            exception.setValidoDefinicao(false);
+                            exception.setLinhaFalhada(linha);
+                            throw exception;
+                        }
+                    }
+                    count++;
+                    break;
+                case 4:
+                    linha = leitorFicheiro.nextLine();
+                    equipamentosJogo = Integer.parseInt(linha);
+                    count++;
+                    break;
+                case 5:
+                    for (int i = 0;i<equipamentosJogo;i++) {
                         linha = leitorFicheiro.nextLine();
-                        idEquipaStart = Integer.parseInt(linha);
-                        idEquipaAtual = idEquipaStart;
-                        count++;
-                        break;
-                    case 2:
-                        linha = leitorFicheiro.nextLine();
-                        criaturasJogo = Integer.parseInt(linha);
-                        count++;
-                        break;
-                    case 3:
-                        for (int i = 0;i<criaturasJogo;i++) {
-                            linha = leitorFicheiro.nextLine();
-                            dados = linha.split(" : ");
-                            if (dados.length == 5) {
-                                int id = Integer.parseInt(dados[0]);
-                                int tipo = Integer.parseInt(dados[1]);
-                                String nome = dados[2];
-                                int x = Integer.parseInt(dados[3]);
-                                int y = Integer.parseInt(dados[4]);
-                                switch (tipo) {
-                                    case 0:
-                                        CriancaZ criancaZ = new CriancaZ(id, tipo, nome, x, y);
-                                        creatures.add(criancaZ);
-                                        break;
-                                    case 1:
-                                        AdultoZ adultoZ = new AdultoZ(id, tipo, nome, x, y);
-                                        creatures.add(adultoZ);
-                                        break;
-                                    case 2:
-                                        MilitarZ militarZ = new MilitarZ(id, tipo, nome, x, y);
-                                        creatures.add(militarZ);
-                                        break;
-                                    case 3:
-                                        IdosoZ idosoZ = new IdosoZ(id, tipo, nome, x, y);
-                                        creatures.add(idosoZ);
-                                        break;
-                                    case 4:
-                                        VampiroZ vampiroZ = new VampiroZ(id, tipo, nome, x, y);
-                                        creatures.add(vampiroZ);
-                                        break;
-                                    case 5:
-                                        CriancaH criancaH = new CriancaH(id, tipo, nome, x, y);
-                                        creatures.add(criancaH);
-                                        break;
-                                    case 6:
-                                        AdultoH adultoH = new AdultoH(id, tipo, nome, x, y);
-                                        creatures.add(adultoH);
-                                        break;
-                                    case 7:
-                                        MilitarH militarH = new MilitarH(id, tipo, nome, x, y);
-                                        creatures.add(militarH);
-                                        break;
-                                    case 8:
-                                        IdosoH idosoH = new IdosoH(id, tipo, nome, x, y);
-                                        creatures.add(idosoH);
-                                        break;
-                                    case 9:
-                                        CaoH caoH = new CaoH(id, tipo, nome, x, y);
-                                        creatures.add(caoH);
-                                        break;
-                                }
+                        dados = linha.split(" : ");
+                        if (dados.length == 4) {
+                            int id = Integer.parseInt(dados[0]);
+                            int tipo = Integer.parseInt(dados[1]);
+                            int x = Integer.parseInt(dados[2]);
+                            int y = Integer.parseInt(dados[3]);
+                            switch (tipo) {
+                                case 0:
+                                    EscudoMadeira escudoMadeira = new EscudoMadeira(id, tipo, x, y);
+                                    listaEquipamento.add(escudoMadeira);
+                                    break;
+                                case 1:
+                                    EspadaHanzo espadaHanzo = new EspadaHanzo(id, tipo, x, y);
+                                    listaEquipamento.add(espadaHanzo);
+                                    break;
+                                case 2:
+                                    PistolaPPK pistolaPPK = new PistolaPPK(id, tipo, x, y);
+                                    listaEquipamento.add(pistolaPPK);
+                                    break;
+                                case 3:
+                                    EscudoTactico escudoTactico = new EscudoTactico(id, tipo, x, y);
+                                    listaEquipamento.add(escudoTactico);
+                                    break;
+                                case 4:
+                                    RevistaMaria revistaMaria = new RevistaMaria(id, tipo, x, y);
+                                    listaEquipamento.add(revistaMaria);
+                                    break;
+                                case 5:
+                                    CabecaAlho cabecaAlho = new CabecaAlho(id, tipo, x, y);
+                                    listaEquipamento.add(cabecaAlho);
+                                    break;
+                                case 6:
+                                    EstacaMadeira estacaMadeira = new EstacaMadeira(id, tipo, x, y);
+                                    listaEquipamento.add(estacaMadeira);
+                                    break;
+                                case 7:
+                                    GarrafaLixivia garrafaLixivia = new GarrafaLixivia(id, tipo, x, y);
+                                    listaEquipamento.add(garrafaLixivia);
+                                    break;
+                                case 8:
+                                    Veneno veneno = new Veneno(id, tipo, x, y);
+                                    listaEquipamento.add(veneno);
+                                    break;
+                                case 9:
+                                    Antidoto antidoto = new Antidoto(id, tipo, x, y);
+                                    listaEquipamento.add(antidoto);
+                                    break;
+                                case 10:
+                                    BeskarHelmet beskarHelmet = new BeskarHelmet(id, tipo, x, y);
+                                    listaEquipamento.add(beskarHelmet);
+                                    break;
                             }
                         }
-                        count++;
-                        break;
-                    case 4:
+                    }
+                    count++;
+                    break;
+                case 6:
+                    linha = leitorFicheiro.nextLine();
+                    saveHeavenJogo = Integer.parseInt(linha);
+                    count++;
+                    break;
+                case 7:
+                    for (int i = 0;i<saveHeavenJogo;i++) {
                         linha = leitorFicheiro.nextLine();
-                        equipamentosJogo = Integer.parseInt(linha);
-                        count++;
-                        break;
-                    case 5:
-                        for (int i = 0;i<equipamentosJogo;i++) {
-                            linha = leitorFicheiro.nextLine();
-                            dados = linha.split(" : ");
-                            if (dados.length == 4) {
-                                int id = Integer.parseInt(dados[0]);
-                                int tipo = Integer.parseInt(dados[1]);
-                                int x = Integer.parseInt(dados[2]);
-                                int y = Integer.parseInt(dados[3]);
-                                switch (tipo) {
-                                    case 0:
-                                        EscudoMadeira escudoMadeira = new EscudoMadeira(id, tipo, x, y);
-                                        listaEquipamento.add(escudoMadeira);
-                                        break;
-                                    case 1:
-                                        EspadaHanzo espadaHanzo = new EspadaHanzo(id, tipo, x, y);
-                                        listaEquipamento.add(espadaHanzo);
-                                        break;
-                                    case 2:
-                                        PistolaPPK pistolaPPK = new PistolaPPK(id, tipo, x, y);
-                                        listaEquipamento.add(pistolaPPK);
-                                        break;
-                                    case 3:
-                                        EscudoTactico escudoTactico = new EscudoTactico(id, tipo, x, y);
-                                        listaEquipamento.add(escudoTactico);
-                                        break;
-                                    case 4:
-                                        RevistaMaria revistaMaria = new RevistaMaria(id, tipo, x, y);
-                                        listaEquipamento.add(revistaMaria);
-                                        break;
-                                    case 5:
-                                        CabecaAlho cabecaAlho = new CabecaAlho(id, tipo, x, y);
-                                        listaEquipamento.add(cabecaAlho);
-                                        break;
-                                    case 6:
-                                        EstacaMadeira estacaMadeira = new EstacaMadeira(id, tipo, x, y);
-                                        listaEquipamento.add(estacaMadeira);
-                                        break;
-                                    case 7:
-                                        GarrafaLixivia garrafaLixivia = new GarrafaLixivia(id, tipo, x, y);
-                                        listaEquipamento.add(garrafaLixivia);
-                                        break;
-                                    case 8:
-                                        Veneno veneno = new Veneno(id, tipo, x, y);
-                                        listaEquipamento.add(veneno);
-                                        break;
-                                    case 9:
-                                        Antidoto antidoto = new Antidoto(id, tipo, x, y);
-                                        listaEquipamento.add(antidoto);
-                                        break;
-                                    case 10:
-                                        BeskarHelmet beskarHelmet = new BeskarHelmet(id, tipo, x, y);
-                                        listaEquipamento.add(beskarHelmet);
-                                        break;
-                                }
-                            }
-                        }
-                        count++;
-                        break;
-                    case 6:
-                        linha = leitorFicheiro.nextLine();
-                        saveHeavenJogo = Integer.parseInt(linha);
-                        count++;
-                        break;
-                    case 7:
-                        for (int i = 0;i<saveHeavenJogo;i++) {
-                            linha = leitorFicheiro.nextLine();
-                            dados = linha.split(" : ");
-                            int x = Integer.parseInt(dados[0]);
-                            int y = Integer.parseInt(dados[1]);
-                            SaveHeaven saveHeaven = new SaveHeaven(x,y);
-                            listaSaveHeaven.add(saveHeaven);
-                        }
-                        count++;
-                        break;
-                }
+                        dados = linha.split(" : ");
+                        int x = Integer.parseInt(dados[0]);
+                        int y = Integer.parseInt(dados[1]);
+                        SaveHeaven saveHeaven = new SaveHeaven(x,y);
+                        listaSaveHeaven.add(saveHeaven);
+                    }
+                    count++;
+                    break;
             }
-            leitorFicheiro.close();
-        } catch(FileNotFoundException exception) {
-            System.out.println("Erro: o ficheiro nao foi encontrado.");
-            return false;
         }
-        return true;
-    }
+        leitorFicheiro.close();
+
+}
 
     public int[] getWorldSize() {
         return linhaColuna;
@@ -1502,6 +1505,11 @@ public class TWDGameManager {
             }
         }
         return false;
+    }
+
+    public Map<String, List<String>> getGameStatistics() {
+        Map<String, List<String>> mapa = Collections.emptyMap();
+        return mapa;
     }
 }
 

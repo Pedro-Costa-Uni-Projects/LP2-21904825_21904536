@@ -46,7 +46,6 @@ public class AdultoH extends Humano {
         }
         return false;
     }
-
     public String getImagePNG() {
         return "Humano.png";
     }
