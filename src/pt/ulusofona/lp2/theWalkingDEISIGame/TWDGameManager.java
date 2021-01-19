@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 //
 public class TWDGameManager {
     private int[] linhaColuna = new int[2];
@@ -289,6 +292,7 @@ public class TWDGameManager {
                                                         return false;
                                                     }
                                                 }
+                                                humano.addInteracoes();
                                                 zombieARemover = zombie;
                                             } else {
                                                 return false;
@@ -403,6 +407,7 @@ public class TWDGameManager {
                                         }
 
                                         if(humano.getEquipamentoAtual() == null) {
+                                            zombie.addInteracoes();
                                             transforma(humano);
                                             creatures.remove(humano);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -422,6 +427,7 @@ public class TWDGameManager {
                                                     organizaListas();
                                                     return true;
                                                 } else {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -433,12 +439,14 @@ public class TWDGameManager {
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 0) {
                                                 if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
@@ -454,12 +462,14 @@ public class TWDGameManager {
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 8) {
                                                 if(((Humano)humano).mostraTurnos() == 0) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 4) {
                                                 if(zombie.getTipo() != 3) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
@@ -473,6 +483,7 @@ public class TWDGameManager {
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if(zombie.getTipo() == 4) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -483,6 +494,7 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -495,6 +507,7 @@ public class TWDGameManager {
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 1) {
                                                 if(humano.getTipo() == 5 && zombie.getTipo() != 0) {
+                                                    zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
@@ -1508,12 +1521,45 @@ public class TWDGameManager {
     }
 
     public Map<String, List<String>> getGameStatistics() {
+        List<Creature> geral = new ArrayList<>();
+        geral.addAll(creatures);
+        geral.addAll(mortos);
+        //os3ZombiesMaisTramados
         Map<String, List<String>> mapa = new HashMap<>();
-        List<String> listA = new ArrayList<>();
-        listA.add("");
-
+        //
+        List<String> listA;
+        listA = geral.stream()
+                    .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
+                    .sorted((z1,z2) -> z2.getNumInteracoes() - z1.getNumInteracoes())
+                    .limit(3)
+                    .map(z -> z.getId() + ":" + z.getNome() + ":" + z.getNumInteracoes())
+                    .collect(Collectors.toList());
+        if(listA.size() < 3) {
+            listA = geral.stream()
+                        .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
+                        .filter(z -> z.getNumInteracoes() >= 1)
+                        .map(z -> z.getId() + ":" + z.getNome() + ":" + z.getNumInteracoes())
+                        .collect(Collectors.toList());
+        }
         mapa.put("os3ZombiesMaisTramados",listA);
-        mapa.put("os3VivosMaisDuros",listA);
+
+        //os3VivosMaisDuros
+        List<String> listB;
+        listB = geral.stream()
+                .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
+                .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
+                .limit(3)
+                .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
+                .collect(Collectors.toList());
+        if(listB.size() < 3) {
+            listB = geral.stream()
+                    .filter(h -> h.getTipo() >= 0 && h.getTipo() <= 4)
+                    .filter(h -> h.getNumInteracoes() >= 1)
+                    .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
+                    .collect(Collectors.toList());
+        }
+        mapa.put("os3VivosMaisDuros",listB);
+        //
         mapa.put("tiposDeEquipamentoMaisUteis",listA);
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listA);
         mapa.put("criaturasMaisEquipadas",listA);

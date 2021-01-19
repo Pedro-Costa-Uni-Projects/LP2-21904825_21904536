@@ -7,6 +7,7 @@ public abstract class Creature {
     protected int x;
     protected int y;
     protected int equipamentos; //apanhado -> Humano - : - destruido -> Zombie
+    protected int interacoes;
     protected boolean verificaSaveHeaven;
     protected boolean vivo = true;
 
@@ -50,6 +51,12 @@ public abstract class Creature {
     }
     public void alteraEstadoSave() {
         this.verificaSaveHeaven = true;
+    }
+    public void addInteracoes(){
+        this.interacoes++;
+    }
+    public int getNumInteracoes() {
+        return this.interacoes;
     }
 
 }
