@@ -1511,7 +1511,12 @@ public class TWDGameManager {
         Map<String, List<String>> mapa = new HashMap<>();
         List<String> listA = new ArrayList<>();
         listA.add("");
-        mapa.put("",listA);
+
+        mapa.put("os3ZombiesMaisTramados",listA);
+        mapa.put("os3VivosMaisDuros",listA);
+        mapa.put("tiposDeEquipamentoMaisUteis",listA);
+        mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listA);
+        mapa.put("criaturasMaisEquipadas",listA);
         return mapa;
     }
 }
