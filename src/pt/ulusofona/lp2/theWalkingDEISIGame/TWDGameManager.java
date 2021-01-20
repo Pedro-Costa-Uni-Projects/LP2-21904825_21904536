@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.counting;
+
 //
 public class TWDGameManager {
     private int[] linhaColuna = new int[2];
@@ -1572,28 +1574,15 @@ public class TWDGameManager {
                 .map(Creature::getEquipamentoAtual)
                 .filter(Objects::nonNull);
         Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
-        Map<Integer,Integer> juncao = equipamentosAll
-                .collect(Collectors.groupingBy(Equipamento::getTipo))
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
-                ));
+        Map<Integer,Long> juncao = equipamentosAll
+                .collect(Collectors.groupingBy(Equipamento::getTipo, counting()));
         listC = juncao.entrySet().stream()
-                .sorted((n1,n2) -> n1.getValue() - n2.getValue())
+                .sorted((n1,n2) -> (int) (n1.getValue() - n2.getValue()))
                 .map(n -> n.getKey() + " " + n.getValue())
                 .collect(Collectors.toList());
-
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
-        /* List<String> listD;
-        listD = geral.stream()
-                .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
-                .
-                .collect(Collectors.toList()); */
-        mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listA);
 
         //criaturasMaisEquipadas
         List<String> listE;
