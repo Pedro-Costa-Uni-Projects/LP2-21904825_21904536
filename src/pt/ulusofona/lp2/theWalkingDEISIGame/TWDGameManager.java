@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import com.sun.javafx.collections.MapAdapterChange;
 import pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos.*;
 import pt.ulusofona.lp2.theWalkingDEISIGame.humanos.*;
 import pt.ulusofona.lp2.theWalkingDEISIGame.zombies.*;
@@ -1524,12 +1525,14 @@ public class TWDGameManager {
     }
 
     public Map<String, List<String>> getGameStatistics() {
+        Map<String, List<String>> mapa = new HashMap<>();
+
+        //juntar todas as creaturas que já jogaram ou que ainda jogam
         List<Creature> geral = new ArrayList<>();
         geral.addAll(creatures);
         geral.addAll(mortos);
+
         //os3ZombiesMaisTramados
-        Map<String, List<String>> mapa = new HashMap<>();
-        //
         List<String> listA;
         listA = geral.stream()
                     .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
@@ -1562,10 +1565,29 @@ public class TWDGameManager {
                     .collect(Collectors.toList());
         }
         mapa.put("os3VivosMaisDuros",listB);
-        //
+
         //tiposDeEquipamentosMaisUteis
-        mapa.put("tiposDeEquipamentoMaisUteis",listA);
-        //
+        List<String> listC;
+        Stream<Equipamento> equipamentosLivres = listaEquipamento.stream();
+        Stream<Equipamento> equipamentosHumano = geral.stream()
+                .map(Creature::getEquipamentoAtual)
+                .filter(Objects::nonNull);
+        Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
+        Map<Integer,Integer> juncao = equipamentosAll
+                .collect(Collectors.groupingBy(Equipamento::getTipo))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum())
+                );
+        listC = juncao.entrySet().stream()
+                .map(n -> n.getKey() + " " + n.getValue())
+                .collect(Collectors.toList());
+
+
+        mapa.put("tiposDeEquipamentoMaisUteis",listC);
+
         //tipodesDeZombiesESeusEquipamentosDestruidos
         /* List<String> listD;
         listD = geral.stream()
@@ -1573,7 +1595,7 @@ public class TWDGameManager {
                 .
                 .collect(Collectors.toList()); */
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listA);
-        //
+
         //criaturasMaisEquipadas
         List<String> listE;
         listE = creatures.stream()
