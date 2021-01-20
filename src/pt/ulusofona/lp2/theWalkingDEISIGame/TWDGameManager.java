@@ -12,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.counting;
-
 //
 public class TWDGameManager {
     private int[] linhaColuna = new int[2];
@@ -1575,7 +1573,13 @@ public class TWDGameManager {
                 .filter(Objects::nonNull);
         Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
         Map<Integer,Long> juncao = equipamentosAll
-                .collect(Collectors.groupingBy(Equipamento::getTipo, counting()));
+                .collect(Collectors.groupingBy(Equipamento::getTipo))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().stream().map(Equipamento::getNrVezesQueSafou).count()
+                ));
         listC = juncao.entrySet().stream()
                 .sorted((n1,n2) -> (int) (n1.getValue() - n2.getValue()))
                 .map(n -> n.getKey() + " " + n.getValue())
