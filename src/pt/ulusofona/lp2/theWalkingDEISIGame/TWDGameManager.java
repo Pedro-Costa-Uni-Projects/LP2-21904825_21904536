@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import com.sun.javafx.collections.MapAdapterChange;
 import pt.ulusofona.lp2.theWalkingDEISIGame.equipamentos.*;
 import pt.ulusofona.lp2.theWalkingDEISIGame.humanos.*;
 import pt.ulusofona.lp2.theWalkingDEISIGame.zombies.*;
