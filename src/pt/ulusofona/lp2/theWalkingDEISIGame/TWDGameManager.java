@@ -1589,8 +1589,9 @@ public class TWDGameManager {
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
-
-        mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listB);
+        List<String> listD = new ArrayList<>();
+        listD.add("");
+        mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listD);
 
         //criaturasMaisEquipadas
         List<String> listE;
