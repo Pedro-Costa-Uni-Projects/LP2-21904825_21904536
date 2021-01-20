@@ -85,4 +85,24 @@ public class TestTWDMove {
         assertTrue(game.move(3, 6, 3, 5)); //Militar apanha escudo
         assertEquals(game.getEquipmentInfo(-4),"Escudo de Madeira | 2");
     }
+
+    @Test
+    public void saveGame() throws InvalidTWDInitialFileException, FileNotFoundException {
+        File ficheiroSave = new File("SavedGame.txt");
+        TWDGameManager game = new TWDGameManager();
+        game.startGame(ficheiro);
+        assertTrue(game.move(0, 0, 1, 0)); //criança para espada
+        assertTrue(game.move(2, 0, 1, 0)); //zombie crianca para crianca com espada
+        assertTrue(game.move(5, 6, 6, 6)); //adulto vivo para safe heaven
+        assertTrue(game.saveGame(ficheiroSave)); //guarda
+        assertTrue(game.move(6, 0, 4, 0)); //move vampiro durante noite para depopis da rollback com o load
+        assertTrue(game.loadGame(ficheiroSave));
+        assertFalse(game.move(2, 0, 3, 0)); //devo devolver false pois a criança zombie morreu
+        assertEquals((long)game.getIdsInSafeHaven().get(0),7); //ve se o unico id no safe heaven é do adulto humano
+                                                                //CAST PARA LONG POIS ESTAVA A DAR ERRO SEM ISSO
+        assertEquals(game.getCurrentTeamId(),20); //verifica se são os outros a jogar
+        //apesar de o id da crinca ser 6 na lista de creaturas é get(5) pois começa no zero
+        assertEquals(game.getCreatures().get(5).getEquipamentoAtual().getTipo(),1); //ve se tem uma espada a crinca
+        assertEquals(game.getCreatures().get(5).getNumEquipamentos(),1); //ve se apanhou só um equipamento
+    }
 }

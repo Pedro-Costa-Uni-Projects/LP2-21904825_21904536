@@ -973,61 +973,61 @@ public class TWDGameManager {
                                         CriancaZ criancaZ = new CriancaZ(id, tipo, nome, x, y);
                                         criancaZ.addXEquipamentos(numEqui);
                                         criancaZ.mata();
-                                        creatures.add(criancaZ);
+                                        mortos.add(criancaZ);
                                         break;
                                     case 1:
                                         AdultoZ adultoZ = new AdultoZ(id, tipo, nome, x, y);
                                         adultoZ.addXEquipamentos(numEqui);
                                         adultoZ.mata();
-                                        creatures.add(adultoZ);
+                                        mortos.add(adultoZ);
                                         break;
                                     case 2:
                                         MilitarZ militarZ = new MilitarZ(id, tipo, nome, x, y);
                                         militarZ.addXEquipamentos(numEqui);
                                         militarZ.mata();
-                                        creatures.add(militarZ);
+                                        mortos.add(militarZ);
                                         break;
                                     case 3:
                                         IdosoZ idosoZ = new IdosoZ(id, tipo, nome, x, y);
                                         idosoZ.addXEquipamentos(numEqui);
                                         idosoZ.mata();
-                                        creatures.add(idosoZ);
+                                        mortos.add(idosoZ);
                                         break;
                                     case 4:
                                         VampiroZ vampiroZ = new VampiroZ(id, tipo, nome, x, y);
                                         vampiroZ.addXEquipamentos(numEqui);
                                         vampiroZ.mata();
-                                        creatures.add(vampiroZ);
+                                        mortos.add(vampiroZ);
                                         break;
                                     case 5:
                                         CriancaH criancaH = new CriancaH(id, tipo, nome, x, y);
                                         criancaH.addXEquipamentos(numEqui);
                                         criancaH.mata();
-                                        creatures.add(criancaH);
+                                        mortos.add(criancaH);
                                         break;
                                     case 6:
                                         AdultoH adultoH = new AdultoH(id, tipo, nome, x, y);
                                         adultoH.addXEquipamentos(numEqui);
                                         adultoH.mata();
-                                        creatures.add(adultoH);
+                                        mortos.add(adultoH);
                                         break;
                                     case 7:
                                         MilitarH militarH = new MilitarH(id, tipo, nome, x, y);
                                         militarH.addXEquipamentos(numEqui);
                                         militarH.mata();
-                                        creatures.add(militarH);
+                                        mortos.add(militarH);
                                         break;
                                     case 8:
                                         IdosoH idosoH = new IdosoH(id, tipo, nome, x, y);
                                         idosoH.addXEquipamentos(numEqui);
                                         idosoH.mata();
-                                        creatures.add(idosoH);
+                                        mortos.add(idosoH);
                                         break;
                                     case 9:
                                         CaoH caoH = new CaoH(id, tipo, nome, x, y);
                                         caoH.addXEquipamentos(numEqui);
                                         caoH.mata();
-                                        creatures.add(caoH);
+                                        mortos.add(caoH);
                                         break;
                                 }
                             }
