@@ -1578,12 +1578,12 @@ public class TWDGameManager {
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum())
-                );
+                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
+                ));
         listC = juncao.entrySet().stream()
+                .sorted((n1,n2) -> n1.getValue() - n2.getValue())
                 .map(n -> n.getKey() + " " + n.getValue())
                 .collect(Collectors.toList());
-
 
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
