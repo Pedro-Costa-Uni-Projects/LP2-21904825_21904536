@@ -1534,14 +1534,14 @@ public class TWDGameManager {
 
         //os3ZombiesMaisTramados
         List<String> listA;
-        listA = geral.stream()
+        listA = creatures.stream()
                     .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
                     .sorted((z1,z2) -> z2.getNumInteracoes() - z1.getNumInteracoes())
                     .limit(3)
                     .map(z -> z.getId() + ":" + z.getNome() + ":" + z.getNumInteracoes())
                     .collect(Collectors.toList());
         if(listA.size() < 3) {
-            listA = geral.stream()
+            listA = creatures.stream()
                         .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
                         .filter(z -> z.getNumInteracoes() >= 1)
                         .map(z -> z.getId() + ":" + z.getNome() + ":" + z.getNumInteracoes())
@@ -1559,7 +1559,7 @@ public class TWDGameManager {
                 .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
                 .collect(Collectors.toList());
         if(listB.size() < 3) {
-            listB = geral.stream()
+            listB = creatures.stream()
                     .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                     .filter(h -> h.getNumInteracoes() >= 1)
                     .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
