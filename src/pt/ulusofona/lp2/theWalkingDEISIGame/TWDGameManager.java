@@ -1589,6 +1589,7 @@ public class TWDGameManager {
                 .filter(Objects::nonNull);
         Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
         Map<Integer,Long> juncao = equipamentosAll
+                .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .collect(Collectors.groupingBy(Equipamento::getTipo))
                 .entrySet()
                 .stream()
