@@ -1558,7 +1558,7 @@ public class TWDGameManager {
                 .collect(Collectors.toList());
         if(listB.size() < 3) {
             listB = geral.stream()
-                    .filter(h -> h.getTipo() >= 0 && h.getTipo() <= 4)
+                    .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                     .filter(h -> h.getNumInteracoes() >= 1)
                     .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
                     .collect(Collectors.toList());
