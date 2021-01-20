@@ -1547,6 +1547,7 @@ public class TWDGameManager {
         List<String> listA;
         listA = creatures.stream()
                     .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
+                    .filter(h -> h.getNumInteracoes() >= 1)
                     .sorted((z1,z2) -> z2.getNumInteracoes() - z1.getNumInteracoes())
                     .limit(3)
                     .map(z -> z.getId() + ":" + z.getNome() + ":" + z.getNumInteracoes())
@@ -1565,6 +1566,7 @@ public class TWDGameManager {
         listB = geral.stream()
                 .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                 .filter(h -> !h.passouSaveHeaven())
+                .filter(h -> h.getNumInteracoes() >= 1)
                 .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
                 .limit(3)
                 .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
