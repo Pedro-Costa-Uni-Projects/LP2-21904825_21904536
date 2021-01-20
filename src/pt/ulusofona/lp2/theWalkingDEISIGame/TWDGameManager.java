@@ -522,6 +522,7 @@ public class TWDGameManager {
                                             }
                                             humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                             adicionaMortos(zombie);
+                                            humano.addInteracoes();
                                             creatures.remove(zombie);
                                             idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                             numeroDeJogadas++;
@@ -1560,6 +1561,7 @@ public class TWDGameManager {
             listB = geral.stream()
                     .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                     .filter(h -> h.getNumInteracoes() >= 1)
+                    .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
                     .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
                     .collect(Collectors.toList());
         }
@@ -1587,6 +1589,8 @@ public class TWDGameManager {
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
+
+        mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listB);
 
         //criaturasMaisEquipadas
         List<String> listE;
