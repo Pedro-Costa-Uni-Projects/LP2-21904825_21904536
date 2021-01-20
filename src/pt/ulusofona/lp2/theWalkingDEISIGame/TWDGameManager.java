@@ -767,7 +767,7 @@ public class TWDGameManager {
                 }
                 escritor.write(creature.getId() + " : " + creature.getTipo() + " : " + creature.getNome() + " : " +
                         creature.getX() + " : " + creature.getY() + " : " + creature.getNumEquipamentos() + " : " +
-                        passou + "\n");
+                        creature.getNumInteracoes() + " : " + passou + "\n");
             }
 
             escritor.write(mortos.size() + "\n");
@@ -854,18 +854,20 @@ public class TWDGameManager {
                         for (int i = 0;i<criaturasJogo;i++) {
                             linha = leitorFicheiro.nextLine();
                             dados = linha.split(" : ");
-                            if (dados.length == 7) {
+                            if (dados.length == 8) {
                                 int id = Integer.parseInt(dados[0]);
                                 int tipo = Integer.parseInt(dados[1]);
                                 String nome = dados[2];
                                 int x = Integer.parseInt(dados[3]);
                                 int y = Integer.parseInt(dados[4]);
                                 int numEqui = Integer.parseInt(dados[5]);
-                                String passouSafe = dados[6];
+                                int numInt = Integer.parseInt(dados[6]);
+                                String passouSafe = dados[7];
                                 switch (tipo) {
                                     case 0:
                                         CriancaZ criancaZ = new CriancaZ(id, tipo, nome, x, y);
                                         criancaZ.addXEquipamentos(numEqui);
+                                        criancaZ.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             criancaZ.alteraEstadoSave();
                                         }
@@ -874,6 +876,7 @@ public class TWDGameManager {
                                     case 1:
                                         AdultoZ adultoZ = new AdultoZ(id, tipo, nome, x, y);
                                         adultoZ.addXEquipamentos(numEqui);
+                                        adultoZ.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             adultoZ.alteraEstadoSave();
                                         }
@@ -882,6 +885,7 @@ public class TWDGameManager {
                                     case 2:
                                         MilitarZ militarZ = new MilitarZ(id, tipo, nome, x, y);
                                         militarZ.addXEquipamentos(numEqui);
+                                        militarZ.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             militarZ.alteraEstadoSave();
                                         }
@@ -890,6 +894,7 @@ public class TWDGameManager {
                                     case 3:
                                         IdosoZ idosoZ = new IdosoZ(id, tipo, nome, x, y);
                                         idosoZ.addXEquipamentos(numEqui);
+                                        idosoZ.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             idosoZ.alteraEstadoSave();
                                         }
@@ -898,6 +903,7 @@ public class TWDGameManager {
                                     case 4:
                                         VampiroZ vampiroZ = new VampiroZ(id, tipo, nome, x, y);
                                         vampiroZ.addXEquipamentos(numEqui);
+                                        vampiroZ.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             vampiroZ.alteraEstadoSave();
                                         }
@@ -906,6 +912,7 @@ public class TWDGameManager {
                                     case 5:
                                         CriancaH criancaH = new CriancaH(id, tipo, nome, x, y);
                                         criancaH.addXEquipamentos(numEqui);
+                                        criancaH.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             criancaH.alteraEstadoSave();
                                         }
@@ -914,6 +921,7 @@ public class TWDGameManager {
                                     case 6:
                                         AdultoH adultoH = new AdultoH(id, tipo, nome, x, y);
                                         adultoH.addXEquipamentos(numEqui);
+                                        adultoH.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             adultoH.alteraEstadoSave();
                                         }
@@ -922,6 +930,7 @@ public class TWDGameManager {
                                     case 7:
                                         MilitarH militarH = new MilitarH(id, tipo, nome, x, y);
                                         militarH.addXEquipamentos(numEqui);
+                                        militarH.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             militarH.alteraEstadoSave();
                                         }
@@ -930,6 +939,7 @@ public class TWDGameManager {
                                     case 8:
                                         IdosoH idosoH = new IdosoH(id, tipo, nome, x, y);
                                         idosoH.addXEquipamentos(numEqui);
+                                        idosoH.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             idosoH.alteraEstadoSave();
                                         }
@@ -938,6 +948,7 @@ public class TWDGameManager {
                                     case 9:
                                         CaoH caoH = new CaoH(id, tipo, nome, x, y);
                                         caoH.addXEquipamentos(numEqui);
+                                        caoH.addXInteracoes(numInt);
                                         if (passouSafe.equals("true")) {
                                             caoH.alteraEstadoSave();
                                         }

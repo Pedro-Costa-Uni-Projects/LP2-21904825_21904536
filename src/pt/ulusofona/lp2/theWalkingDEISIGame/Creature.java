@@ -26,6 +26,9 @@ public abstract class Creature {
     public void addXEquipamentos(int num) {
         this.equipamentos = num;
     }
+    public void addXInteracoes(int num) {
+        this.interacoes = num;
+    }
     public void alteraCoordenada(int x,int y) {
         this.x = x;
         this.y = y;
