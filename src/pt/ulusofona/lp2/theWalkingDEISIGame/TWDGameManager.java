@@ -1588,18 +1588,18 @@ public class TWDGameManager {
                 .map(Creature::getEquipamentoAtual)
                 .filter(Objects::nonNull);
         Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
-        Map<Integer,Long> juncao = equipamentosAll
+        Map<Integer,Integer> juncao = equipamentosAll
                 .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .collect(Collectors.groupingBy(Equipamento::getTipo))
                 .entrySet()
                 .stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        e -> e.getValue().stream().map(Equipamento::getNrVezesQueSafou).count()
+                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
                 ));
         listC = juncao.entrySet().stream()
                 .sorted((n1,n2) -> (int) (n1.getValue() - n2.getValue()))
-                .map(n -> n.getKey() + " " + n.getValue())
+                .map(n -> n.getKey() + ":" + n.getValue())
                 .collect(Collectors.toList());
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
