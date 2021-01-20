@@ -1551,8 +1551,9 @@ public class TWDGameManager {
 
         //os3VivosMaisDuros
         List<String> listB;
-        listB = geral.stream()
+        listB = creatures.stream()
                 .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
+                .filter(h -> !h.passouSaveHeaven())
                 .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
                 .limit(3)
                 .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
