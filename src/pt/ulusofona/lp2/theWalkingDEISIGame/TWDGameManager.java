@@ -1562,7 +1562,7 @@ public class TWDGameManager {
 
         //os3VivosMaisDuros
         List<String> listB;
-        listB = creatures.stream()
+        listB = geral.stream()
                 .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                 .filter(h -> !h.passouSaveHeaven())
                 .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
@@ -1570,7 +1570,7 @@ public class TWDGameManager {
                 .map(h -> h.getId() + ":" + h.getNome() + ":" + h.getNumInteracoes())
                 .collect(Collectors.toList());
         if(listB.size() < 3) {
-            listB = creatures.stream()
+            listB = geral.stream()
                     .filter(h -> h.getTipo() >= 5 && h.getTipo() <= 9)
                     .filter(h -> h.getNumInteracoes() >= 1)
                     .sorted((h1,h2) -> h2.getNumInteracoes() - h1.getNumInteracoes())
