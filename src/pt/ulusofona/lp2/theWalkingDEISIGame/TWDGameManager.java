@@ -778,8 +778,8 @@ public class TWDGameManager {
 
             escritor.write(listaEquipamento.size() + "\n");
             for (Equipamento equip : listaEquipamento) {
-                escritor.write(equip.getId() + " : " + equip.getTipo() + " : " + equip.getX() + " : " + equip.getY() +
-                        "\n");
+                escritor.write(equip.getId() + " : " + equip.getTipo() + " : " + equip.getX() + " : " + equip.getY()
+                        + " : " + equip.getNrVezesQueSafou() + "\n");
             }
 
             escritor.write(listaSaveHeaven.size() + "\n");
@@ -798,7 +798,7 @@ public class TWDGameManager {
                 if (creature.getEquipamentoAtual() != null) {
                     Equipamento atual = creature.getEquipamentoAtual();
                     escritor.write(creature.getId() + " : " + atual.getId() + " : " + atual.getTipo() + " : " +
-                            atual.getX() + " : " + atual.getY() + "\n");
+                            atual.getX() + " : " + atual.getY() + " : " + atual.getNrVezesQueSafou() + "\n");
                 }
             }
             escritor.close();
@@ -1058,54 +1058,66 @@ public class TWDGameManager {
                         for (int i = 0;i<equipamentosJogo;i++) {
                             linha = leitorFicheiro.nextLine();
                             dados = linha.split(" : ");
-                            if (dados.length == 4) {
+                            if (dados.length == 5) {
                                 int id = Integer.parseInt(dados[0]);
                                 int tipo = Integer.parseInt(dados[1]);
                                 int x = Integer.parseInt(dados[2]);
                                 int y = Integer.parseInt(dados[3]);
+                                int numSaves = Integer.parseInt(dados[4]);
                                 switch (tipo) {
                                     case 0:
                                         EscudoMadeira escudoMadeira = new EscudoMadeira(id, tipo, x, y);
+                                        escudoMadeira.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(escudoMadeira);
                                         break;
                                     case 1:
                                         EspadaHanzo espadaHanzo = new EspadaHanzo(id, tipo, x, y);
+                                        espadaHanzo.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(espadaHanzo);
                                         break;
                                     case 2:
                                         PistolaPPK pistolaPPK = new PistolaPPK(id, tipo, x, y);
+                                        pistolaPPK.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(pistolaPPK);
                                         break;
                                     case 3:
                                         EscudoTactico escudoTactico = new EscudoTactico(id, tipo, x, y);
+                                        escudoTactico.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(escudoTactico);
                                         break;
                                     case 4:
                                         RevistaMaria revistaMaria = new RevistaMaria(id, tipo, x, y);
+                                        revistaMaria.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(revistaMaria);
                                         break;
                                     case 5:
                                         CabecaAlho cabecaAlho = new CabecaAlho(id, tipo, x, y);
+                                        cabecaAlho.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(cabecaAlho);
                                         break;
                                     case 6:
                                         EstacaMadeira estacaMadeira = new EstacaMadeira(id, tipo, x, y);
+                                        estacaMadeira.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(estacaMadeira);
                                         break;
                                     case 7:
                                         GarrafaLixivia garrafaLixivia = new GarrafaLixivia(id, tipo, x, y);
+                                        garrafaLixivia.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(garrafaLixivia);
                                         break;
                                     case 8:
                                         Veneno veneno = new Veneno(id, tipo, x, y);
+                                        veneno.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(veneno);
                                         break;
                                     case 9:
                                         Antidoto antidoto = new Antidoto(id, tipo, x, y);
+                                        antidoto.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(antidoto);
                                         break;
                                     case 10:
                                         BeskarHelmet beskarHelmet = new BeskarHelmet(id, tipo, x, y);
+                                        beskarHelmet.alteraNrVezesQueSafou(numSaves);
                                         listaEquipamento.add(beskarHelmet);
                                         break;
                                 }
@@ -1146,55 +1158,67 @@ public class TWDGameManager {
                         for (int i = 0;i<numeroEquipNasCreaturas;i++) {
                             linha = leitorFicheiro.nextLine();
                             dados = linha.split(" : ");
-                            if (dados.length == 5) {
+                            if (dados.length == 6) {
                                 int idCreatura = Integer.parseInt(dados[0]);
                                 int id = Integer.parseInt(dados[1]);
                                 int tipo = Integer.parseInt(dados[2]);
                                 int x = Integer.parseInt(dados[3]);
                                 int y = Integer.parseInt(dados[4]);
+                                int numSaves = Integer.parseInt(dados[5]);
                                 switch (tipo) {
                                     case 0:
                                         EscudoMadeira escudoMadeira = new EscudoMadeira(id, tipo, x, y);
+                                        escudoMadeira.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,escudoMadeira);
                                         break;
                                     case 1:
                                         EspadaHanzo espadaHanzo = new EspadaHanzo(id, tipo, x, y);
+                                        espadaHanzo.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,espadaHanzo);
                                         break;
                                     case 2:
                                         PistolaPPK pistolaPPK = new PistolaPPK(id, tipo, x, y);
+                                        pistolaPPK.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,pistolaPPK);
                                         break;
                                     case 3:
                                         EscudoTactico escudoTactico = new EscudoTactico(id, tipo, x, y);
+                                        escudoTactico.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,escudoTactico);
                                         break;
                                     case 4:
                                         RevistaMaria revistaMaria = new RevistaMaria(id, tipo, x, y);
+                                        revistaMaria.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,revistaMaria);
                                         break;
                                     case 5:
                                         CabecaAlho cabecaAlho = new CabecaAlho(id, tipo, x, y);
+                                        cabecaAlho.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,cabecaAlho);
                                         break;
                                     case 6:
                                         EstacaMadeira estacaMadeira = new EstacaMadeira(id, tipo, x, y);
+                                        estacaMadeira.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,estacaMadeira);
                                         break;
                                     case 7:
                                         GarrafaLixivia garrafaLixivia = new GarrafaLixivia(id, tipo, x, y);
+                                        garrafaLixivia.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,garrafaLixivia);
                                         break;
                                     case 8:
                                         Veneno veneno = new Veneno(id, tipo, x, y);
+                                        veneno.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,veneno);
                                         break;
                                     case 9:
                                         Antidoto antidoto = new Antidoto(id, tipo, x, y);
+                                        antidoto.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,antidoto);
                                         break;
                                     case 10:
                                         BeskarHelmet beskarHelmet = new BeskarHelmet(id, tipo, x, y);
+                                        beskarHelmet.alteraNrVezesQueSafou(numSaves);
                                         equipsCreaturas.put(idCreatura,beskarHelmet);
                                         break;
                                 }
@@ -1597,7 +1621,7 @@ public class TWDGameManager {
                         e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
                 ));
         listC = juncao.entrySet().stream()
-                .sorted((n1,n2) -> (n2.getValue() - n1.getValue()))
+                .sorted((n1,n2) -> (n1.getValue() - n2.getValue()))
                 .map(n -> n.getKey() + ":" + n.getValue())
                 .collect(Collectors.toList());
         mapa.put("tiposDeEquipamentoMaisUteis",listC);

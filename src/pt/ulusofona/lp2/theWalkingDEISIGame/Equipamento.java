@@ -31,6 +31,9 @@ public abstract class Equipamento {
     public void aumentaNrVezesQueSafou() {
         this.nrVezesQueSafou++;
     }
+    public void alteraNrVezesQueSafou(int num) {
+        this.nrVezesQueSafou = num;
+    }
     public void alteraCoordenada(int x,int y) {
         this.x = x;
         this.y = y;
