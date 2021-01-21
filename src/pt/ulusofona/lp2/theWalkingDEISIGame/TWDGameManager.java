@@ -490,6 +490,7 @@ public class TWDGameManager {
                                         } else {
                                             if(humano.getEquipamentoAtual().getTipo() == 2) { //Pistola
                                                 if(zombie.getTipo() == 4) {
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
