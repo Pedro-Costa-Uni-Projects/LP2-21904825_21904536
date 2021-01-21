@@ -293,6 +293,7 @@ public class TWDGameManager {
                                                     }
                                                 }
                                                 humano.addInteracoes();
+                                                humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                                 zombieARemover = zombie;
                                             } else {
                                                 return false;
