@@ -1567,6 +1567,11 @@ public class TWDGameManager {
         List<Creature> geral = new ArrayList<>();
         geral.addAll(creatures);
         geral.addAll(mortos);
+        List<Equipamento> equipamentos = new ArrayList<>();
+        equipamentos.addAll(listaEquipamento);
+        equipamentos.addAll(geral.stream().map(Creature::getEquipamentoAtual).collect(Collectors.toList()));
+
+
 
         //os3ZombiesMaisTramados
         List<String> listA;
@@ -1608,12 +1613,7 @@ public class TWDGameManager {
 
         //tiposDeEquipamentosMaisUteis
         List<String> listC;
-        Stream<Equipamento> equipamentosLivres = listaEquipamento.stream();
-        Stream<Equipamento> equipamentosHumano = geral.stream()
-                .map(Creature::getEquipamentoAtual)
-                .filter(Objects::nonNull);
-        Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
-        Map<Integer,Integer> juncao = equipamentosAll
+        Map<Integer,Integer> juncao = equipamentos.stream()
                 .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .collect(Collectors.groupingBy(Equipamento::getTipo))
                 .entrySet()
@@ -1624,7 +1624,7 @@ public class TWDGameManager {
                 ));
         listC = juncao.entrySet().stream()
                 .sorted((n1,n2) -> (n1.getValue() - n2.getValue()))
-                .map(n -> n.getKey() + ":" + n.getValue())
+                .map(n -> "-" + n.getKey() + ":" + n.getValue())
                 .collect(Collectors.toList());
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
