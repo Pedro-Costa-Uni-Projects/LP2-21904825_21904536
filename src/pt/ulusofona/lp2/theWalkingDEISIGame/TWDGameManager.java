@@ -324,7 +324,6 @@ public class TWDGameManager {
 
                                     }
                                     if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
-                                        humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                         ((Humano) humano).alteraVeneno(false);
                                         ((Humano) humano).reporTurnosPoison();
                                         if(humano.getEquipamentoAtual() == null) {
@@ -1296,6 +1295,8 @@ public class TWDGameManager {
                 if (((Humano)creature).estadoVeneno()) {
                     if(!((Humano)creature).tiraTurnosPoison()) {
                         creatureRemover = creature;
+                    } else {
+                        creature.getEquipamentoAtual().aumentaNrVezesQueSafou();
                     }
                 }
             }
