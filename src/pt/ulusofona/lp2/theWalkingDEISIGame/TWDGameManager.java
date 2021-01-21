@@ -1589,7 +1589,6 @@ public class TWDGameManager {
                 .filter(Objects::nonNull);
         Stream<Equipamento> equipamentosAll = Stream.concat(equipamentosLivres,equipamentosHumano);
         Map<Integer,Integer> juncao = equipamentosAll
-                .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .collect(Collectors.groupingBy(Equipamento::getTipo))
                 .entrySet()
                 .stream()
@@ -1598,7 +1597,7 @@ public class TWDGameManager {
                         e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
                 ));
         listC = juncao.entrySet().stream()
-                .sorted((n1,n2) -> (int) (n1.getValue() - n2.getValue()))
+                .sorted((n1,n2) -> (n2.getValue() - n1.getValue()))
                 .map(n -> n.getKey() + ":" + n.getValue())
                 .collect(Collectors.toList());
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
