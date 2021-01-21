@@ -24,6 +24,7 @@ public class TWDGameManager {
     private int saveHeavenJogo;
     private ArrayList<Creature> creatures = new ArrayList<>();
     private ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
+    private ArrayList<Equipamento> listaEquipamentoDestruidos = new ArrayList<>();
     private ArrayList<SaveHeaven> listaSaveHeaven = new ArrayList<>();
     private ArrayList<Creature> mortos = new ArrayList<>();
     Comparator<Creature> creatureComparator = Comparator.comparing(Creature::getId);
@@ -429,6 +430,7 @@ public class TWDGameManager {
                                                     organizaListas();
                                                     return true;
                                                 } else {
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
@@ -442,6 +444,7 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 7) {
                                                 if(!((GarrafaLixivia)humano.getEquipamentoAtual()).retirar()) {
                                                     zombie.addInteracoes();
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
@@ -449,6 +452,7 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 0) {
                                                 if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
                                                     zombie.addInteracoes();
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
@@ -497,6 +501,7 @@ public class TWDGameManager {
                                                     return true;
                                                 }
                                                 if (!((PistolaPPK)humano.getEquipamentoAtual()).disparar()) {
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
@@ -510,6 +515,7 @@ public class TWDGameManager {
                                             }
                                             if(humano.getEquipamentoAtual().getTipo() == 1) {
                                                 if(humano.getTipo() == 5 && zombie.getTipo() != 0) {
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     zombie.addInteracoes();
                                                     transforma(humano);
                                                     creatures.remove(humano);
@@ -1571,6 +1577,7 @@ public class TWDGameManager {
         geral.addAll(mortos);
         List<Equipamento> equipamentos = new ArrayList<>();
         equipamentos.addAll(listaEquipamento);
+        equipamentos.addAll(listaEquipamentoDestruidos);
         equipamentos.addAll(geral.stream().map(Creature::getEquipamentoAtual).collect(Collectors.toList()));
 
 
