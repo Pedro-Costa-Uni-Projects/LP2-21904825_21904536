@@ -1614,6 +1614,7 @@ public class TWDGameManager {
         //tiposDeEquipamentosMaisUteis
         List<String> listC;
         Map<Integer,Integer> juncao = equipamentos.stream()
+                .filter(Objects::nonNull)
                 .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .collect(Collectors.groupingBy(Equipamento::getTipo))
                 .entrySet()
