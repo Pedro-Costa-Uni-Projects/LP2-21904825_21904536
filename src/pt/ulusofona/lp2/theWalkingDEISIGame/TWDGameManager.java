@@ -452,11 +452,11 @@ public class TWDGameManager {
                                             if(humano.getEquipamentoAtual().getTipo() == 0) {
                                                 if(!((EscudoMadeira)humano.getEquipamentoAtual()).retirar()) {
                                                     zombie.addInteracoes();
-                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     transforma(humano);
                                                     creatures.remove(humano);
                                                 }
-                                                if(((EscudoMadeira)humano.getEquipamentoAtual()).mostraHits() == 0) {
+                                                if(((EscudoMadeira)humano.getEquipamentoAtual()).mostraHits() == 0){
+                                                    listaEquipamentoDestruidos.add(humano.getEquipamentoAtual());
                                                     ((Humano) humano).setEquipamentosAtual(null);
                                                     idEquipaAtual = ID_EQUIPA_OS_VIVOS;
                                                     numeroDeJogadas++;
