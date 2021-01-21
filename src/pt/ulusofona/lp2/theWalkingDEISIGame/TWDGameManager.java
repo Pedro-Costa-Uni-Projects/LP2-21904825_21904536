@@ -324,6 +324,7 @@ public class TWDGameManager {
 
                                     }
                                     if (equipamento.getTipo() == 9 && ((Humano) humano).estadoVeneno()) {
+                                        humano.getEquipamentoAtual().aumentaNrVezesQueSafou();
                                         ((Humano) humano).alteraVeneno(false);
                                         ((Humano) humano).reporTurnosPoison();
                                         if(humano.getEquipamentoAtual() == null) {
@@ -1632,6 +1633,20 @@ public class TWDGameManager {
         //tipodesDeZombiesESeusEquipamentosDestruidos
         List<String> listD = new ArrayList<>();
         listD.add("");
+        /* Map<Integer,Integer> juncao1 = creatures.stream()
+                .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
+                .filter(z -> z.getNumEquipamentos() >= 1)
+                .collect(Collectors.groupingBy(Creature::getTipo))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum()
+                ));
+        listD = juncao1.entrySet().stream()
+                .sorted((z1,z2) -> z2.getValue() - z1.getValue())
+                .map(z -> z.getKey() + ": Zombie :" + z.getValue())
+                .collect(Collectors.toList()); */
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listD);
 
         //criaturasMaisEquipadas
