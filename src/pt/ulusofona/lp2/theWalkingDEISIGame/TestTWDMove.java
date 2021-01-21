@@ -95,7 +95,7 @@ public class TestTWDMove {
         assertTrue(game.move(2, 0, 1, 0)); //zombie crianca para crianca com espada
         assertTrue(game.move(5, 6, 6, 6)); //adulto vivo para safe heaven
         assertTrue(game.saveGame(ficheiroSave)); //guarda
-        assertTrue(game.move(6, 0, 4, 0)); //move vampiro durante noite para depopis da rollback com o load
+        assertTrue(game.move(6, 0, 4, 0)); //move vampiro durante noite para depois da rollback com o load
         assertTrue(game.loadGame(ficheiroSave));
         assertFalse(game.move(2, 0, 3, 0)); //devo devolver false pois a criança zombie morreu
         assertEquals((long)game.getIdsInSafeHaven().get(0),7); //ve se o unico id no safe heaven é do adulto humano
@@ -104,5 +104,20 @@ public class TestTWDMove {
         //apesar de o id da crinca ser 6 na lista de creaturas é get(5) pois começa no zero
         assertEquals(game.getCreatures().get(5).getEquipamentoAtual().getTipo(),1); //ve se tem uma espada a crinca
         assertEquals(game.getCreatures().get(5).getNumEquipamentos(),1); //ve se apanhou só um equipamento
+    }
+
+    @Test
+    public void resultsGameAndOthers() throws InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager game = new TWDGameManager();
+        game.startGame(ficheiro);
+        assertTrue(game.move(0, 0, 1, 0)); //criança para espada
+        assertTrue(game.move(2, 0, 1, 0)); //zombie crianca para crianca com espada
+        assertTrue(game.move(0, 3, 1, 2)); //cao para veneno
+        assertTrue(game.move(1, 1, 1, 0)); //zombie adulto para crinça com espada
+        assertTrue(game.move(5, 6, 6, 6)); //humano adulto para safe heaven
+        assertTrue(game.move(1, 1, 3, 3)); //adulto zombie para idoso humano
+        assertTrue(game.move(3, 6, 6, 6)); //militar adulto para safe heaven
+        assertTrue(game.gameIsOver()); //não há mais humano em jogo deve acabar
+        assertEquals(game.getGameResults().size(),29);
     }
 }
