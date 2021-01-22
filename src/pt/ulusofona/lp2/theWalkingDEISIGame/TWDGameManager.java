@@ -552,6 +552,7 @@ public class TWDGameManager {
                                     if(equipamento.getTipo() == 8) {
                                         return false;
                                     }
+                                    listaEquipamentoDestruidos.add(equipamento);
                                     equipamentoRemove = equipamento;
                                     zombie.addEquipamentos();
 
