@@ -1635,7 +1635,6 @@ public class TWDGameManager {
                         e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
                 ));
         listC = juncao.entrySet().stream()
-                .filter(n -> n.getValue() >= 1)
                 .sorted((n1,n2) -> (n1.getValue() - n2.getValue()))
                 .map(n -> "-" + n.getKey() + ":" + n.getValue())
                 .collect(Collectors.toList());
