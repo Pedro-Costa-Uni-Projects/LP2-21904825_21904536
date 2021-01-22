@@ -3,6 +3,8 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -119,5 +121,30 @@ public class TestTWDMove {
         assertTrue(game.move(3, 6, 6, 6)); //militar adulto para safe heaven
         assertTrue(game.gameIsOver()); //não há mais humano em jogo deve acabar
         assertEquals(game.getGameResults().size(),29);
+    }
+
+    @Test
+    public void gameStatistics () throws  InvalidTWDInitialFileException, FileNotFoundException {
+        TWDGameManager game = new TWDGameManager();
+        game.startGame(ficheiro);
+        assertTrue(game.move(0, 0, 1, 0)); //criança para espada
+        assertTrue(game.move(2, 0, 1, 0)); //zombie crianca para crianca com espada
+        assertTrue(game.move(0, 3, 1, 2)); //cao para veneno
+        assertTrue(game.move(0, 4, 3, 4)); //militar zombie destroi pistola
+        assertTrue(game.move(3, 6, 3, 5)); //militar humano para escudo
+        assertFalse(game.move(3, 4, 3, 6)); //militar zombie saltar por cima - erro
+        assertTrue(game.move(3, 4, 3, 5)); //militar zombie para militar com estudo
+        assertTrue(game.move(3, 5, 5, 5)); //militar humano movimento
+        assertTrue(game.move(1, 1, 1, 0)); //zombie adulto ataca crinca com espada
+        assertTrue(game.move(3, 3, 4, 3)); //idoso adulto movimento
+        assertTrue(game.move(6, 5, 5, 6)); //tranformação
+        assertTrue(game.move(5, 5, 6, 6)); //varandas para safe heaven
+        assertTrue(game.move(3, 4, 4, 3)); //militar zombie para idoso
+        Map<String, List<String>> obtido = game.getGameStatistics();
+        assertEquals(obtido.get("os3ZombiesMaisTramados").size(),3);
+        assertEquals(obtido.get("os3VivosMaisDuros").size(),0);
+        //falta tiposDeEquipamentoMaisUteis
+        //falta tiposDeZombieESeusEquipamentosDestruidos
+        assertEquals(obtido.get("criaturasMaisEquipadas").size(),5);
     }
 }
