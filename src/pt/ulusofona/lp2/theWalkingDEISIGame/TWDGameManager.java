@@ -374,6 +374,7 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
+                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
             if (equipamentoDrop != null) {
@@ -552,7 +553,6 @@ public class TWDGameManager {
                                     if(equipamento.getTipo() == 8) {
                                         return false;
                                     }
-                                    listaEquipamentoDestruidos.add(equipamento);
                                     equipamentoRemove = equipamento;
                                     zombie.addEquipamentos();
 
@@ -571,6 +571,7 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
+                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
 
