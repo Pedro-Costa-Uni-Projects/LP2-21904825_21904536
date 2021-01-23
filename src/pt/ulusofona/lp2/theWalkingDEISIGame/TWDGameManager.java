@@ -552,6 +552,7 @@ public class TWDGameManager {
                                     if(equipamento.getTipo() == 8) {
                                         return false;
                                     }
+                                    listaEquipamentoDestruidos.add(equipamento);
                                     equipamentoRemove = equipamento;
                                     zombie.addEquipamentos();
 
@@ -627,7 +628,7 @@ public class TWDGameManager {
         }
         return 0;
     }
-    
+
     public List<String> getGameResults() {
         organizaListas();
         ArrayList<String> resultados = new ArrayList<>();
