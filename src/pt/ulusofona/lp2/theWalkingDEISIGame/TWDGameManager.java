@@ -374,7 +374,6 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
-                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
             if (equipamentoDrop != null) {
@@ -571,7 +570,6 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
-                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
 
