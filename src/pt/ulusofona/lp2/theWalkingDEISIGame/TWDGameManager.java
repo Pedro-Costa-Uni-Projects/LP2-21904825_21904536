@@ -226,6 +226,7 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+        System.out.println(listaEquipamentoDestruidos);
         Creature zombieARemover = null;
         int idCriatura = 0;
         Equipamento equipamentoRemove = null;
@@ -374,6 +375,7 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
+                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
             if (equipamentoDrop != null) {
@@ -570,6 +572,7 @@ public class TWDGameManager {
             }
 
             if(equipamentoRemove != null) {
+                listaEquipamentoDestruidos.add(equipamentoRemove);
                 listaEquipamento.remove(equipamentoRemove);
             }
 
