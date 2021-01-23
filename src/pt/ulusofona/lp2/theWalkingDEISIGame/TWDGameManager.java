@@ -226,7 +226,6 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        System.out.println(listaEquipamentoDestruidos);
         Creature zombieARemover = null;
         int idCriatura = 0;
         Equipamento equipamentoRemove = null;
