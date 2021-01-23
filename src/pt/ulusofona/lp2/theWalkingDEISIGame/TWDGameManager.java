@@ -1623,10 +1623,9 @@ public class TWDGameManager {
 
         //tiposDeEquipamentosMaisUteis
         List<String> listC;
-        Stream <Equipamento> juncao = equipamentos.stream()
+        listC = equipamentos.stream()
                 .filter(Objects::nonNull)
-                .filter(e -> e.getNrVezesQueSafou() >= 1);
-        listC = juncao
+                .filter(e -> e.getNrVezesQueSafou() >= 1)
                 .sorted((n1,n2) -> (n1.getNrVezesQueSafou() - n2.getNrVezesQueSafou()))
                 .map(n -> n.getId() + ":" + n.getNrVezesQueSafou())
                 .collect(Collectors.toList());
