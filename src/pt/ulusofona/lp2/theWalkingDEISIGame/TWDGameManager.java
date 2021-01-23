@@ -1623,19 +1623,12 @@ public class TWDGameManager {
 
         //tiposDeEquipamentosMaisUteis
         List<String> listC;
-        Map<Integer,Integer> juncao = equipamentos.stream()
+        Stream <Equipamento> juncao = equipamentos.stream()
                 .filter(Objects::nonNull)
-                .filter(e -> e.getNrVezesQueSafou() >= 1)
-                .collect(Collectors.groupingBy(Equipamento::getTipo))
-                .entrySet()
-                .stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        e -> e.getValue().stream().mapToInt(Equipamento::getNrVezesQueSafou).sum()
-                ));
-        listC = juncao.entrySet().stream()
-                .sorted((n1,n2) -> (n1.getValue() - n2.getValue()))
-                .map(n -> "-" + n.getKey() + ":" + n.getValue())
+                .filter(e -> e.getNrVezesQueSafou() >= 1);
+        listC = juncao
+                .sorted((n1,n2) -> (n1.getNrVezesQueSafou() - n2.getNrVezesQueSafou()))
+                .map(n -> n.getId() + ":" + n.getNrVezesQueSafou())
                 .collect(Collectors.toList());
         mapa.put("tiposDeEquipamentoMaisUteis",listC);
 
