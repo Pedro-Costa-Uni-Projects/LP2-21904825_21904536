@@ -1571,6 +1571,23 @@ public class TWDGameManager {
         return false;
     }
 
+    public String comutarIdParaString (int tipoZombie) {
+        switch (tipoZombie) {
+            case 0:
+                return "Criança (Zombie)";
+            case 1:
+                return "Adulto (Zombie)";
+            case 2:
+                return "Militar (Zombie)";
+            case 3:
+                return "Idoso (Zombie)";
+            case 4:
+                return "Zombie Vampiro";
+            default:
+                return "";
+        }
+    }
+
     public Map<String, List<String>> getGameStatistics() {
         Map<String, List<String>> mapa = new HashMap<>();
 
@@ -1635,18 +1652,15 @@ public class TWDGameManager {
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
         List<String> listD = new ArrayList<>();
-        listD.add("");
-        /*
-         Map<Integer,List<Creature>> juncao1 = creatures.stream()
+        Map<Integer,List<Creature>> juncao1 = creatures.stream()
                 .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
                 .filter(z -> z.getNumEquipamentos() >= 1)
                 .collect(Collectors.groupingBy(Creature::getTipo));
         listD = juncao1.entrySet().stream()
                 .sorted((z1,z2) -> z2.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum() - z1.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
                 .sorted((z1,z2) -> z2.getValue().size() - z1.getValue().size())
-                .map(z -> z.getValue().get(0).getNome() + ":" + z.getValue().size() + ":" + z.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
+                .map(z -> comutarIdParaString(z.getValue().get(0).getTipo()) + ":" + z.getValue().size() + ":" + z.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
                 .collect(Collectors.toList());
-         */
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listD);
 
         //criaturasMaisEquipadas
