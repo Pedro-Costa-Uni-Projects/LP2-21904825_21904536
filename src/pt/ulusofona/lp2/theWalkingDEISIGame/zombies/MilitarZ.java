@@ -54,4 +54,8 @@ public class MilitarZ extends Zombie {
         return "MilitarZ.png";
     }
 
+    public String getNome() {
+        return "Militar (Zombie)";
+    }
+
 }

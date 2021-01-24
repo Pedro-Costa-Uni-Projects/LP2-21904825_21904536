@@ -46,4 +46,8 @@ public class VampiroZ extends Zombie {
     public String getImagePNG() {
         return "VampiroZ.png";
     }
+
+    public String getNome() {
+        return "Zombie Vampiro";
+    }
 }

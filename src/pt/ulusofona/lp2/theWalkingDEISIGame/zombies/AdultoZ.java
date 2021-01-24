@@ -48,4 +48,8 @@ public class AdultoZ extends Zombie {
         return "AdultoZ.png";
     }
 
+    public String getNome() {
+        return "Adulto (Zombie)";
+    }
+
 }
