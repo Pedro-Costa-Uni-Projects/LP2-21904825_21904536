@@ -99,6 +99,9 @@ public class TestTWDMove {
         assertTrue(game.saveGame(ficheiroSave)); //guarda
         assertTrue(game.move(6, 0, 4, 0)); //move vampiro durante noite para depois da rollback com o load
         assertTrue(game.loadGame(ficheiroSave));
+        assertEquals(game.getWorldSize()[0],7);
+        assertEquals(game.getWorldSize()[1],7);
+        assertEquals(game.getInitialTeam(),20);
         assertFalse(game.move(2, 0, 3, 0)); //devo devolver false pois a criança zombie morreu
         assertEquals((long)game.getIdsInSafeHaven().get(0),7); //ve se o unico id no safe heaven é do adulto humano
                                                                 //CAST PARA LONG POIS ESTAVA A DAR ERRO SEM ISSO
@@ -144,7 +147,7 @@ public class TestTWDMove {
         assertEquals(obtido.get("os3ZombiesMaisTramados").size(),3);
         assertEquals(obtido.get("os3VivosMaisDuros").size(),0);
         assertEquals(obtido.get("tiposDeEquipamentoMaisUteis").size(),3);
-        //falta tiposDeZombieESeusEquipamentosDestruidos
+        assertEquals(obtido.get("tiposDeZombieESeusEquipamentosDestruidos").size(),5);
         assertEquals(obtido.get("criaturasMaisEquipadas").size(),5);
     }
 }
