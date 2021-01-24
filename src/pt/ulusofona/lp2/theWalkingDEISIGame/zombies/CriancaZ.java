@@ -34,8 +34,4 @@ public class CriancaZ extends Zombie {
         return "CriancaZ.png";
     }
 
-    public String getNome() {
-        return "Criança (Zombie)";
-    }
-
 }

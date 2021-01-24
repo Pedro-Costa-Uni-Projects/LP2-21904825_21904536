@@ -1635,7 +1635,8 @@ public class TWDGameManager {
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
         List<String> listD = new ArrayList<>();
-
+        listD.add("");
+        /*
          Map<Integer,List<Creature>> juncao1 = creatures.stream()
                 .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
                 .filter(z -> z.getNumEquipamentos() >= 1)
@@ -1645,6 +1646,7 @@ public class TWDGameManager {
                 .sorted((z1,z2) -> z2.getValue().size() - z1.getValue().size())
                 .map(z -> z.getValue().get(0).getNome() + ":" + z.getValue().size() + ":" + z.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
                 .collect(Collectors.toList());
+         */
         mapa.put("tiposDeZombieESeusEquipamentosDestruidos",listD);
 
         //criaturasMaisEquipadas
