@@ -143,7 +143,7 @@ public class TestTWDMove {
         Map<String, List<String>> obtido = game.getGameStatistics();
         assertEquals(obtido.get("os3ZombiesMaisTramados").size(),3);
         assertEquals(obtido.get("os3VivosMaisDuros").size(),0);
-        //falta tiposDeEquipamentoMaisUteis
+        assertEquals(obtido.get("tiposDeEquipamentoMaisUteis").size(),3);
         //falta tiposDeZombieESeusEquipamentosDestruidos
         assertEquals(obtido.get("criaturasMaisEquipadas").size(),5);
     }

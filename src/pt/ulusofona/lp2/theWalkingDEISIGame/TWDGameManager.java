@@ -1652,11 +1652,11 @@ public class TWDGameManager {
 
         //tipodesDeZombiesESeusEquipamentosDestruidos
         List<String> listD = new ArrayList<>();
-        Map<Integer,List<Creature>> juncao1 = creatures.stream()
+        Map<Integer,List<Creature>> juncao = geral.stream()
                 .filter(z -> z.getTipo() >= 0 && z.getTipo() <= 4)
                 .filter(z -> z.getNumEquipamentos() >= 1)
                 .collect(Collectors.groupingBy(Creature::getTipo));
-        listD = juncao1.entrySet().stream()
+        listD = juncao.entrySet().stream()
                 .sorted((z1,z2) -> z2.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum() - z1.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
                 .sorted((z1,z2) -> z2.getValue().size() - z1.getValue().size())
                 .map(z -> comutarIdParaString(z.getValue().get(0).getTipo()) + ":" + z.getValue().size() + ":" + z.getValue().stream().mapToInt(Creature::getNumEquipamentos).sum())
